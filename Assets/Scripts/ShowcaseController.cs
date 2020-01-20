@@ -283,14 +283,86 @@ public class ShowcaseController : MonoBehaviour
         NowEditingText.text = "Now editing: straight line";
     }
 
-    public void OnEditBackgroundClicked()
-    {
-        EditButtonsParent.SetActive(false);
-        CurrentlyBeingEdited = Editable.background;
-        NowEditingText.text = "Now editing: background";
-    }
-
     #endregion
+
+    public void OnEditableSelected(int selected)
+    {
+        CurrentlyBeingEdited = (Editable)selected;
+
+        switch (CurrentlyBeingEdited)
+        {
+            case Editable.blackHoleScatter:
+                NowEditingText.text = "Now editing: black hole scatter";
+                ColorPicker.AssignColor(BlackHoleScatter.main.startColor.color);
+                break;
+            case Editable.blackHoleConverge:
+                NowEditingText.text = "Now editing: black hole converge";
+                ColorPicker.AssignColor(BlackHoleConverge.main.startColor.color);
+                break;
+            case Editable.blackHoleSprite:
+                NowEditingText.text = "Now editing: black hole sprite";
+                ColorPicker.AssignColor(BlackHole.material.GetColor("_Color"));
+                break;
+            case Editable.blackHoleComposite:
+                NowEditingText.text = "Now editing: black hole composite";
+                ColorPicker.AssignColor(BlackHole.material.GetColor("_Color"));
+                break;
+            case Editable.chaserBase:
+                NowEditingText.text = "Now editing: chaser base";
+                ColorPicker.AssignColor(Chaser.material.GetColor("_BaseColor"));
+                break;
+            case Editable.chaserOutline:
+                NowEditingText.text = "Now editing: chaser outline";
+                ColorPicker.AssignColor(Chaser.material.GetColor("_OutlineColor"));
+                break;
+            case Editable.straightLineSprite:
+                NowEditingText.text = "Now editing: straight line sprite";
+                ColorPicker.AssignColor(StraightLine.color);
+                break;
+            case Editable.straightLineEdge:
+                NowEditingText.text = "Now editing: straight line edge";
+                ColorPicker.AssignColor(StraightLineEdge[0].main.startColor.color);
+                break;
+            case Editable.electricFenceBase:
+                NowEditingText.text = "Now editing: electric fence base";
+                ColorPicker.AssignColor(ElectricFence[0].main.startColor.color);
+                break;
+            case Editable.electricFenceGradient:
+                NowEditingText.text = "Now editing: electric fence coloroverlifetime";
+                ElectricFenceEditParent.SetActive(false);
+                GradientEditParent.SetActive(true);
+                GradientEditInit();
+                break;
+            case Editable.electricFenceElectric:
+                NowEditingText.text = "Now editing: electric fence electric";
+                ElectricFenceEditParent.SetActive(false);
+                GradientEditParent.SetActive(true);
+                GradientEditInit();
+                break;
+            case Editable.electricFenceHeadsup:
+                NowEditingText.text = "Now editing: electric fence headsup";
+                ColorPicker.AssignColor(ElectricHeadsUp.main.startColor.color);
+                break;
+            case Editable.leaperInactiveGradient:
+                NowEditingText.text = "Now editing: leaper inactive";
+                LeaperEditParent.SetActive(false);
+                GradientEditParent.SetActive(true);
+                GradientEditInit();
+                break;
+            case Editable.leaperActiveGradient:
+                NowEditingText.text = "Now editing: leaper active";
+                LeaperEditParent.SetActive(false);
+                GradientEditParent.SetActive(true);
+                GradientEditInit();
+                break;
+            case Editable.background:
+                NowEditingText.text = "Now editing: background";
+                ColorPicker.AssignColor(Camera.backgroundColor);
+                break;
+            default:
+                break;
+        }
+    }
 
     #region GradientEdits
 
@@ -363,6 +435,8 @@ public class ShowcaseController : MonoBehaviour
         GradientBuffer = GradientSystemBeingEdited.colorOverLifetime.color.gradient;
         ColorKeyBuffer = GradientBuffer.colorKeys;
         ColorKeyUIImageCache = ColorKeyBeingEdited.GetComponent<Image>();
+
+        ColorPicker.AssignColor(ColorKeyUIImageCache.color);
     }
 
     public void DragColorKey(PointerEventData ped)
@@ -452,130 +526,6 @@ public class ShowcaseController : MonoBehaviour
             ParticleSystem.ColorOverLifetimeModule colModule = GradientSystemBeingEdited.colorOverLifetime;
             colModule.color = newGradient;
         }
-    }
-
-    #endregion
-
-    #region LeaperEdits
-
-    public void OnLeaperInactiveClicked()
-    {
-        NowEditingText.text = "Now editing: leaper inactive";
-        CurrentlyBeingEdited = Editable.leaperInactiveGradient;
-        LeaperEditParent.SetActive(false);
-        GradientEditParent.SetActive(true);
-        GradientEditInit();
-    }
-
-    public void OnLeaperActiveClicked()
-    {
-        NowEditingText.text = "Now editing: leaper active";
-        CurrentlyBeingEdited = Editable.leaperActiveGradient;
-        LeaperEditParent.SetActive(false);
-        GradientEditParent.SetActive(true);
-        GradientEditInit();
-    }
-
-    #endregion
-
-    #region ElectricFenceEdits
-
-    public void OnElectricFenceBaseClicked()
-    {
-        CurrentlyBeingEdited = Editable.electricFenceBase;
-
-        NowEditingText.text = "Now editing: electric fence base";
-    }
-
-    public void OnElectricFenceColorOverLifeTimeClicked()
-    {
-        ElectricFenceEditParent.SetActive(false);
-
-        CurrentlyBeingEdited = Editable.electricFenceGradient;
-
-        NowEditingText.text = "Now editing: electric fence coloroverlifetime";
-
-        GradientEditParent.SetActive(true);
-        GradientEditInit();
-    }
-
-    public void OnElectricFenceElectricClicked()
-    {
-        ElectricFenceEditParent.SetActive(false);
-
-        CurrentlyBeingEdited = Editable.electricFenceElectric;
-
-        NowEditingText.text = "Now editing: electric fence electric";
-
-        GradientEditParent.SetActive(true);
-        GradientEditInit();
-    }
-
-    public void OnElectricFenceElectricHeadsUpClicked()
-    {
-        CurrentlyBeingEdited = Editable.electricFenceHeadsup;
-
-        NowEditingText.text = "Now editing: electric fence headsup";
-    }
-
-    #endregion
-
-    #region StraightLineEdits
-
-    public void OnStraightLineSpriteClicked()
-    {
-        NowEditingText.text = "Now editing: straight line sprite";
-        CurrentlyBeingEdited = Editable.straightLineSprite;
-    }
-
-    public void OnStraightLineEdgeClicked()
-    {
-        NowEditingText.text = "Now editing: straight line edge";
-        CurrentlyBeingEdited = Editable.straightLineEdge;
-    }
-
-    #endregion
-
-    #region ChaserEdits
-
-    public void OnChaserBaseClicked()
-    {
-        NowEditingText.text = "Now editing: chaser base";
-        CurrentlyBeingEdited = Editable.chaserBase;
-    }
-
-    public void OnChaserOutlineClicked()
-    {
-        NowEditingText.text = "Now editing: chaser outline";
-        CurrentlyBeingEdited = Editable.chaserOutline;
-    }
-
-    #endregion
-
-    #region BlackHoleEdits
-
-    public void OnBlackHoleScatterClicked()
-    {
-        NowEditingText.text = "Now editing: black hole scatter";
-        CurrentlyBeingEdited = Editable.blackHoleScatter;
-    }
-
-    public void OnBlackHoleConvergeClicked()
-    {
-        NowEditingText.text = "Now editing: black hole converge";
-        CurrentlyBeingEdited = Editable.blackHoleConverge;
-    }
-
-    public void OnBlackHoleSpriteClicked()
-    {
-        NowEditingText.text = "Now editing: black hole sprite";
-        CurrentlyBeingEdited = Editable.blackHoleSprite;
-    }
-
-    public void OnBlackHoleCompositeClicked()
-    {
-        NowEditingText.text = "Now editing: black hole composite";
-        CurrentlyBeingEdited = Editable.blackHoleComposite;
     }
 
     #endregion
@@ -784,23 +734,23 @@ public class ShowcaseController : MonoBehaviour
 
 public enum Editable
 {
-    none,
-    blackHoleScatter,
-    blackHoleConverge,
-    blackHoleSprite,
-    blackHoleComposite,
-    chaserBase,
-    chaserOutline,
-    straightLineSprite,
-    straightLineEdge,
-    electricFenceBase,
-    electricFenceGradient,
-    electricFenceElectric,
-    electricFenceHeadsup,
-    leaperInactiveGradient,
-    leaperActiveGradient,
-    background,
-    colorKey
+    none = 0,
+    blackHoleScatter = 1,
+    blackHoleConverge = 2,
+    blackHoleSprite = 3,
+    blackHoleComposite = 4,
+    chaserBase = 5,
+    chaserOutline = 6,
+    straightLineSprite = 7,
+    straightLineEdge = 8,
+    electricFenceBase = 9,
+    electricFenceGradient = 10,
+    electricFenceElectric = 11,
+    electricFenceHeadsup = 12,
+    leaperInactiveGradient = 13,
+    leaperActiveGradient = 14,
+    background = 15,
+    colorKey = 16
 }
 
 public class ColorData
