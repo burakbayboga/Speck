@@ -35,9 +35,11 @@ public class ShowcaseController : MonoBehaviour
     public List<GameObject> GradientColorKeysUI;
     ParticleSystem GradientSystemBeingEdited;
 
-    GameObject ColorKeyBeingDragged;
-    RectTransform ColorKeyBeingDraggedRectTransform;
-    GradientColorKey[] CurrentSystemColorKeys;
+    GameObject ColorKeyBeingEdited;
+    RectTransform ColorKeyBeingEditedRectTransform;
+    GradientColorKey[] ColorKeyBuffer;
+    Gradient GradientBuffer;
+    Image ColorKeyUIImageCache;
 
 
     #region UIGameObjects
@@ -222,6 +224,15 @@ public class ShowcaseController : MonoBehaviour
                 break;
             case Editable.leaperActiveGradient:
                 break;
+            case Editable.colorKey:
+                int index = GradientColorKeysUI.IndexOf(ColorKeyBeingEdited);
+                Color rgbColor = Color.HSVToRGB(h, s, v);
+                ColorKeyBuffer[index].color = rgbColor;
+                GradientBuffer.SetKeys(ColorKeyBuffer, GradientBuffer.alphaKeys);
+                ParticleSystem.ColorOverLifetimeModule colModuleGeneric = GradientSystemBeingEdited.colorOverLifetime;
+                colModuleGeneric.color = GradientBuffer;
+                ColorKeyUIImageCache.color = rgbColor;
+                break;
             default:
                 break;
         }
@@ -317,36 +328,47 @@ public class ShowcaseController : MonoBehaviour
         trigger.triggers.Add(entryDrag);
 
         EventTrigger.Entry entryBeginDrag = new EventTrigger.Entry();
-        entryBeginDrag.eventID = EventTriggerType.BeginDrag;
-        entryBeginDrag.callback.AddListener((ped) => BeginDragColorKey((PointerEventData)ped));
+        entryBeginDrag.eventID = EventTriggerType.PointerDown;
+        entryBeginDrag.callback.AddListener((ped) => BeginEditColorKey((PointerEventData)ped));
         trigger.triggers.Add(entryBeginDrag);
+
+        EventTrigger.Entry entryClick = new EventTrigger.Entry();
+        entryClick.eventID = EventTriggerType.PointerClick;
+        entryClick.callback.AddListener((ped) => ClickColorKey((PointerEventData)ped));
+        trigger.triggers.Add(entryClick);
 
         GradientColorKeysUI.Add(newColorKey);
         GradientColorKeysUI = GradientColorKeysUI.OrderBy(key => key.GetComponent<RectTransform>().anchoredPosition.x).ToList();
     }
 
-    public void BeginDragColorKey(PointerEventData ped)
+    public void BeginEditColorKey(PointerEventData ped)
     {
-        ColorKeyBeingDragged = ped.pointerDrag;
-        ColorKeyBeingDraggedRectTransform = ColorKeyBeingDragged.GetComponent<RectTransform>();
-        CurrentSystemColorKeys = GradientSystemBeingEdited.colorOverLifetime.color.gradient.colorKeys;
+        ColorKeyBeingEdited = ped.pointerEnter;
+        ColorKeyBeingEditedRectTransform = ColorKeyBeingEdited.GetComponent<RectTransform>();
+        GradientBuffer = GradientSystemBeingEdited.colorOverLifetime.color.gradient;
+        ColorKeyBuffer = GradientBuffer.colorKeys;
+        ColorKeyUIImageCache = ColorKeyBeingEdited.GetComponent<Image>();
     }
 
     public void DragColorKey(PointerEventData ped)
     {
-        Vector2 currentPos = ColorKeyBeingDraggedRectTransform.anchoredPosition;
+        Vector2 currentPos = ColorKeyBeingEditedRectTransform.anchoredPosition;
         currentPos.x = Mathf.Clamp(currentPos.x + ped.delta.x, 0f, GradientBaseTransform.rect.width);
-        ColorKeyBeingDraggedRectTransform.anchoredPosition = currentPos;
+        ColorKeyBeingEditedRectTransform.anchoredPosition = currentPos;
 
-        int colorKeyIndex = GradientColorKeysUI.IndexOf(ColorKeyBeingDragged);
-        CurrentSystemColorKeys[colorKeyIndex].time = Mathf.InverseLerp(0f, GradientBaseTransform.rect.width, currentPos.x);
+        int colorKeyIndex = GradientColorKeysUI.IndexOf(ColorKeyBeingEdited);
+        ColorKeyBuffer[colorKeyIndex].time = Mathf.InverseLerp(0f, GradientBaseTransform.rect.width, currentPos.x);
+        GradientBuffer.SetKeys(ColorKeyBuffer, GradientSystemBeingEdited.colorOverLifetime.color.gradient.alphaKeys);
 
-        Gradient modifiedGradient = new Gradient();
-        modifiedGradient.SetKeys(CurrentSystemColorKeys, GradientSystemBeingEdited.colorOverLifetime.color.gradient.alphaKeys);
         ParticleSystem.ColorOverLifetimeModule colModule = GradientSystemBeingEdited.colorOverLifetime;
-        colModule.color = modifiedGradient;
+        colModule.color = GradientBuffer;
 
         GradientColorKeysUI = GradientColorKeysUI.OrderBy(key => key.GetComponent<RectTransform>().anchoredPosition.x).ToList();
+    }
+
+    public void ClickColorKey(PointerEventData ped)
+    {
+        CurrentlyBeingEdited = Editable.colorKey;
     }
 
     public void OnAddGradientKeyClicked()
@@ -754,7 +776,8 @@ public enum Editable
     electricFenceElectric,
     electricFenceHeadsup,
     leaperInactiveGradient,
-    leaperActiveGradient
+    leaperActiveGradient,
+    colorKey
 }
 
 public class ColorData

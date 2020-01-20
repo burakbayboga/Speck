@@ -1118,7 +1118,7 @@ ParticleSystem:
     arc:
       value: 360
       mode: 2
-      spread: 0.82
+      spread: 0
       speed:
         serializedVersion: 2
         minMaxState: 0
@@ -1178,7 +1178,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5.47
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1616,8 +1616,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 0.27450982}
+        key0: {r: 0.73, g: 0.34780106, b: 0.19874346, a: 1}
+        key1: {r: 0.73333335, g: 0.7303807, b: 0.19999999, a: 0.27450982}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2065,7 +2065,7 @@ ParticleSystem:
     orbitalZ:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 10
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2089,37 +2089,10 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.2335213
+          time: 1
           value: -0.5644813
           inSlope: -0.88076633
           outSlope: -0.88076633
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.43888202
-          value: 0.8103999
-          inSlope: 0.9444629
-          outSlope: 0.9444629
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.6850152
-          value: -0.5536218
-          inSlope: -2.3928518
-          outSlope: -2.3928518
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
@@ -2312,60 +2285,24 @@ ParticleSystem:
         m_RotationOrder: 4
     radial:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 1
+      minMaxState: 0
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
           outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.17560975
-          value: -0.77005345
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.4112768
-          value: 0.75134534
-          inSlope: 1.2163292
-          outSlope: 1.2163292
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.60046947
-          value: -0.5140313
-          inSlope: -1.9220337
-          outSlope: -1.9220337
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.63417715
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.8462522
-          value: -1
-          inSlope: 2.4737484
-          outSlope: 2.4737484
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -3819,7 +3756,7 @@ ParticleSystem:
     separateAxes: 0
     range: {x: 0, y: 1}
   ColorBySpeedModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
