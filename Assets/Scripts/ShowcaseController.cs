@@ -11,6 +11,8 @@ public class ShowcaseController : MonoBehaviour
 {
     public static ShowcaseController instance;
 
+    public Camera Camera;
+
     public SpriteRenderer StraightLine;
     public ParticleSystem[] StraightLineEdge;
 
@@ -157,6 +159,9 @@ public class ShowcaseController : MonoBehaviour
                 ParticleSystem.ColorOverLifetimeModule colModuleLeaperActive = LeaperActive.colorOverLifetime;
                 colModuleLeaperActive.color = GetUnityGradient(colorData.Gradient);
                 break;
+            case Editable.background:
+                Camera.backgroundColor = GetUnityColor(colorData.Color);
+                break;
             default:
                 break;
         }
@@ -233,6 +238,9 @@ public class ShowcaseController : MonoBehaviour
                 colModuleGeneric.color = GradientBuffer;
                 ColorKeyUIImageCache.color = rgbColor;
                 break;
+            case Editable.background:
+                Camera.backgroundColor = Color.HSVToRGB(h, s, v);
+                break;
             default:
                 break;
         }
@@ -273,6 +281,13 @@ public class ShowcaseController : MonoBehaviour
         EditButtonsParent.SetActive(false);
         StraightLineEditParent.SetActive(true);
         NowEditingText.text = "Now editing: straight line";
+    }
+
+    public void OnEditBackgroundClicked()
+    {
+        EditButtonsParent.SetActive(false);
+        CurrentlyBeingEdited = Editable.background;
+        NowEditingText.text = "Now editing: background";
     }
 
     #endregion
@@ -593,7 +608,7 @@ public class ShowcaseController : MonoBehaviour
 
     private void SaveColorData()
     {
-        ColorData[] colorData = new ColorData[13];
+        ColorData[] colorData = new ColorData[14];
 
         ColorData blackHoleScatterData = new ColorData
         {
@@ -686,6 +701,13 @@ public class ShowcaseController : MonoBehaviour
         };
         colorData[12] = leaperActiveData;
 
+        ColorData backgroundData = new ColorData
+        {
+            Color = GetSerializableColor(Camera.backgroundColor),
+            Target = Editable.background
+        };
+        colorData[13] = backgroundData;
+
         string dataSerialized = JsonConvert.SerializeObject(colorData);
         PlayerPrefs.SetString(Utility.PrefsColorDataKey, dataSerialized);
     }
@@ -777,6 +799,7 @@ public enum Editable
     electricFenceHeadsup,
     leaperInactiveGradient,
     leaperActiveGradient,
+    background,
     colorKey
 }
 
