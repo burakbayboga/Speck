@@ -458,6 +458,7 @@ public class ShowcaseController : MonoBehaviour
     public void ClickColorKey(PointerEventData ped)
     {
         CurrentlyBeingEdited = Editable.colorKey;
+        DeleteColorKeyInputField.text = GradientColorKeysUI.IndexOf(ColorKeyBeingEdited).ToString();
     }
 
     public void OnAddGradientKeyClicked()
