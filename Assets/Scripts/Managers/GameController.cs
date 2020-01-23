@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
     int CurrentSmallFryCount = 0;
 
     Animator BossEncounterIntroParentAnimator;
+
+    CameraBlur CameraBlur;
     
     void Awake()
     {
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour
         BossSmallFryCountdownActive = true;
         BossEncounterIntroParentAnimator = BossEncounterIntroParent.GetComponent<Animator>();
         Speck = FindObjectOfType<LilB>();
+        CameraBlur = Camera.main.GetComponent<CameraBlur>();
     }
 
     void Start()
@@ -61,14 +64,15 @@ public class GameController : MonoBehaviour
 
         StartCoroutine(LerpCanvasGroupAlpha(PauseMenuParent, true));
         IsGamePaused = true;
-        PauseGameButton.OnClickEvent.RemoveAllListeners();
-        PauseGameButton.OnClickEvent.AddListener(OnResumeGameClicked);
+
+        CameraBlur.enabled = true;
+        PauseGameButton.IsButtonActive = false;
     }
 
     public void OnResumeGameClicked()
     {
-        PauseGameButton.IsButtonActive = false;
         StartCoroutine(ResumeAfterCountdown());
+        CameraBlur.enabled = false;
     }
 
     IEnumerator ResumeAfterCountdown()
@@ -86,9 +90,7 @@ public class GameController : MonoBehaviour
 
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
-
-        PauseGameButton.OnClickEvent.RemoveAllListeners();
-        PauseGameButton.OnClickEvent.AddListener(OnPauseGameClicked);
+        
         PauseGameButton.IsButtonActive = true;
         IsGamePaused = false;
 
@@ -120,7 +122,6 @@ public class GameController : MonoBehaviour
         }
 
         IsGameOver = true;
-        PauseGameButton.IsButtonActive = false;
 
         Speck.HandleDeath();
 

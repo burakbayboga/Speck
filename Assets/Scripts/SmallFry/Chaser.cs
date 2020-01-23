@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Chaser : SmallFry
 {
-
     public float Speed;
     public float TargetAlpha;
     public float LifeTime;
@@ -32,16 +31,17 @@ public class Chaser : SmallFry
 
     void Update()
     {
-        float distance = (transform.position - LilBTransform.position).magnitude;
-        float lerpParameter = Mathf.InverseLerp(0.0f, 30.0f, distance);
-
-        Color outlineColor = Color.Lerp(NearColor, FarColor, lerpParameter);
-        Renderer.material.SetColor("_Color", outlineColor);
 
         if (!IsSpawnOver && !ShouldChase())
         {
             return;
         }
+
+        float distance = (transform.position - LilBTransform.position).magnitude;
+        float lerpParameter = Mathf.InverseLerp(0.0f, 30.0f, distance);
+
+        Color outlineColor = Color.Lerp(NearColor, FarColor, lerpParameter);
+        Renderer.material.SetColor("_OutlineColor", outlineColor);
 
         Rigidbody.velocity = (LilBTransform.position - transform.position).normalized * Speed * SpeedMultiplier;
         float zRotation = Vector3.SignedAngle(LilBTransform.position - transform.position, Vector3.up, Vector3.forward * -1.0f);

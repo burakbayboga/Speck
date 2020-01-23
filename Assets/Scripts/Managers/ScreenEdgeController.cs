@@ -26,7 +26,7 @@ public class ScreenEdgeController : MonoBehaviour
         LilBTransform = LilB.transform;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (MainCamera.WorldToScreenPoint(LilBTransform.position).x < ScreenLimitOffset)
         {
