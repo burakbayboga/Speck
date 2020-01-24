@@ -1,4 +1,4 @@
-﻿Shader "Unlit/Base"
+﻿Shader "Custom/Base"
 {
     Properties
     {

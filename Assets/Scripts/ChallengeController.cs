@@ -31,6 +31,8 @@ public class ChallengeController : MonoBehaviour
 
     private LilB LilB;
 
+    private CameraBlur CameraBlur;
+
     private Coroutine WatchForLevelEndCoroutine;
     private bool WatchForLevelEndActive;
 
@@ -59,6 +61,8 @@ public class ChallengeController : MonoBehaviour
 
         LilB = FindObjectOfType<LilB>();
         LilB.IsChallenge = true;
+
+        CameraBlur = Camera.main.GetComponent<CameraBlur>();
 
         InitChallenge();
     }
@@ -240,14 +244,14 @@ public class ChallengeController : MonoBehaviour
 
         StartCoroutine(LerpCanvasGroupAlpha(PauseMenuParent, true));
         IsGamePaused = true;
-        PauseGameButton.OnClickEvent.RemoveAllListeners();
-        PauseGameButton.OnClickEvent.AddListener(OnResumeGameClicked);
+        PauseGameButton.IsButtonActive = false;
+        CameraBlur.enabled = true;
     }
 
     public void OnResumeGameClicked()
     {
-        PauseGameButton.IsButtonActive = false;
         StartCoroutine(ResumeAfterCountdown());
+        CameraBlur.enabled = false;
     }
 
     IEnumerator ResumeAfterCountdown()
@@ -266,11 +270,8 @@ public class ChallengeController : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
 
-        PauseGameButton.OnClickEvent.RemoveAllListeners();
-        PauseGameButton.OnClickEvent.AddListener(OnPauseGameClicked);
         PauseGameButton.IsButtonActive = true;
         IsGamePaused = false;
-
     }
 
     IEnumerator LerpCanvasGroupAlpha(GameObject cggo, bool activating)

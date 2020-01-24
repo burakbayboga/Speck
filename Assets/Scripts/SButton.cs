@@ -14,9 +14,9 @@ public class SButton : MonoBehaviour
     public Color InactiveColor;
     public UnityEvent OnClickEvent;
     public UnityEvent InActiveOnClickEvent;
-    public bool IsButtonActive;
     public bool OnClickEventLoadsScene;
 
+    public bool IsButtonActive;
 
     private void Start()
     {
