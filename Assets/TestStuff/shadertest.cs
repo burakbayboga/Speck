@@ -8,11 +8,14 @@ public class shadertest : MonoBehaviour
     public SpriteRenderer SpriteRenderer;
 
     Material Material;
+    Animator Animator;
     float pingpongtimer = 0f;
+    float animparam = 0f;
 
     private void Awake()
     {
         Material = SpriteRenderer.material;
+        Animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -20,16 +23,24 @@ public class shadertest : MonoBehaviour
         StartCoroutine(PingpongThreshold());
     }
 
+    private void Update()
+    {
+        animparam += Time.deltaTime;
+        if (animparam > 1f)
+        {
+            animparam -= 1f;
+        }
+
+        Animator.SetFloat("normtime", animparam);
+    }
+
+
+
     private void LateUpdate()
     {
-        //print(SpriteRenderer.sprite.rect.center + " " + SpriteRenderer.sprite.rect.x + " " + SpriteRenderer.sprite.rect.y);
-        //print(SpriteRenderer.sprite.texture.height + " " + SpriteRenderer.sprite.texture.width);
-
-        //Vector2 center = new Vector2(SpriteRenderer.sprite.rect.center.x / 1920f, SpriteRenderer.sprite.rect.center.y / 1080f);
         Vector2 center = new Vector2((SpriteRenderer.sprite.rect.xMin + SpriteRenderer.sprite.pivot.x) / 1920f, (SpriteRenderer.sprite.rect.yMin + SpriteRenderer.sprite.pivot.y) / 1080f);
 
         Material.SetVector("_Center", new Vector4(center.x, center.y, 0f, 0f));
-        //print(SpriteRenderer.sprite.pivot);
     }
     
     IEnumerator PingpongThreshold()
