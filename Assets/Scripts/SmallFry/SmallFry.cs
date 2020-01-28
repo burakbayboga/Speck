@@ -11,9 +11,6 @@ public class SmallFry : MonoBehaviour
     [HideInInspector] public Vector2 OriginalVelocity;
     [HideInInspector] public float OriginalAngularVelocity;
 
-    public bool IsFrozen;
-    public float SpeedMultiplier;
-
     protected float CurrentTheta;
 
     public EnemyType EnemyType;
@@ -33,8 +30,6 @@ public class SmallFry : MonoBehaviour
         LilBTransform = GameObject.FindWithTag("LilB").transform;
 
         MainCamera = Camera.main;
-        IsFrozen = false;
-        SpeedMultiplier = 1.0f;
     }
 
     public virtual void HandleDeath()
@@ -55,15 +50,5 @@ public class SmallFry : MonoBehaviour
         {
             CurrentTheta = helperAngle;
         }
-    }
-
-    public virtual void ApplyFreeze(float effectTime){ }
-
-    public virtual void RevertFreeze() { }
-
-    protected IEnumerator Timer(float delay, Action action)
-    {
-        yield return new WaitForSeconds(delay);
-        action();
     }
 }

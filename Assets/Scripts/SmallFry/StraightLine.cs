@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class StraightLine : SmallFry
 {
+    public float SpeedMultiplier = 1f;
 
-    public GameObject EdgeParticleInitial;
-    public GameObject EdgeParticleConstantCircle;
+    public SpriteRenderer OuterSpriteRenderer;
+    Material OuterMaterial;
+    Vector2 TextureResolution;
+
+    private void Start()
+    {
+        Texture2D texture = OuterSpriteRenderer.sprite.texture;
+        TextureResolution = new Vector2(texture.width, texture.height);
+        OuterMaterial = OuterSpriteRenderer.material;
+        OuterMaterial.SetFloat("_HalfSliceSize", (OuterSpriteRenderer.sprite.rect.height / TextureResolution.y) / 2f);
+        print(OuterSpriteRenderer.sprite.rect.height);
+    }
 
     public override void Init()
     {
@@ -18,107 +29,36 @@ public class StraightLine : SmallFry
 
     void Update()
     {
-        ScreenPos = MainCamera.WorldToScreenPoint(transform.position);
-        if (ScreenPos.x < 0 || ScreenPos.x > Screen.width || ScreenPos.y < 0 || ScreenPos.y > Screen.height)
-        {
-            HandleDeath();
-        }
-        if (!IsFrozen)
-        {
-            Rigidbody.velocity = OriginalVelocity * SpeedMultiplier;
-            Rigidbody.angularVelocity = OriginalAngularVelocity * SpeedMultiplier;
-        }
+        //ScreenPos = MainCamera.WorldToScreenPoint(transform.position);
+        //if (ScreenPos.x < 0 || ScreenPos.x > Screen.width || ScreenPos.y < 0 || ScreenPos.y > Screen.height)
+        //{
+        //    HandleDeath();
+        //}
+    }
+
+    private void LateUpdate()
+    {
+        SetShaderProperties();
+    }
+
+    void SetShaderProperties()
+    {
+        Vector2 center = new Vector2((OuterSpriteRenderer.sprite.rect.xMin + OuterSpriteRenderer.sprite.pivot.x) / TextureResolution.x, (OuterSpriteRenderer.sprite.rect.yMin + OuterSpriteRenderer.sprite.pivot.y) / TextureResolution.y);
+        OuterMaterial.SetVector("_Center", center);
     }
 
     IEnumerator Action()
     {
         yield return new WaitForSeconds(1.0f);
-        //OriginalAngularVelocity = Random.Range(0, 2) == 0 ? 2048.0f : -2048.0f;
-        float lerpParameter = 0.0f;
-        float startTime = Time.time;
-        while (lerpParameter < 1.0f)
-        {
-            lerpParameter = (Time.time - startTime) / 2.0f;
-            OriginalAngularVelocity = Mathf.Lerp(0.0f, 1440.0f, lerpParameter * lerpParameter);
-            yield return null;
-        }
 
         AudioSource.Play();
 
-        //yield return new WaitForSeconds(2.0f);
-
-        OriginalVelocity = GetVelocity();
+        Rigidbody.velocity = GetVelocity();
         GetComponent<Collider2D>().enabled = true;
-
-        EdgeParticleInitial.SetActive(false);
-        EdgeParticleConstantCircle.SetActive(true);
     }
 
     Vector3 GetVelocity()
     {
-        return LilBTransform.position - transform.position;
-    }
-
-    public override void ApplyFreeze(float effectTime)
-    {
-        if (IsFrozen)
-        {
-            return;
-        }
-        IsFrozen = true;
-        StartCoroutine(FreezeCoroutine());
-        StartCoroutine(Timer(effectTime, RevertFreeze));
-    }
-
-    public override void RevertFreeze()
-    {
-        StartCoroutine(RevertFreezeCoroutine());
-    }
-
-    IEnumerator FreezeCoroutine()
-    {
-        float startTime = Time.time;
-        float timePassed;
-        float lerpParameter;
-
-        EdgeParticleConstantCircle.SetActive(false);
-        EdgeParticleInitial.SetActive(true);
-
-        while (true)
-        {
-            timePassed = Time.time - startTime;
-            lerpParameter = timePassed * 2.0f;
-            Rigidbody.velocity = Vector2.Lerp(OriginalVelocity, Vector2.zero, lerpParameter);
-            Rigidbody.angularVelocity = Mathf.Lerp(OriginalAngularVelocity, 0.0f, lerpParameter);
-            if (lerpParameter >= 1.0f)
-            {
-                yield break;
-            }
-            yield return null;
-        }
-    }
-
-    IEnumerator RevertFreezeCoroutine()
-    {
-        float startTime = Time.time;
-        float timePassed;
-        float lerpParameter;
-
-        while (true)
-        {
-            timePassed = Time.time - startTime;
-            lerpParameter = timePassed/* * 10.0f*/;
-            Rigidbody.angularVelocity = Mathf.Lerp(0.0f, OriginalAngularVelocity, lerpParameter);
-            if (lerpParameter >= 1.0f)
-            {
-                IsFrozen = false;
-
-                EdgeParticleInitial.SetActive(false);
-                EdgeParticleConstantCircle.SetActive(true);
-
-                yield break;
-            }
-            yield return null;
-        }
+        return (LilBTransform.position - transform.position) * SpeedMultiplier;
     }
 }

@@ -18,14 +18,6 @@ public class SmallFryManager : MonoBehaviour
         SmallFryList = new List<SmallFry>();
     }
 
-    public void KillAllSmallFry()
-    {
-        while (SmallFryExists())
-        {
-            SmallFryList[0].HandleDeath();
-        }
-    }
-
     public void AddToSmallFryList(SmallFry smallFry)
     {
         SmallFryList.Add(smallFry);
@@ -43,13 +35,5 @@ public class SmallFryManager : MonoBehaviour
     public void RemoveFromSmallFryList(SmallFry smallFry)
     {
         SmallFryList.Remove(smallFry);
-    }
-
-    public void ApplyEffectToAllSmallFry(Action<SmallFry> effect)
-    {
-        for (int i=0; i < SmallFryList.Count; i++)
-        {
-            effect(SmallFryList[i]);
-        }
     }
 }

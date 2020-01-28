@@ -43,7 +43,7 @@ public class Chaser : SmallFry
         Color outlineColor = Color.Lerp(NearColor, FarColor, lerpParameter);
         Renderer.material.SetColor("_OutlineColor", outlineColor);
 
-        Rigidbody.velocity = (LilBTransform.position - transform.position).normalized * Speed * SpeedMultiplier;
+        Rigidbody.velocity = (LilBTransform.position - transform.position).normalized * Speed;
         float zRotation = Vector3.SignedAngle(LilBTransform.position - transform.position, Vector3.up, Vector3.forward * -1.0f);
         transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, zRotation));
 
@@ -66,58 +66,5 @@ public class Chaser : SmallFry
     {
         yield return new WaitForSeconds(delay);
         HandleDeath();
-    }
-
-    public override void ApplyFreeze(float effectTime)
-    {
-        if (IsFrozen)
-        {
-            return;
-        }
-        IsFrozen = true;
-        StartCoroutine(FreezeCoroutine());
-        Timer(effectTime, RevertFreeze);
-    }
-
-    public override void RevertFreeze()
-    {
-        StartCoroutine(RevertFreezeCoroutine());
-    }
-
-    IEnumerator FreezeCoroutine()
-    {
-        float startTime = Time.time;
-        float timePassed;
-        float lerpParameter;
-        while (true)
-        {
-            timePassed = Time.time - startTime;
-            lerpParameter = timePassed * 2.0f;
-            Speed = Mathf.Lerp(OriginalSpeed, 0.0f, lerpParameter);
-            if (lerpParameter >= 1.0f)
-            {
-                yield break;
-            }
-            yield return null;
-        }
-    }
-
-    IEnumerator RevertFreezeCoroutine()
-    {
-        float starTime = Time.time;
-        float timePassed;
-        float lerpParameter;
-        while (true)
-        {
-            timePassed = Time.time - starTime;
-            lerpParameter = timePassed * 10.0f;
-            Speed = Mathf.Lerp(0.0f, OriginalSpeed, lerpParameter);
-            if (lerpParameter >= 1.0f)
-            {
-                IsFrozen = false;
-                yield break;
-            }
-            yield return null;
-        }
     }
 }
