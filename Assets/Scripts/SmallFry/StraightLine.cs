@@ -10,13 +10,15 @@ public class StraightLine : SmallFry
     Material OuterMaterial;
     Vector2 TextureResolution;
 
+    bool ShouldMove = false;
+    Vector3 Velocity;
+
     private void Start()
     {
         Texture2D texture = OuterSpriteRenderer.sprite.texture;
         TextureResolution = new Vector2(texture.width, texture.height);
         OuterMaterial = OuterSpriteRenderer.material;
         OuterMaterial.SetFloat("_HalfSliceSize", (OuterSpriteRenderer.sprite.rect.height / TextureResolution.y) / 2f);
-        print(OuterSpriteRenderer.sprite.rect.height);
     }
 
     public override void Init()
@@ -29,11 +31,15 @@ public class StraightLine : SmallFry
 
     void Update()
     {
-        //ScreenPos = MainCamera.WorldToScreenPoint(transform.position);
-        //if (ScreenPos.x < 0 || ScreenPos.x > Screen.width || ScreenPos.y < 0 || ScreenPos.y > Screen.height)
-        //{
-        //    HandleDeath();
-        //}
+        ScreenPos = MainCamera.WorldToScreenPoint(transform.position);
+        if (ScreenPos.x < 0 || ScreenPos.x > Screen.width || ScreenPos.y < 0 || ScreenPos.y > Screen.height)
+        {
+            HandleDeath();
+        }
+        if (ShouldMove)
+        {
+            transform.position += Velocity * Time.deltaTime;
+        }
     }
 
     private void LateUpdate()
@@ -52,8 +58,10 @@ public class StraightLine : SmallFry
         yield return new WaitForSeconds(1.0f);
 
         AudioSource.Play();
+        Velocity = GetVelocity();
+        ShouldMove = true;
 
-        Rigidbody.velocity = GetVelocity();
+        //Rigidbody.velocity = GetVelocity();
         GetComponent<Collider2D>().enabled = true;
     }
 

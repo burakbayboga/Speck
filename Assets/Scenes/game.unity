@@ -160,7 +160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1405998366}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &131065397
 MonoBehaviour:
@@ -713,7 +713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1405998366}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1049872738
 MonoBehaviour:
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmallFryPrefabs:
-  - {fileID: 1657611370797658, guid: fa095137f567528409aafe5ba49d9878, type: 3}
+  - {fileID: 3610554941731974871, guid: 86182ced1c2d60347894c5983db2ef53, type: 3}
   - {fileID: 1442862985869524, guid: 8d16568db5f83cb4fb7fb0e2e008b8ea, type: 3}
   - {fileID: 1105498385743886, guid: 48ef25a7521651e4a8b3fa74a002f0e5, type: 3}
   - {fileID: 1332802183716292, guid: 49b37e82bd0fdd7479f9ea0a0807d6b5, type: 3}
@@ -963,7 +963,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1405998366}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1323633299
 MonoBehaviour:
@@ -1040,7 +1040,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1829732838}
   - {fileID: 1049872737}
   - {fileID: 131065396}
   - {fileID: 1652470515}
@@ -1077,7 +1076,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1405998366}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1652470516
 MonoBehaviour:
@@ -1186,59 +1185,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753414886}
   m_CullTransparentMesh: 0
---- !u!1 &1829732837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1829732838}
-  - component: {fileID: 1829732839}
-  m_Layer: 0
-  m_Name: CollectibleSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1829732838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829732837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1405998366}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1829732839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829732837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d340d12e6629d5f41b562f44a73afe99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Collectibles:
-  - {fileID: 114751111910856940, guid: 417fa2f43be99804b8d26b9045b3cc02, type: 3}
-  - {fileID: 114390148096849576, guid: 5fa8dc803eb17fc4ba9e2b2eac72efd5, type: 3}
-  - {fileID: 114151049056957374, guid: 1ce3aef6c3aa67348832c261f75a40d1, type: 3}
-  MinSmallFryThreshold: 3
-  MaxSmallFryThreshold: 6
-  InitialSmallFryThreshold: 3
-  ScreenFractionOffset: 10
-  EdgeBouncerVelocity: 10
-  CollectibleSmallFryCountdownActive: 0
 --- !u!1 &1882895124
 GameObject:
   m_ObjectHideFlags: 0

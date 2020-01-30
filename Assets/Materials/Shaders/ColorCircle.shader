@@ -50,8 +50,8 @@
 
 			fixed4 FragmentFunction(v2f i) : SV_TARGET
 			{
-				fixed4 textureColor = tex2D(_MainTex, i.uv);
 				fixed4 pixelColor;
+				pixelColor.a = tex2D(_MainTex, i.uv).a;
 
 				// circular
 				//float2 distVector = i.uv - _Center.xy;
@@ -61,14 +61,29 @@
 				//fixed3 pixelRGB = lerp(_CenterColor, _OuterColor, lerpParameter);
 				//pixelColor.rgb = pixelRGB;
 
-				float lerpParameter = (i.uv.y - (_Center.y - _HalfSliceSize)) /
-										(i.uv.y - (_Center.y + _HalfSliceSize));
 
-				pixelColor = lerp(_DownColor, _UpColor, lerpParameter);
+				// up down
+				//float lerpParameter = (i.uv.y - (_Center.y - _HalfSliceSize)) /
+				//						(i.uv.y - (_Center.y + _HalfSliceSize));
+				//
+				//pixelColor = lerp(_DownColor, _UpColor, lerpParameter);
+				//
+				//pixelColor.a = textureColor.a;
+				//pixelColor.rgb *= pixelColor.a;
+				//
+				//return pixelColor;
 
-				pixelColor.a = textureColor.a;
+				float lerpParameter = abs(i.uv.x - _Center.x) * (1 / _HalfSliceSize);
+				fixed b = lerp(0, 1, lerpParameter);
+				pixelColor.b = b;
+
+				lerpParameter = abs(i.uv.y - _Center.y) * (1 / _HalfSliceSize);
+				fixed g = lerp(0, 1, lerpParameter);
+				pixelColor.g = g;
+
+				pixelColor.r = 1;
+
 				pixelColor.rgb *= pixelColor.a;
-
 				return pixelColor;
 			}
 
