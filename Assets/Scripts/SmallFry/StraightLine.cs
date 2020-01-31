@@ -12,9 +12,16 @@ public class StraightLine : SmallFry
 
     bool ShouldMove = false;
     Vector3 Velocity;
+    Animator Animator;
+
+    void Awake()
+    {
+		Animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
+
         Texture2D texture = OuterSpriteRenderer.sprite.texture;
         TextureResolution = new Vector2(texture.width, texture.height);
         OuterMaterial = OuterSpriteRenderer.material;
@@ -56,6 +63,7 @@ public class StraightLine : SmallFry
     IEnumerator Action()
     {
         yield return new WaitForSeconds(1.0f);
+        Animator.SetTrigger("SpinTrigger");
 
         AudioSource.Play();
         Velocity = GetVelocity();

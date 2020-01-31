@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: 30e57c0e7641993459af7e6ddbcd8074
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: straightlineV2_spawning_0
+    21300002: straightlineV2_spawning_1
+    21300004: straightlineV2_spawning_2
+    21300006: straightlineV2_spawning_3
+    21300008: straightlineV2_spawning_4
+    21300010: straightlineV2_spawning_5
+    21300012: straightlineV2_spawning_6
+    21300014: straightlineV2_spawning_7
+    21300016: straightlineV2_spawning_8
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: straightlineV2_spawning_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 704
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.4807483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f53cea706449574d8519c375bc5ca3f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_1
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 704
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.43743184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 731156ff05de5b94ea319c5be00234dc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 704
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eac37f2d20c86b240b515889cd6f40e6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_3
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 364
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.47593537, y: 0.48074818}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdc8144feb345544cba7a2972989a6f3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 364
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.49518716, y: 0.4855611}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a406ec04a91a64a9881a17e65879bd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_5
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 364
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5192517, y: 0.4855611}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09b2fdb5219b714aab811d8efc896a4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 24
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.49518713, y: 0.50962585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0223545f134ce6a45bb45d1bd20ed832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_7
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 24
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.49518716, y: 0.49037415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4270dcf341638946ace5528546d5aa7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightlineV2_spawning_8
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 24
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49037415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace0d1d08c290c742b1085d6011c0bf1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3166f157e5b726041a87763a8592df93
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
