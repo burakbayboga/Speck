@@ -60,17 +60,22 @@ public class StraightLine : SmallFry
         OuterMaterial.SetVector("_Center", center);
     }
 
+    public void OnSpinStarted()
+    {
+        AudioSource.Play();
+        Velocity = GetVelocity();
+        ShouldMove = true;
+
+        GetComponent<Collider2D>().enabled = true;
+    }
+
     IEnumerator Action()
     {
         yield return new WaitForSeconds(1.0f);
         Animator.SetTrigger("SpinTrigger");
 
-        AudioSource.Play();
-        Velocity = GetVelocity();
-        ShouldMove = true;
 
-        //Rigidbody.velocity = GetVelocity();
-        GetComponent<Collider2D>().enabled = true;
+
     }
 
     Vector3 GetVelocity()

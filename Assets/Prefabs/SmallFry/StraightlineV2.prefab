@@ -187,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 3610554941731974871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 5035042414753240831}
   - {fileID: 1553600871634569481}
@@ -231,7 +231,7 @@ MonoBehaviour:
   OriginalAngularVelocity: 0
   EnemyType: 0
   LilBTransform: {fileID: 0}
-  SpeedMultiplier: 1
+  SpeedMultiplier: 0.5
   OuterSpriteRenderer: {fileID: 7067879907029799793}
 --- !u!58 &7468747026325356602
 CircleCollider2D:
