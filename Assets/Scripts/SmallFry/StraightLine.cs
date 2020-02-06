@@ -45,7 +45,7 @@ public class StraightLine : SmallFry
         }
         if (ShouldMove)
         {
-            transform.position += Velocity * Time.deltaTime;
+            transform.Translate(Velocity * Time.deltaTime, Space.World);
         }
     }
 
@@ -56,7 +56,8 @@ public class StraightLine : SmallFry
 
     void SetShaderProperties()
     {
-        Vector2 center = new Vector2((OuterSpriteRenderer.sprite.rect.xMin + OuterSpriteRenderer.sprite.pivot.x) / TextureResolution.x, (OuterSpriteRenderer.sprite.rect.yMin + OuterSpriteRenderer.sprite.pivot.y) / TextureResolution.y);
+        Sprite sprite = OuterSpriteRenderer.sprite;
+        Vector2 center = new Vector2((sprite.rect.xMin + sprite.pivot.x) / TextureResolution.x, (sprite.rect.yMin + sprite.pivot.y) / TextureResolution.y);
         OuterMaterial.SetVector("_Center", center);
     }
 
@@ -73,9 +74,6 @@ public class StraightLine : SmallFry
     {
         yield return new WaitForSeconds(1.0f);
         Animator.SetTrigger("SpinTrigger");
-
-
-
     }
 
     Vector3 GetVelocity()
