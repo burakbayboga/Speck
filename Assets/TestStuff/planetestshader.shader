@@ -40,7 +40,7 @@
             {
                 v2f o;
 
-                v.vertex.y = sin(distance(v.vertex.xz, float2(2,2)) * (sin(_Time.z * _Speed) + 1)) * _Strength;
+                v.vertex.y = sin(distance(v.vertex.xz, float2(2,2)) * (_Time.z * _Speed + 1)) * _Strength;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
