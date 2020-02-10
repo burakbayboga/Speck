@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 1348362718}
   - component: {fileID: 1348362717}
   - component: {fileID: 1348362716}
+  - component: {fileID: 1348362715}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -212,6 +213,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1348362715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348362714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3328a5aadbb241c41ba19269d51cfb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1348362716
 MeshRenderer:
   m_ObjectHideFlags: 0

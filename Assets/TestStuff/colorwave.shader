@@ -4,6 +4,7 @@
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Speed("Wave Speed", float) = 1
+        _StartTime("Start Time", float) = 0
     }
     SubShader
     {
@@ -35,6 +36,7 @@
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _Speed;
+            float _StartTime;
 
             v2f vert (appdata v)
             {
@@ -53,8 +55,12 @@
                 float dist = distance(i.uv, fixed2(0.5, 0.5));
                 
                 float distMapped = dist * UNITY_FOUR_PI / 0.5;
-                //clamp(time - startTime) for singular wave pulse?
-                float sine = sin(distMapped - _Time.z * _Speed);
+                //try clamp(time - startTime) for singular wave pulse?
+
+
+                //float sine = sin(distMapped - _Time.z * _Speed);
+                float sine = sin(distMapped - clamp(_Time.x - _StartTime, 0, 8) * _Speed);
+
                 
                 float effectWave = clamp(sine, 0, 1);
 
