@@ -1,4 +1,4 @@
-﻿Shader "Unlit/outline"
+﻿Shader "Custom/outline"
 {
 	Properties
 	{
