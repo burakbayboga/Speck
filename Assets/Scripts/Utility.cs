@@ -7,6 +7,16 @@
     public static string PrefsHighScoreKey = "HighScore";
     public static string PrefsPlayedTutorialKey = "PlayedTutorial";
     public static string PrefsColorDataKey = "ColorData";
+
+
+
+    // takes value in (srcMin, srcMax) interval and maps it to (destMin, destMax) interval
+    public static float MapToInterval(float srcMin, float srcMax, float destMin, float destMax, float value)
+    {
+        float mapNormalized = (value - srcMin) / (srcMax - srcMin);
+        return destMax * mapNormalized + destMin * (1f - mapNormalized);
+    }
+
 }
 
 public enum EnemyType
