@@ -12,6 +12,18 @@ public class SineWaveVisualizer : MonoBehaviour
     public float h;
     public float k;
 
+    
+    [Range(0f, 5f)] public float aLowLimit;
+    [Range(0f, 5f)] public float aHighLimit;
+    [Range(0f, 5f)] public float bLowLimit;
+    [Range(0f, 5f)] public float bHighLimit;
+    [Range(0f, 5f)] public float kLowLimit;
+    [Range(-5f, 5f)] public float kHighLimit;
+
+    public float Speed;
+
+
+    public Vector3 kTest;
     LineRenderer LineRenderer;
     Vector3[] Points;
 
@@ -35,10 +47,27 @@ public class SineWaveVisualizer : MonoBehaviour
     {
         for (int i = 0; i < PointCount; i++)
         {
-            Points[i].y = a * Mathf.Sin((Points[i].x - h) / b) + k;
+            //Points[i].y = a * Mathf.Sin((Points[i].x - h) / b) + k;
+            //Points[i].y = (Points[i].x / 15f) * Mathf.Sin((Points[i].x - h) / b) + k;
+
+            Points[i].y = aMapped(Points[i].x) * Mathf.Sin((Points[i].x - Time.time) / bMapped(Points[i].x)) + kMapped(Points[i].x);
         }
 
         LineRenderer.SetPositions(Points);
     }
 
+    float aMapped(float x)
+    {
+        return Utility.MapToInterval(0f, 50f, aLowLimit, aHighLimit, x);
+    }
+
+    float bMapped(float x)
+    {
+        return Utility.MapToInterval(0f, 50f, bLowLimit, bHighLimit, x);
+    }
+
+    float kMapped(float x)
+    {
+        return Utility.MapToInterval(0f, 50f, kLowLimit, kHighLimit, x);
+    }
 }

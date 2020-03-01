@@ -550,12 +550,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc071fd19202529438fcf632e61a6c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointCount: 200
-  PointDensity: 3
+  PointCount: 600
+  PointDensity: 10
   a: 1
   b: 1
   h: 0
   k: 0
+  aLowLimit: 0.7
+  aHighLimit: 4
+  bLowLimit: 0.4
+  bHighLimit: 2
+  kLowLimit: 0
+  kHighLimit: -5
+  Speed: 5
+  kTest: {x: 0, y: 0, z: 0}
 --- !u!1 &1852863426
 GameObject:
   m_ObjectHideFlags: 0
