@@ -74,7 +74,7 @@
 
 
                 
-                float effectWave = clamp(totalSineValue, 0, 1); //somewhat smooth transition
+                //float effectWave = clamp(totalSineValue, 0, 1); //somewhat smooth transition
                 //float effectWave = ceil(clamp(sine, 0, 1)); //sudden transition
 
                 //effectColor = lerp(baseColor, effectColor, effectWave); 

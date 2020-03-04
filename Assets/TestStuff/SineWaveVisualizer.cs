@@ -50,7 +50,7 @@ public class SineWaveVisualizer : MonoBehaviour
             //Points[i].y = a * Mathf.Sin((Points[i].x - h) / b) + k;
             //Points[i].y = (Points[i].x / 15f) * Mathf.Sin((Points[i].x - h) / b) + k;
 
-            Points[i].y = aMapped(Points[i].x) * Mathf.Sin((Points[i].x - Time.time) / bMapped(Points[i].x)) + kMapped(Points[i].x);
+            Points[i].y = aMapped(Points[i].x) * Mathf.Sin((Points[i].x / bMapped(Points[i].x)) - Time.time) + kMapped(Points[i].x);
         }
 
         LineRenderer.SetPositions(Points);
