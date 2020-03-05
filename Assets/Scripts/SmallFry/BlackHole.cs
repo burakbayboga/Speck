@@ -42,6 +42,8 @@ public class BlackHole : SmallFry
         Collider.enabled = true;
         AudioSource.Play();
         StartCoroutine(DeathCountdown(LifeTime));
+
+        BackgroundManager.instance.OnBlackHoleActivated(transform.position, LifeTime);
     }
 
     private IEnumerator DeathCountdown(float delay)
