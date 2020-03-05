@@ -11,6 +11,7 @@ public class TextureMultipleWaves : MonoBehaviour
 
     Vector4[] EffectCenters = new Vector4[4];
     float[] ActiveEffectCenters = new float[4] { 0f, 0f, 0f, 0f };
+    float[] EffectStartTimes = new float[4] { 0f, 0f, 0f, 0f };
 
     private void Awake()
     {
@@ -23,8 +24,6 @@ public class TextureMultipleWaves : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //print(Input.mousePosition + " " + MainCamera.ScreenToViewportPoint(Input.mousePosition) + " " + MainCamera.ScreenToWorldPoint(Input.mousePosition));
-            //Material.SetVector("_TempCenter", MainCamera.ScreenToViewportPoint(Input.mousePosition));
             SetNewEffectCenter(MainCamera.ScreenToViewportPoint(Input.mousePosition));
         }
     }
@@ -34,6 +33,7 @@ public class TextureMultipleWaves : MonoBehaviour
         EffectCenters[GetAvailableEffectCenterIndex()] = viewportPoint;
         Material.SetFloatArray("_ActiveEffectCenters", ActiveEffectCenters);
         Material.SetVectorArray("_EffectCenters", EffectCenters);
+        Material.SetFloatArray("_EffectStartTimes", EffectStartTimes);
     }
 
     int GetAvailableEffectCenterIndex()
@@ -45,10 +45,12 @@ public class TextureMultipleWaves : MonoBehaviour
             if (ActiveEffectCenters[i] == 0f)
             {
                 index = i;
-                ActiveEffectCenters[i] = 1f;
                 break;
             }
         }
+
+        ActiveEffectCenters[index] = 1f;
+        EffectStartTimes[index] = Time.time;
 
         return index;
     }

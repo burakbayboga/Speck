@@ -79,15 +79,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveLengthInner: 1
+    - _WaveLengthInner: 0.51
     - _WaveLengthMax: 1
     - _WaveLengthMin: 1
-    - _WaveLengthOuter: 1
+    - _WaveLengthOuter: 0
     - _WaveOffsetInner: 0
     - _WaveOffsetMax: 0
     - _WaveOffsetMin: 0
-    - _WaveOffsetOuter: 0
-    - _WaveSpeed: 1
+    - _WaveOffsetOuter: -1.33
+    - _WaveSpeed: 8
+    - _WaveSpreadCoefficient: 8
     - _WaveStrengthInner: 1
     - _WaveStrengthMax: 1
     - _WaveStrengthMin: 1
