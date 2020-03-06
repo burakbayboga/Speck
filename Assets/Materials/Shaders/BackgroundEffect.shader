@@ -81,13 +81,13 @@
             {
                 radius = distance(pixelPoint, _EffectCenters[index]);                
                 sine = WaveStrengthMapped(radius) * sin((radius * UNITY_FOUR_PI / WaveLengthMapped(radius)) - _Time.y * _WaveSpeed) + WaveOffsetMapped(radius);
-                sine = clamp(sine, 0, 1);
+                sine = saturate(sine);
 
                 // prevents drawing inactive effects. array value is zero if inactive, 1 if active
                 sine *= _ActiveEffectCenters[index];
 
                 // start drawing from effect center
-                spreadCoefficient = ceil(clamp(_Time.y - _EffectStartTimes[index] - radius * _WaveSpreadCoefficient, 0, 1));
+                spreadCoefficient = step(radius * _WaveSpreadCoefficient, _Time.y - _EffectStartTimes[index]);
                 sine *= spreadCoefficient;
                 
                 totalSineValue += sine;
@@ -102,7 +102,7 @@
             fixed3 effectColor = tex2D(_EffectTexture, i.uv_BaseTexture) * _EffectTint;
             
 
-            float lerpParameter = clamp(CalculateSineValue(i.uv_BaseTexture), 0, 1);
+            float lerpParameter = saturate(CalculateSineValue(i.uv_BaseTexture));
 
             o.Albedo = lerp(baseColor, effectColor, lerpParameter);
 
