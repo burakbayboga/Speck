@@ -68,6 +68,7 @@
         struct Input
         {
             float2 uv_BaseTexture;
+            float3 worldNormal;
 		};
 
         float CalculateSineValue(float2 pixelPoint)
@@ -96,6 +97,30 @@
             return totalSineValue;
         }
 
+        float CalculateSlope(float2 pixelPoint)
+        {
+            float totalSlope = 0;
+            float slope = 0;
+            float radius = 0;
+            float spreadCoefficient = 0;
+
+            for (float index = 0; index < 4; index += 1)
+            {
+                radius = distance(pixelPoint, _EffectCenters[index]);
+                slope = WaveStrengthMapped(radius) * cos((radius * UNITY_FOUR_PI / WaveLengthMapped(radius)) - _Time.y * _WaveSpeed) / WaveLengthMapped(radius);
+                //slope = saturate(slope);
+
+                slope *= _ActiveEffectCenters[index];
+
+                spreadCoefficient = step(radius * _WaveSpreadCoefficient, _Time.y - _EffectStartTimes[index]);
+                slope *= spreadCoefficient;
+
+                totalSlope += slope;
+		    }
+
+            return totalSlope;
+		}
+
         void surf(Input i, inout SurfaceOutput o)
         {
             fixed3 baseColor = tex2D(_BaseTexture, i.uv_BaseTexture) * _BaseTint;
@@ -103,10 +128,14 @@
             
 
             float lerpParameter = saturate(CalculateSineValue(i.uv_BaseTexture));
-
             o.Albedo = lerp(baseColor, effectColor, lerpParameter);
 
-            o.Normal = fixed3(distance(fixed2(0.5, 0.5), i.uv_BaseTexture), 1, 1);
+            float slope = CalculateSlope(i.uv_BaseTexture);
+            o.Normal = fixed3(slope, 1, 1);
+            //o.Albedo = fixed3(1 - slope, 0, 0);
+
+
+
 		}
 
 
