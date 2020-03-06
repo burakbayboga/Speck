@@ -98,13 +98,15 @@
 
         void surf(Input i, inout SurfaceOutput o)
         {
-            fixed4 baseColor = tex2D(_BaseTexture, i.uv_BaseTexture) * _BaseTint;
-            fixed4 effectColor = tex2D(_EffectTexture, i.uv_BaseTexture) * _EffectTint;
+            fixed3 baseColor = tex2D(_BaseTexture, i.uv_BaseTexture) * _BaseTint;
+            fixed3 effectColor = tex2D(_EffectTexture, i.uv_BaseTexture) * _EffectTint;
             
 
             float lerpParameter = clamp(CalculateSineValue(i.uv_BaseTexture), 0, 1);
 
             o.Albedo = lerp(baseColor, effectColor, lerpParameter);
+
+            o.Normal = fixed3(distance(fixed2(0.5, 0.5), i.uv_BaseTexture), 1, 1);
 		}
 
 
