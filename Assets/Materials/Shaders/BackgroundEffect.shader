@@ -47,22 +47,48 @@
         float _WaveOffsetOuter;
 
 
-        inline float WaveStrengthMapped(float value)
+        inline float StrengthMapped(float x)
         {
-            float mapNormalized = value / MaxDistance;
+            float mapNormalized = x / MaxDistance;
             return _WaveStrengthOuter * mapNormalized + _WaveStrengthInner * (1 - mapNormalized);
         }
 
-        inline float WaveLengthMapped(float value)
+        inline float StengthMappedDerivative()
         {
-            float mapNormalized = value / MaxDistance;
+            return (_WaveStrengthOuter - _WaveStrengthInner) / MaxDistance;
+		}
+
+        inline float LengthMapped(float x)
+        {
+            float mapNormalized = x / MaxDistance;
             return _WaveLengthOuter * mapNormalized + _WaveLengthInner * (1 - mapNormalized);
 		}
-        
-        inline float WaveOffsetMapped(float value)
+
+        inline float LengthMappedDerivative()
         {
-            float mapNormalized = value / MaxDistance;
+            return (_WaveLengthOuter - _WaveLengthInner) / MaxDistance;
+		}
+        
+        inline float OffsetMapped(float x)
+        {
+            float mapNormalized = x / MaxDistance;
             return _WaveOffsetOuter * mapNormalized + _WaveOffsetInner * (1 - mapNormalized);
+		}
+
+        inline float OffsetMappedDerivative()
+        {
+            return (_WaveOffsetOuter - _WaveOffsetInner) / MaxDistance;
+		}
+
+        inline float TrigParameter(float x)
+        {
+              return x * UNITY_FOUR_PI / LengthMapped(x) - _Time.y * _WaveSpeed;
+		}
+
+        inline float TrigParameterDerivative(float x)
+        {
+              float lengthMapped = LengthMapped(x);
+              return (lengthMapped * UNITY_FOUR_PI - LengthMappedDerivative() * UNITY_FOUR_PI * x) / (lengthMapped * lengthMapped);
 		}
 
         struct Input
@@ -71,17 +97,19 @@
             float3 worldNormal;
 		};
 
-        float CalculateSineValue(float2 pixelPoint)
+        void CalculateSineValue(float2 pixelPoint, out float finalSine, out fixed3 finalNormal)
         {
-            float totalSineValue = 0;
             float sine = 0;
             float radius = 0;
             float spreadCoefficient = 0;
+            float derivative = 0;
+            fixed3 normal = fixed3(1, 1, 1);
+            finalNormal = fixed3(0, 0, 0);
 
             for (float index = 0; index < 4; index += 1)
             {
                 radius = distance(pixelPoint, _EffectCenters[index]);                
-                sine = WaveStrengthMapped(radius) * sin((radius * UNITY_FOUR_PI / WaveLengthMapped(radius)) - _Time.y * _WaveSpeed) + WaveOffsetMapped(radius);
+                sine = StrengthMapped(radius) * sin(TrigParameter(radius)) + OffsetMapped(radius);
                 sine = saturate(sine);
 
                 // prevents drawing inactive effects. array value is zero if inactive, 1 if active
@@ -91,55 +119,36 @@
                 spreadCoefficient = step(radius * _WaveSpreadCoefficient, _Time.y - _EffectStartTimes[index]);
                 sine *= spreadCoefficient;
                 
-                totalSineValue += sine;
+                finalSine += sine;
+
+                derivative = StengthMappedDerivative() * sin(TrigParameter(radius)) + StrengthMapped(radius) * TrigParameterDerivative(radius) * cos(TrigParameter(radius)) + OffsetMappedDerivative();
+
+                normal.y = derivative;
+
+                finalNormal += normal;
+
 			}
 
-            return totalSineValue;
+            finalNormal = normalize(finalNormal);
+
         }
 
-        float CalculateSlope(float2 pixelPoint)
-        {
-            float totalSlope = 0;
-            float slope = 0;
-            float radius = 0;
-            float spreadCoefficient = 0;
-
-            for (float index = 0; index < 4; index += 1)
-            {
-                radius = distance(pixelPoint, _EffectCenters[index]);
-                slope = WaveStrengthMapped(radius) * cos((radius * UNITY_FOUR_PI / WaveLengthMapped(radius)) - _Time.y * _WaveSpeed) / WaveLengthMapped(radius);
-                //slope = saturate(slope);
-
-                slope *= _ActiveEffectCenters[index];
-
-                spreadCoefficient = step(radius * _WaveSpreadCoefficient, _Time.y - _EffectStartTimes[index]);
-                slope *= spreadCoefficient;
-
-                totalSlope += slope;
-		    }
-
-            return totalSlope;
-		}
 
         void surf(Input i, inout SurfaceOutput o)
         {
             fixed3 baseColor = tex2D(_BaseTexture, i.uv_BaseTexture) * _BaseTint;
             fixed3 effectColor = tex2D(_EffectTexture, i.uv_BaseTexture) * _EffectTint;
-            
 
-            float lerpParameter = saturate(CalculateSineValue(i.uv_BaseTexture));
+            float sine = 0;
+            fixed3 normal;
+
+            CalculateSineValue(i.uv_BaseTexture, sine, normal);
+
+            float lerpParameter = saturate(sine);
             o.Albedo = lerp(baseColor, effectColor, lerpParameter);
 
-            float slope = CalculateSlope(i.uv_BaseTexture);
-            o.Normal = fixed3(slope, 1, 1);
-            //o.Albedo = fixed3(1 - slope, 0, 0);
-
-
-
+            o.Normal = normal;
 		}
-
-
-        
 
         
         ENDCG
