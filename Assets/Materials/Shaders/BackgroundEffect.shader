@@ -97,14 +97,38 @@
             float3 worldNormal;
 		};
 
+        inline fixed3x3 GetRotationAroundZMatrix(float2 pixelPoint, float2 center)
+        {
+            float2 pixelVector = pixelPoint - center;
+            float cosTheta = dot(pixelVector, fixed2(1, 0)) / normalize(pixelVector);
+            float sinTheta = 1 - cosTheta * cosTheta;
+
+            return fixed3x3
+                    (
+                        cosTheta, -sinTheta, 0,
+                        sinTheta, cosTheta, 0,
+                        0, 0, 1
+                    );
+		}
+
         void CalculateSineValue(float2 pixelPoint, out float finalSine, out fixed3 finalNormal)
         {
             float sine = 0;
             float radius = 0;
             float spreadCoefficient = 0;
             float derivative = 0;
-            fixed3 normal = fixed3(1, 1, 1);
+            fixed3 normal = fixed3(1, 0, 1);
             finalNormal = fixed3(0, 0, 0);
+            finalSine = 0;
+            fixed3 normalHelper = fixed3(1, 0, 0);
+            float theta;
+
+            fixed3x3 rotationAroundY = fixed3x3
+                    (
+                        0, 0, 1,
+                        0, 1, 0,
+                        -1, 0, 0
+                    );
 
             for (float index = 0; index < 4; index += 1)
             {
@@ -123,14 +147,21 @@
 
                 derivative = StengthMappedDerivative() * sin(TrigParameter(radius)) + StrengthMapped(radius) * TrigParameterDerivative(radius) * cos(TrigParameter(radius)) + OffsetMappedDerivative();
 
-                normal.y = derivative;
+                normalHelper.z = derivative;
 
-                finalNormal += normal;
+                normal = mul(rotationAroundY, normalHelper);
+
+                normal = mul(GetRotationAroundZMatrix(pixelPoint, _EffectCenters[index]), normal);
+
+                finalNormal += normalize(normal);
 
 			}
 
             finalNormal = normalize(finalNormal);
 
+            fixed normalPicker = ceil(saturate(finalSine));
+
+            finalNormal = lerp(fixed3(0, 0, 1), finalNormal, normalPicker);
         }
 
 
@@ -145,9 +176,17 @@
             CalculateSineValue(i.uv_BaseTexture, sine, normal);
 
             float lerpParameter = saturate(sine);
-            o.Albedo = lerp(baseColor, effectColor, lerpParameter);
+            //o.Albedo = lerp(baseColor, effectColor, lerpParameter);
+            //o.Normal = normal;
 
-            o.Normal = normal;
+
+
+            //o.Albedo = o.Normal;
+            //o.Albedo = i.worldNormal * 0.5 + 0.5;
+            //o.Albedo = baseColor;
+            //o.Normal = fixed3(0, 0, 1);
+            o.Albedo = normal;
+
 		}
 
         
