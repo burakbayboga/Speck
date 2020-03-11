@@ -100,7 +100,7 @@
         inline fixed3x3 GetRotationAroundZMatrix(float2 pixelPoint, float2 center)
         {
             float2 pixelVector = pixelPoint - center;
-            float cosTheta = dot(pixelVector, fixed2(1, 0)) / normalize(pixelVector);
+            float cosTheta = dot(pixelVector, fixed2(1, 0)) / length(pixelVector);
             float sinTheta = 1 - cosTheta * cosTheta;
 
             return fixed3x3
@@ -118,7 +118,7 @@
             float spreadCoefficient = 0;
             float derivative = 0;
             fixed3 normal = fixed3(1, 0, 1);
-            finalNormal = fixed3(0, 0, 0);
+            finalNormal = fixed3(0, 0, 1);
             finalSine = 0;
             fixed3 normalHelper = fixed3(1, 0, 0);
             float theta;
@@ -150,18 +150,21 @@
                 normalHelper.z = derivative;
 
                 normal = mul(rotationAroundY, normalHelper);
-
                 normal = mul(GetRotationAroundZMatrix(pixelPoint, _EffectCenters[index]), normal);
 
-                finalNormal += normalize(normal);
+                finalNormal += lerp(fixed3(0, 0, 0), normalize(normal), ceil(sine));
+                //finalNormal += normalize(normalHelper);
+
+
+                //finalNormal += normalize(normal);
 
 			}
 
-            finalNormal = normalize(finalNormal);
+            finalNormal = normalize(finalNormal)*10;
 
-            fixed normalPicker = ceil(saturate(finalSine));
+            //fixed normalPicker = ceil(saturate(finalSine));
 
-            finalNormal = lerp(fixed3(0, 0, 1), finalNormal, normalPicker);
+            //finalNormal = lerp(fixed3(0, 0, 1), finalNormal, normalPicker);
         }
 
 
@@ -177,15 +180,14 @@
 
             float lerpParameter = saturate(sine);
             //o.Albedo = lerp(baseColor, effectColor, lerpParameter);
-            //o.Normal = normal;
+            o.Normal = normal;
 
 
 
-            //o.Albedo = o.Normal;
             //o.Albedo = i.worldNormal * 0.5 + 0.5;
-            //o.Albedo = baseColor;
+            o.Albedo = baseColor;
             //o.Normal = fixed3(0, 0, 1);
-            o.Albedo = normal;
+            //o.Albedo = normal;
 
 		}
 
