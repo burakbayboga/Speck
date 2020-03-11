@@ -56,7 +56,8 @@ public class BlackHole : SmallFry
     {
         if (Active)
         {
-            ApplySingularity();
+            //ApplySingularity();
+            ApplyWaveSingularity();
         }
     }
 
@@ -67,5 +68,35 @@ public class BlackHole : SmallFry
 
         LilBRigidBody.AddForce(force);
     }
+
+    void ApplyWaveSingularity()
+    {
+        float sineValue = Mathf.Clamp01(CalculateSine());
+        LilBRigidBody.AddForce((transform.position - LilBTransform.position).normalized * sineValue * SingularityForceMultiplier * Time.deltaTime);
+    }
+
+    float CalculateSine()
+    {
+        Vector3 radiusVector = LilBTransform.position - transform.position;
+        radiusVector = new Vector3(radiusVector.x / 50f, radiusVector.y / 28f, 0f);
+        float radius = radiusVector.magnitude;
+
+
+        return Mathf.Sin(radius * 4f * Mathf.PI / LenghtMapped(radius) - Time.time * 8f) + OffsetMapped(radius);
+    }
+
+    float LenghtMapped(float radius)
+    {
+        float mapNormalized = radius / 1.4f;
+        return 0.51f * (1f - mapNormalized);
+    }
+
+    float OffsetMapped(float radius)
+    {
+        float mapNormalized = radius / 1.4f;
+        return -1.33f * mapNormalized;
+    }
+
+
 
 }
