@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BackgroundEffect
-  m_Shader: {fileID: 4800000, guid: 4b32f9162a01a884e929cf3f34e40f1a, type: 3}
+  m_Name: BackgroundV2
+  m_Shader: {fileID: 4800000, guid: d0cca8ec9c1fbf94685b9c6387b4b318, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: babf03deae3e9f74ca0dc7020fddf953, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -37,10 +33,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EffectTexture:
-        m_Texture: {fileID: 2800000, guid: fd5ed420a8812754098669efa4393628, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -69,9 +61,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 1
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -79,25 +71,11 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveLengthInner: 0.51
-    - _WaveLengthMax: 1
-    - _WaveLengthMin: 1
-    - _WaveLengthOuter: 0
-    - _WaveOffsetInner: 0
-    - _WaveOffsetMax: 0
-    - _WaveOffsetMin: 0
-    - _WaveOffsetOuter: -1.33
-    - _WaveSpeed: 8
-    - _WaveSpreadCoefficient: 8
-    - _WaveStrengthInner: 1
-    - _WaveStrengthMax: 1
-    - _WaveStrengthMin: 1
-    - _WaveStrengthOuter: 1
+    - _WaveSpeed: 20.19
+    - _WaveThickness: 2.88
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.33610716, g: 0.55850995, b: 0.7830189, a: 1}
-    - _BaseTint: {r: 0.17328231, g: 0.36790514, b: 0.6226415, a: 1}
-    - _Color: {r: 0.6603774, g: 0.29592383, b: 0.29592383, a: 1}
-    - _EffectColor: {r: 0.21466713, g: 0.6792453, b: 0.3440225, a: 1}
-    - _EffectTint: {r: 0.40939838, g: 0.47670552, b: 0.754717, a: 1}
+    - _BaseColor: {r: 0.040173903, g: 0.060260884, b: 0.462, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EffectColor: {r: 0.6944103, g: 0.7830189, b: 0.18098079, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
