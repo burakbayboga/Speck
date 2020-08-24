@@ -43,7 +43,7 @@ public class BlackHole : SmallFry
         AudioSource.Play();
         StartCoroutine(DeathCountdown(LifeTime));
 
-        BackgroundManager.instance.OnBlackHoleActivated(transform.position, LifeTime);
+        //BackgroundManager.instance.OnBlackHoleActivated(transform.position, LifeTime);
     }
 
     private IEnumerator DeathCountdown(float delay)

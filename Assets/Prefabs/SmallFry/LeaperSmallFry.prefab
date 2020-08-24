@@ -98,14 +98,13 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   OriginalVelocity: {x: 0, y: 0}
   OriginalAngularVelocity: 0
-  IsFrozen: 0
-  SpeedMultiplier: 0
   EnemyType: 0
   LilBTransform: {fileID: 0}
   InactiveParticle: {fileID: 975493780213088800}
   ActiveParticle: {fileID: 1195951602391648907}
   LeapDelay: 2
-  LeapThreshold: 3
+  LeapCount: 5
+  LeapSpeed: 1.5
 --- !u!58 &3013645259182778444
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,7 +163,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:
