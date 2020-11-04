@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Leaper : SmallFry
 {
-
     public GameObject InactiveParticle;
     public GameObject ActiveParticle;
 
@@ -14,7 +13,6 @@ public class Leaper : SmallFry
     public int LeapCount;
     public float LeapSpeed;
 
-    private LineRenderer LineRenderer;
     private Collider2D Collider;
     private List<GameObject> LineObjects;
 
@@ -25,7 +23,6 @@ public class Leaper : SmallFry
     {
         base.Init();
         EnemyType = EnemyType.Leaper;
-        LineRenderer = GetComponent<LineRenderer>();
         Collider = GetComponent<Collider2D>();
         DetermineStartTheta();
         LineObjects = new List<GameObject>();
@@ -77,9 +74,6 @@ public class Leaper : SmallFry
 
         for (int i = 0; i < leapSequence.Length; i++)
         {
-            float lerpParameter = 0f;
-            float startTime = Time.time;
-            float timePassed;
             Vector3 originalPos = i == 0 ? transform.position : leapSequence[i - 1];
 
             while (Vector3.Distance(transform.position, leapSequence[i]) >= 0.5f)
