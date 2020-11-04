@@ -8,14 +8,18 @@ public class Leaper : SmallFry
     public GameObject InactiveParticle;
     public GameObject ActiveParticle;
 
+    public LineRenderer LinePrefab;
+
     public float LeapDelay;
     public int LeapCount;
     public float LeapSpeed;
 
     private LineRenderer LineRenderer;
     private Collider2D Collider;
+    private List<GameObject> LineObjects;
 
     private Coroutine WindupCoroutine;
+
 
     public override void Init()
     {
@@ -24,7 +28,7 @@ public class Leaper : SmallFry
         LineRenderer = GetComponent<LineRenderer>();
         Collider = GetComponent<Collider2D>();
         DetermineStartTheta();
-        //StartCoroutine(Leap());
+        LineObjects = new List<GameObject>();
         StartCoroutine(LeapSequence());
     }
 
@@ -35,13 +39,13 @@ public class Leaper : SmallFry
         return new Vector3(xCoord, yCoord, 0.0f);
     }
 
-    private IEnumerator Windup(Vector3 target)
+    private IEnumerator Windup(LineRenderer line, Vector3 forwardDirection)
     {
         while (true)
         {
-            Vector3 movement = (transform.position - target).normalized * 0.05f;
+            Vector3 movement = (transform.position - forwardDirection).normalized * 0.05f;
             transform.position += movement;
-            LineRenderer.SetPosition(0, transform.position);
+            line.SetPosition(0, transform.position);
             yield return null;
         }
     }
@@ -60,15 +64,14 @@ public class Leaper : SmallFry
             thetaTemp = leapTheta;
         }
 
-        StartCoroutine(DrawSequenceLine(leapSequence));
-        WindupCoroutine = StartCoroutine(Windup(leapSequence[0]));
+        StartCoroutine(DrawSequenceLines(leapSequence));
 
         yield return new WaitForSeconds(LeapDelay);
 
         StopCoroutine(WindupCoroutine);
 
         Collider.enabled = true;
-        LineRenderer.enabled = false;
+        DestroyLines();
         InactiveParticle.SetActive(false);
         ActiveParticle.SetActive(true);
 
@@ -91,54 +94,13 @@ public class Leaper : SmallFry
         HandleDeath();
     }
 
-    private IEnumerator Leap()
+    private void DestroyLines()
     {
-        Collider.enabled = false;
-        InactiveParticle.SetActive(true);
-        ActiveParticle.SetActive(false);
-
-
-        float leapTheta = (CurrentTheta + 180.0f + Random.Range(-50.0f, 50.0f)) % 360.0f;
-        Vector3 originalPos = transform.position;
-        Vector3 leapTarget = GetLeapPoint(leapTheta);
-
-        StartCoroutine(DrawLine(leapTarget));
-
-        yield return new WaitForSeconds(LeapDelay);
-
-        Collider.enabled = true;
-        InactiveParticle.SetActive(false);
-        ActiveParticle.SetActive(true);
-
-        LineRenderer.enabled = false;
-
-        float lerpParameter = 0.0f;
-        float startTime = Time.time;
-        float timePassed;
-
-        AudioSource.Play();
-
-        while (lerpParameter < 1.0f)
+        while (LineObjects.Count > 0)
         {
-            timePassed = Time.time - startTime;
-            lerpParameter = Mathf.Clamp(timePassed * 1.0f, 0.0f, 1.0f);
-            transform.position = Vector3.Lerp(originalPos, leapTarget, lerpParameter);
-            yield return null;
+            Destroy(LineObjects[0].gameObject);
+            LineObjects.RemoveAt(0);
         }
-
-        AudioSource.Stop();
-
-        CurrentTheta = leapTheta;
-
-        //if (LeapCounttt < LeapCount)
-        //{
-        //    StartCoroutine(Leap());
-        //}
-        //else
-        //{
-        //    HandleDeath();
-        //}
-
     }
 
     public override void HandleDeath()
@@ -146,53 +108,36 @@ public class Leaper : SmallFry
         base.HandleDeath();
     }
 
-
-    private IEnumerator DrawSequenceLine(Vector3[] leapSequence)
+    private IEnumerator DrawSequenceLines(Vector3[] leapSequence)
     {
-        LineRenderer.enabled = true;
-        LineRenderer.positionCount = 1;
 
-        LineRenderer.SetPosition(0, transform.position);
-        
-
-        for (int i = 1; i < leapSequence.Length + 1; i++)
+        for (int i = 0; i < leapSequence.Length; i++)
         {
-            Vector3 lineEndOffset = leapSequence[i - 1] - LineRenderer.GetPosition(i - 1);
-            float offsetMultiplier = 0f;
             float lerpParameter = 0f;
             float startTime = Time.time;
+            Vector3 lineEndPoint = leapSequence[i];
+            LineRenderer line;
 
-            LineRenderer.positionCount = i + 1;
+            if (i == 0)
+            {
+                line = Instantiate(LinePrefab, transform.position, Quaternion.identity);
+                WindupCoroutine = StartCoroutine(Windup(line, leapSequence[0]));
+            }
+            else
+            {
+                line = Instantiate(LinePrefab, leapSequence[i - 1], Quaternion.identity);
+            }
+
+            LineObjects.Add(line.gameObject);
+
+            line.SetPosition(0, line.transform.position);
 
             while (lerpParameter < 1f)
             {
-                lerpParameter = (Time.time - startTime) * 4f;
-                offsetMultiplier = lerpParameter;
-                LineRenderer.SetPosition(i, LineRenderer.GetPosition(i - 1) + lineEndOffset * offsetMultiplier);
+                lerpParameter = Mathf.Clamp01((Time.time - startTime) * 4f);
+                line.SetPosition(1, line.transform.position + (lineEndPoint - line.transform.position) * lerpParameter);
                 yield return null;
             }
-
         }
-    }
-
-    private IEnumerator DrawLine(Vector3 leapTarget)
-    {
-        LineRenderer.enabled = true;
-        LineRenderer.SetPosition(0, transform.position);
-
-        Vector3 lineEndOffset = leapTarget - transform.position;
-        float offsetMultiplier = 0.0f;
-
-        float lerpParameter = 0.0f;
-        float startTime = Time.time;
-
-        while (lerpParameter < 1.0f)
-        {
-            lerpParameter = (Time.time - startTime) * 2.0f;
-            offsetMultiplier = lerpParameter;
-            LineRenderer.SetPosition(1, transform.position + lineEndOffset * offsetMultiplier);
-            yield return null;
-        }
-
     }
 }
