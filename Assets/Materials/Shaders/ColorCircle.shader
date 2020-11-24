@@ -2,11 +2,7 @@
 {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" { }
-		_DownColor ("Down Color", Color) = (1, 1, 1, 1)
-		_UpColor ("Up Color", Color) = (0, 0, 0, 0)
-		[HideInInspector] _Center ("Center", Vector) = (0, 0, 0, 0)
-		[HideInInspector] _HalfSliceSize("Slice Size", Float) = 0
+		[NoScaleOffset] _MainTex ("Texture", 2D) = "white" { }
 	}
 
 	SubShader
@@ -35,8 +31,6 @@
 			};
 
 			sampler2D _MainTex;
-			fixed4 _DownColor;
-			fixed4 _UpColor;
 			float4 _Center;
 			float _HalfSliceSize;
 
@@ -53,35 +47,15 @@
 				fixed4 pixelColor;
 				pixelColor.a = tex2D(_MainTex, i.uv).a;
 
-				// circular
-				//float2 distVector = i.uv - _Center.xy;
-				//float dist = dot(distVector, distVector);
-				//float dif = dist - _Threshold;
-				//float lerpParameter = ceil(clamp(dif, 0, 1));
-				//fixed3 pixelRGB = lerp(_CenterColor, _OuterColor, lerpParameter);
-				//pixelColor.rgb = pixelRGB;
-
-
-				// up down
-				//float lerpParameter = (i.uv.y - (_Center.y - _HalfSliceSize)) /
-				//						(i.uv.y - (_Center.y + _HalfSliceSize));
-				//
-				//pixelColor = lerp(_DownColor, _UpColor, lerpParameter);
-				//
-				//pixelColor.a = textureColor.a;
-				//pixelColor.rgb *= pixelColor.a;
-				//
-				//return pixelColor;
-
 				float lerpParameter = abs(i.uv.x - _Center.x) * (1 / _HalfSliceSize);
 				fixed b = lerp(0, 1, lerpParameter);
-				pixelColor.b = b;
+				pixelColor.b = 1.7 * lerpParameter;
 
 				lerpParameter = abs(i.uv.y - _Center.y) * (1 / _HalfSliceSize);
 				fixed g = lerp(0, 1, lerpParameter);
-				pixelColor.g = g;
+				pixelColor.g = 1.7 * lerpParameter;
 
-				pixelColor.r = 1;
+				pixelColor.r = 0.6;
 
 				pixelColor.rgb *= pixelColor.a;
 				return pixelColor;
