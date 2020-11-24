@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ElectricFence : SmallFry
@@ -7,6 +6,9 @@ public class ElectricFence : SmallFry
     public float LifeTime;
     public GameObject DeathColliderPrefab;
     public GameObject ElectricParticlePrefab;
+
+	public bool Predetermined;
+	public Vector3 PredeterminedHelperPosition;
 
     private GameObject Helper;
     private GameObject DeathCollider;
@@ -90,8 +92,13 @@ public class ElectricFence : SmallFry
         }
     }
 
-    private Vector3 GetHelperSpawnPosition()
+    private  Vector3 GetHelperSpawnPosition()
     {
+		if (Predetermined)
+		{
+			return PredeterminedHelperPosition;
+		}
+
         float helperTheta = (CurrentTheta + 180.0f + Random.Range(-50.0f, 50.0f)) % 360.0f;
         float xCoord = Mathf.Cos(helperTheta * Mathf.Deg2Rad) * 15.0f;
         float yCoord = Mathf.Sin(helperTheta * Mathf.Deg2Rad) * 10.0f;

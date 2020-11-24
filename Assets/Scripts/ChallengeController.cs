@@ -45,6 +45,7 @@ public class ChallengeController : MonoBehaviour
     public bool IsGameOver;
 
 	private ChallengeMode CurrentChallengeMode;
+	private ElectricFence[] EdgeFences;
 
 
 	private bool IsDouble
@@ -115,8 +116,48 @@ public class ChallengeController : MonoBehaviour
 
         CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
 
+		if (IsHardcore)
+		{
+			CreateHardcoreEdges();
+		}
+
         SpawnCoroutine = StartCoroutine(SpawnLoop());
     }
+
+	private void CreateHardcoreEdges()
+	{
+		EdgeFences = new ElectricFence[4];
+
+		// right
+		Vector3 masterPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
+		Vector3 helperPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
+		EdgeFences[0] = CreateEdgeElectric(masterPosition, helperPosition);
+
+		// down
+		masterPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
+		helperPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
+		EdgeFences[1] = CreateEdgeElectric(masterPosition, helperPosition);
+
+		// left
+		masterPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
+		helperPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
+		EdgeFences[2] = CreateEdgeElectric(masterPosition, helperPosition);
+
+		// up
+		masterPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
+		helperPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
+		EdgeFences[3] = CreateEdgeElectric(masterPosition, helperPosition);
+	}
+
+	private ElectricFence CreateEdgeElectric(Vector3 masterPos, Vector3 helperPos)
+	{
+		ElectricFence fence = Instantiate(SpawnableEnemies[(int)EnemyType.ElectricFence], masterPos, Quaternion.identity).GetComponent<ElectricFence>();
+		fence.Predetermined = true;
+		fence.PredeterminedHelperPosition = helperPos;
+		fence.LifeTime = float.MaxValue;
+		fence.Init();
+		return fence;
+	}
 
     private IEnumerator SpawnLoop()
     {
@@ -138,12 +179,9 @@ public class ChallengeController : MonoBehaviour
 					SpawnEnemy(CurrentWave.Enemies[j]);
 				}
             }
-
-            if (i == CurrentLevel.Waves.Count - 1)
-            {
-                WatchForLevelEndCoroutine = StartCoroutine(WatchForLevelEnd());    
-            }
         }
+
+        WatchForLevelEndCoroutine = StartCoroutine(WatchForLevelEnd());    
 
         IsSpawnCoroutineActive = false;
     }
@@ -191,6 +229,13 @@ public class ChallengeController : MonoBehaviour
                     PlayerHighestLevel = CurrentLevelIndex;
                     PlayerPrefs.SetInt(Utility.PrefsChallengeLevelKey, PlayerHighestLevel);
                 }
+				if (IsHardcore)
+				{
+					for(int i = 0; i < EdgeFences.Length; i++)
+					{
+						EdgeFences[i].HandleDeath();
+					}
+				}
                 yield break;
             }
         }

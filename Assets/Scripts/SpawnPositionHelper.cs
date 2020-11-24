@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnPositionHelper
 {
@@ -8,6 +6,9 @@ public class SpawnPositionHelper
     private static float SpawnLimitXMin = -22.0f;
     private static float SpawnLimitYMax = 10.0f;
     private static float SpawnLimitYMin = -10.0f;
+
+	public static float ScreenLimitX = 24.9f;
+	public static float ScreenLimitY = 14f;
 
     public static Vector3 GetSpawnPositionForChaser()
     {
