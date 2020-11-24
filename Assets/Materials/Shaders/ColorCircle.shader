@@ -3,11 +3,15 @@
 	Properties
 	{
 		[NoScaleOffset] _MainTex ("Texture", 2D) = "white" { }
+		_FactorB ("Blue Coefficient", Range(0.5, 2)) = 1
+		_FactorG ("Green Coefficient", Range(0.5, 2)) = 1
+		_FactorR ("Red Coefficient", Range(0, 1)) = 0.7
 	}
 
 	SubShader
 	{
 		Blend One OneMinusSrcAlpha
+		ZWrite Off
 
 		Pass
 		{
@@ -33,6 +37,9 @@
 			sampler2D _MainTex;
 			float4 _Center;
 			float _HalfSliceSize;
+			half _FactorG;
+			half _FactorB;
+			half _FactorR;
 
 			v2f VertexFunction(appdata v)
 			{
@@ -49,13 +56,13 @@
 
 				float lerpParameter = abs(i.uv.x - _Center.x) * (1 / _HalfSliceSize);
 				fixed b = lerp(0, 1, lerpParameter);
-				pixelColor.b = 1.7 * lerpParameter;
+				pixelColor.b = _FactorB * lerpParameter;
 
 				lerpParameter = abs(i.uv.y - _Center.y) * (1 / _HalfSliceSize);
 				fixed g = lerp(0, 1, lerpParameter);
-				pixelColor.g = 1.7 * lerpParameter;
+				pixelColor.g = _FactorG * lerpParameter;
 
-				pixelColor.r = 0.6;
+				pixelColor.r = _FactorR;
 
 				pixelColor.rgb *= pixelColor.a;
 				return pixelColor;
