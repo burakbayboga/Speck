@@ -14,7 +14,7 @@ public class Leaper : SmallFry
     public float LeapSpeed;
 
     private Collider2D Collider;
-    private List<GameObject> LineObjects;
+    private List<LineRenderer> Lines;
 
     private Coroutine WindupCoroutine;
 
@@ -25,7 +25,7 @@ public class Leaper : SmallFry
         EnemyType = EnemyType.Leaper;
         Collider = GetComponent<Collider2D>();
         DetermineStartTheta();
-        LineObjects = new List<GameObject>();
+        Lines = new List<LineRenderer>();
         StartCoroutine(LeapSequence());
     }
 
@@ -68,33 +68,28 @@ public class Leaper : SmallFry
         StopCoroutine(WindupCoroutine); 
  
         Collider.enabled = true; 
-        DestroyLines(); 
         InactiveParticle.SetActive(false); 
         ActiveParticle.SetActive(true); 
  
         for (int i = 0; i < leapSequence.Length; i++) 
         { 
             Vector3 originalPos = i == 0 ? transform.position : leapSequence[i - 1]; 
- 
+			LineRenderer line = Lines[0];
+
             while (Vector3.Distance(transform.position, leapSequence[i]) >= 0.5f) 
             { 
                 Vector3 movement = (leapSequence[i] - originalPos).normalized * LeapSpeed; 
                 movement = Vector3.ClampMagnitude(movement, (leapSequence[i] - transform.position).magnitude); 
                 transform.position += movement; 
+				line.SetPosition(0, transform.position);
                 yield return null; 
             } 
+
+			Destroy(line.gameObject);
+			Lines.RemoveAt(0);
         } 
  
         HandleDeath(); 
-    }
-
-    private void DestroyLines() 
-    { 
-        while (LineObjects.Count > 0) 
-        { 
-            Destroy(LineObjects[0].gameObject); 
-            LineObjects.RemoveAt(0); 
-        } 
     }
 
     public override void HandleDeath()
@@ -122,7 +117,7 @@ public class Leaper : SmallFry
                 line = Instantiate(LinePrefab, leapSequence[i - 1], Quaternion.identity); 
             } 
  
-            LineObjects.Add(line.gameObject); 
+            Lines.Add(line); 
  
             line.SetPosition(0, line.transform.position); 
  
