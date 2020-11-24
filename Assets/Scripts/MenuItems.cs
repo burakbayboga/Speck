@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+
+#if UNITY_EDITOR
+
 public class MenuItems
 {
 
-#if UNITY_EDITOR
 
 
     [MenuItem("Speck Menu/Copy Sprite Slices")]
@@ -184,7 +186,6 @@ public class MenuItems
 
     #endregion
 
-#endif
 }
 
 public class SpriteSliceCopy : EditorWindow
@@ -267,3 +268,5 @@ public class SpriteSliceCopy : EditorWindow
     }
 
 }
+
+#endif
