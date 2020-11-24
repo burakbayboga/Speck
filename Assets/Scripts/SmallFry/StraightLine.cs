@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StraightLine : SmallFry
 {
-    public float SpeedMultiplier = 1f;
+    public float SpeedMultiplier;
 
     public SpriteRenderer OuterSpriteRenderer;
     Material OuterMaterial;
@@ -65,7 +65,8 @@ public class StraightLine : SmallFry
     {
         AudioSource.Play();
         Velocity = GetVelocity();
-		Animator.speed = Mathf.Max(1f, Velocity.magnitude / 10f);
+		Animator.speed = Mathf.Clamp(Velocity.magnitude / 10f, 1f, 1.9f);
+		print(Animator.speed);
         ShouldMove = true;
 
         GetComponent<Collider2D>().enabled = true;

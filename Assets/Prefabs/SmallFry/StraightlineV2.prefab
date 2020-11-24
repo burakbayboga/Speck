@@ -231,7 +231,7 @@ MonoBehaviour:
   OriginalAngularVelocity: 0
   EnemyType: 0
   LilBTransform: {fileID: 0}
-  SpeedMultiplier: 0.5
+  SpeedMultiplier: 0.8
   OuterSpriteRenderer: {fileID: 7067879907029799793}
 --- !u!58 &7468747026325356602
 CircleCollider2D:
