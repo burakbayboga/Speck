@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/challenge.unity
     guid: 242ebb4520ee89a4c9cc358768933663
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/showcase.unity
     guid: f6562296b03cc7a46805e23ab4f18964
   m_configObjects: {}
