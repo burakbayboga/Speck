@@ -83,6 +83,31 @@ public class MenuController : MonoBehaviour
         PadlockAnimators[1].SetTrigger("jiggle");
     }
 
+	public void OnToggleDoubleClicked()
+	{
+		// xor
+		Utility.CurrentChallengeMode ^= ChallengeMode.Double;
+		print("double: " + !((Utility.CurrentChallengeMode & ChallengeMode.Double) == 0));
+		print("fast: " + !((Utility.CurrentChallengeMode & ChallengeMode.Fast) == 0));
+		print("hardcore: " + !((Utility.CurrentChallengeMode & ChallengeMode.Hardcore) == 0));
+	}
+	public void OnToggleFastClicked()
+	{
+		// xor
+		Utility.CurrentChallengeMode ^= ChallengeMode.Fast;
+		print("double: " + !((Utility.CurrentChallengeMode & ChallengeMode.Double) == 0));
+		print("fast: " + !((Utility.CurrentChallengeMode & ChallengeMode.Fast) == 0));
+		print("hardcore: " + !((Utility.CurrentChallengeMode & ChallengeMode.Hardcore) == 0));
+	}
+	public void OnToggleHardcoreClicked()
+	{
+		// xor
+		Utility.CurrentChallengeMode ^= ChallengeMode.Hardcore;
+		print("double: " + !((Utility.CurrentChallengeMode & ChallengeMode.Double) == 0));
+		print("fast: " + !((Utility.CurrentChallengeMode & ChallengeMode.Fast) == 0));
+		print("hardcore: " + !((Utility.CurrentChallengeMode & ChallengeMode.Hardcore) == 0));
+	}
+
     public void OnChallengeLevelClicked(int levelIndex)
     {
         PlayerPrefs.SetInt(Utility.PrefsCurrentChallengeLevelKey, levelIndex);

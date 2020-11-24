@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +22,6 @@ public class ChallengeController : MonoBehaviour
 
     private ChallengeData ChallengeData;
     private ChallengeLevel CurrentLevel;
-    private int CurrentWaveIndex;
     private ChallengeWave CurrentWave;
     private int CurrentLevelIndex;
     private int PlayerHighestLevel;
@@ -47,6 +44,33 @@ public class ChallengeController : MonoBehaviour
     public bool IsGamePaused;
     public bool IsGameOver;
 
+	private ChallengeMode CurrentChallengeMode;
+
+
+	private bool IsDouble
+	{
+		get
+		{
+			return !((CurrentChallengeMode & ChallengeMode.Double) == 0);
+		}
+	}
+
+	private bool IsFast
+	{
+		get
+		{
+			return !((CurrentChallengeMode & ChallengeMode.Fast) == 0);
+		}
+	}
+
+	private bool IsHardcore
+	{
+		get
+		{
+			return !((CurrentChallengeMode & ChallengeMode.Hardcore) == 0);
+		}
+	}
+
     public void OnBackToMenuButtonCLicked()
     {
         Time.timeScale = 1f;
@@ -58,6 +82,7 @@ public class ChallengeController : MonoBehaviour
     public void Awake()
     {
         instance = this;
+		CurrentChallengeMode = Utility.CurrentChallengeMode;
 
         LilB = FindObjectOfType<LilB>();
         LilB.IsChallenge = true;
@@ -87,7 +112,6 @@ public class ChallengeController : MonoBehaviour
         CurrentLevelIndex = PlayerPrefs.GetInt(Utility.PrefsCurrentChallengeLevelKey, 0);
 
         CurrentLevel = ChallengeData.Levels[CurrentLevelIndex];
-        CurrentWaveIndex = 0;
 
         CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
 
@@ -99,24 +123,20 @@ public class ChallengeController : MonoBehaviour
         IsSpawnCoroutineActive = true;
         float delay;
 
-        for (int i=0; i < CurrentLevel.Waves.Count; i++)
+        for (int i = 0; i < CurrentLevel.Waves.Count; i++)
         {
-            CurrentWaveIndex = i;
-            CurrentWave = CurrentLevel.Waves[CurrentWaveIndex];
+            CurrentWave = CurrentLevel.Waves[i];
 
-            if (i == 0)
-            {
-                delay = CurrentWave.Time;
-            }
-            else
-            {
-                delay = CurrentWave.Time - CurrentLevel.Waves[i - 1].Time;
-            }
+			delay = GetDelayForWave(i);
 
             yield return new WaitForSeconds(delay);
-            for (int j=0; j < CurrentWave.Enemies.Count; j++)
+            for (int j = 0; j < CurrentWave.Enemies.Count; j++)
             {
                 SpawnEnemy(CurrentWave.Enemies[j]);
+				if (IsDouble)
+				{
+					SpawnEnemy(CurrentWave.Enemies[j]);
+				}
             }
 
             if (i == CurrentLevel.Waves.Count - 1)
@@ -127,6 +147,21 @@ public class ChallengeController : MonoBehaviour
 
         IsSpawnCoroutineActive = false;
     }
+
+	private float GetDelayForWave(int waveIndex)
+	{
+		float delay;
+		if (waveIndex == 0)
+		{
+			delay = CurrentWave.Time;
+		}
+		else
+		{
+			delay = CurrentWave.Time - CurrentLevel.Waves[waveIndex - 1].Time;
+		}
+
+		return IsFast ? (delay / 2f) : delay;
+	}
 
     private IEnumerator BossTimer(float bossTime)
     {
@@ -164,8 +199,6 @@ public class ChallengeController : MonoBehaviour
     public void OnNextLevelClicked()
     {
         StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, false));
-
-        CurrentWaveIndex = 0;
 
         CurrentLevel = ChallengeData.Levels[CurrentLevelIndex];
         CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
@@ -292,4 +325,12 @@ public class ChallengeController : MonoBehaviour
         }
     }
 
+}
+
+public enum ChallengeMode
+{
+	Normal = 1 << 0,
+	Double = 1 << 1,
+	Fast = 1 << 2,
+	Hardcore = 1 << 3
 }

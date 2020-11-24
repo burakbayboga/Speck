@@ -9,6 +9,8 @@
     public static string PrefsColorDataKey = "ColorData";
 
 
+	public static ChallengeMode CurrentChallengeMode;
+
 
     // takes value in (srcMin, srcMax) interval and maps it to (destMin, destMax) interval
     public static float MapToInterval(float srcMin, float srcMax, float destMin, float destMax, float value)
