@@ -66,7 +66,6 @@ public class StraightLine : SmallFry
         AudioSource.Play();
         Velocity = GetVelocity();
 		Animator.speed = Mathf.Clamp(Velocity.magnitude / 10f, 1f, 1.9f);
-		print(Animator.speed);
         ShouldMove = true;
 
         GetComponent<Collider2D>().enabled = true;
