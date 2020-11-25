@@ -246,7 +246,12 @@ public class ChallengeController : MonoBehaviour
         StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, false));
 
         CurrentLevel = ChallengeData.Levels[CurrentLevelIndex];
-        CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
+		CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
+
+		if (IsHardcore)
+		{
+			CreateHardcoreEdges();
+		}
 
         SpawnCoroutine = StartCoroutine(SpawnLoop());
         PauseGameButton.IsButtonActive = true;
