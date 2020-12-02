@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5951968193941064404}
   - component: {fileID: 8054748667033964964}
-  - component: {fileID: 145852919608199051}
+  - component: {fileID: 8311505820109450718}
   m_Layer: 11
   m_Name: ModeName
   m_TagString: Untagged
@@ -180,7 +180,7 @@ RectTransform:
   m_AnchorMax: {x: 0.8, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8054748667033964964
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3232234558460767660}
   m_CullTransparentMesh: 0
---- !u!114 &145852919608199051
+--- !u!114 &8311505820109450718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,29 +198,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3232234558460767660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 0, g: 0.27387965, b: 0.6320754, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 3dcbed7d968533c4ab6b966edb4b40a4, type: 3}
-    m_FontSize: 29
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Double Danger
+  m_Sprite: {fileID: 21300000, guid: bcc10938852c6ae408967a488cb7a57d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!114 &7592071624040693696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498c0a7cceb245044bb8c843fa1c7a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionTime: 0.2
+  TransitionTime: 0
   Graphics: []
   BaseColors: []
   PressedColors: []
@@ -287,6 +282,11 @@ MonoBehaviour:
   SelectedSprite: {fileID: 21300000, guid: 70390424c82c4ac45b5caa1f2281d660, type: 3}
   NotSelectedSprite: {fileID: 21300000, guid: 0dba3d7d89c1bd1408669c18772c9637, type: 3}
   SelectImage: {fileID: 1397027449758853366}
+  ModeNameImage: {fileID: 8311505820109450718}
+  Mode: 2
+  ModeBaseColor: {r: 0, g: 0.27450982, b: 0.6313726, a: 1}
+  ModeSelectedColor: {r: 0.7764706, g: 0, b: 0.08235294, a: 1}
+  ModeSelectLockedColor: {r: 0.3882353, g: 0, b: 0.043137256, a: 1}
 --- !u!1001 &8614015764970210471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Graphics.Array.data[1]
       value: 
-      objectReference: {fileID: 145852919608199051}
+      objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: Graphics.Array.data[2]

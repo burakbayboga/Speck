@@ -189,7 +189,17 @@ public class MenuController : MonoBehaviour
 	public void OnFullscreenBackButtonClicked()
 	{
 		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, false));
+		ResetModeSelectPopup();
 		FullscreenBackButton.SetActive(false);
+	}
+
+	private void ResetModeSelectPopup()
+	{
+		SelectDoubleButton.UnselectMode();
+		SelectDoubleButton.SetActivity(true);
+		SelectFastButton.UnselectMode();
+		SelectFastButton.SetActivity(true);
+		SelectHardcoreButton.UnselectMode();
 	}
 
     public void OnTutorialButtonClicked()
