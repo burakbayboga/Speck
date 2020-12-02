@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class ChallengeData
 {
@@ -23,4 +21,20 @@ public class ChallengeWaveEnemy
 {
     public FryType FryType;
     public EnemyType EnemyType;
+}
+
+public class PlayerChallengeInfo
+{
+	public List<PlayerChallengeLevelInfo> ChallengeLevelInfoList;
+
+	public PlayerChallengeInfo()
+	{
+		ChallengeLevelInfoList = new List<PlayerChallengeLevelInfo>();
+	}
+}
+
+public class PlayerChallengeLevelInfo
+{
+	public int Level;
+	public ChallengeMode Modes;
 }

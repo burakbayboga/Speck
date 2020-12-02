@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,8 +8,6 @@ public class MenuController : MonoBehaviour
 {
 
     public static MenuController instance;
-
-    public InputField SetChallengeLevelInputField;
 
     public float CanvasGroupFadeInTime;
     public float CanvasGroupFadeOutTime;
@@ -20,11 +19,22 @@ public class MenuController : MonoBehaviour
 
     public GameObject MainMenuParent;
     public GameObject ChallengeMenuParent;
+	public GameObject ChallengeModePopupParent;
+	public Image PassedDoubleImage;
+	public Image PassedFastImage;
+	public Image PassedHardcoreImage;
+
+	public GameObject FullscreenBackButton;
+
+	public Color ActiveModeColor;
+	public Color InactiveModeColor;
 
     public SButton EndlessButton;
 
-    public SButton[] ChallengeLevelButtons;
-    public Sprite[] ChallengeLevelBoxSprites;
+    public ChallengeButton[] ChallengeLevelButtons;
+	public ChallengeModeButton SelectDoubleButton;
+	public ChallengeModeButton SelectFastButton;
+	public ChallengeModeButton SelectHardcoreButton;
 
     public SButton[] AllSButtons;
 
@@ -38,8 +48,8 @@ public class MenuController : MonoBehaviour
 
         int highScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
         HighScoreText.text = "HighScore: " + highScore.ToString();
-
-        PlayerChallengeLevel = PlayerPrefs.GetInt(Utility.PrefsChallengeLevelKey, 0);
+		
+        PlayerChallengeLevel = Utility.ChallengeInfo.ChallengeLevelInfoList.Count + 1;
         CanPlayEndless = PlayerChallengeLevel >= 5;
         if (!CanPlayEndless)
         {
@@ -48,6 +58,7 @@ public class MenuController : MonoBehaviour
             EndlessButton.IsButtonActive = false;
         }
 
+		Utility.CurrentChallengeMode = ChallengeMode.None;
         InitializeChallengeMenu();
     }
 
@@ -57,12 +68,6 @@ public class MenuController : MonoBehaviour
         {
             AllSButtons[i].IsButtonActive = false;
         }
-    }
-
-    public void OnSetChallengeLevelButtonClicked()
-    {
-        int level = int.Parse(SetChallengeLevelInputField.text);
-        PlayerPrefs.SetInt(Utility.PrefsChallengeLevelKey, level);
     }
 
     public void OnEndlessButtonClicked()
@@ -83,36 +88,37 @@ public class MenuController : MonoBehaviour
         PadlockAnimators[1].SetTrigger("jiggle");
     }
 
-	public void OnToggleDoubleClicked()
+	public void OnChallengeLevelClicked(ChallengeMode modes)
 	{
-		// xor
-		Utility.CurrentChallengeMode ^= ChallengeMode.Double;
-		print("double: " + !((Utility.CurrentChallengeMode & ChallengeMode.Double) == 0));
-		print("fast: " + !((Utility.CurrentChallengeMode & ChallengeMode.Fast) == 0));
-		print("hardcore: " + !((Utility.CurrentChallengeMode & ChallengeMode.Hardcore) == 0));
-	}
-	public void OnToggleFastClicked()
-	{
-		// xor
-		Utility.CurrentChallengeMode ^= ChallengeMode.Fast;
-		print("double: " + !((Utility.CurrentChallengeMode & ChallengeMode.Double) == 0));
-		print("fast: " + !((Utility.CurrentChallengeMode & ChallengeMode.Fast) == 0));
-		print("hardcore: " + !((Utility.CurrentChallengeMode & ChallengeMode.Hardcore) == 0));
-	}
-	public void OnToggleHardcoreClicked()
-	{
-		// xor
-		Utility.CurrentChallengeMode ^= ChallengeMode.Hardcore;
-		print("double: " + !((Utility.CurrentChallengeMode & ChallengeMode.Double) == 0));
-		print("fast: " + !((Utility.CurrentChallengeMode & ChallengeMode.Fast) == 0));
-		print("hardcore: " + !((Utility.CurrentChallengeMode & ChallengeMode.Hardcore) == 0));
+		PassedDoubleImage.color = Utility.IsDouble(modes) ? ActiveModeColor : InactiveModeColor;
+		PassedFastImage.color = Utility.IsFast(modes) ? ActiveModeColor : InactiveModeColor;
+		PassedHardcoreImage.color = Utility.IsHardcore(modes) ? ActiveModeColor : InactiveModeColor;
+		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, true));
+		FullscreenBackButton.SetActive(true);
 	}
 
-    public void OnChallengeLevelClicked(int levelIndex)
-    {
-        PlayerPrefs.SetInt(Utility.PrefsCurrentChallengeLevelKey, levelIndex);
-        SceneManager.LoadScene("challenge");
-    }
+	public void OnChallengeModeHardcoreClicked(bool isSelected)
+	{
+		if (isSelected)
+		{
+			SelectDoubleButton.SelectMode();
+			SelectDoubleButton.SetActivity(false);
+			SelectFastButton.SelectMode();
+			SelectFastButton.SetActivity(false);
+		}
+		else
+		{
+			SelectDoubleButton.UnselectMode();
+			SelectDoubleButton.SetActivity(true);
+			SelectFastButton.UnselectMode();
+			SelectFastButton.SetActivity(true);
+		}
+	}
+
+	public void OnPlayChallengeButtonClicked()
+	{
+		SceneManager.LoadScene("challenge");
+	}
 
     public void OnChallengeMenuBackButtonClicked()
     {
@@ -148,16 +154,30 @@ public class MenuController : MonoBehaviour
 
     private void InitializeChallengeMenu()
     {
-        for (int i=0; i < ChallengeLevelButtons.Length; i++)
-        {
-            if (i > PlayerChallengeLevel)
-            {
-                ChallengeLevelButtons[i].IsButtonActive = false;
-            }
+		List<PlayerChallengeLevelInfo> infoList = Utility.ChallengeInfo.ChallengeLevelInfoList;
 
-            // :(
-            ChallengeLevelButtons[i].transform.GetChild(0).GetComponent<Image>().sprite = ChallengeLevelBoxSprites[Random.Range(0, ChallengeLevelBoxSprites.Length)];
-        }
+		for (int i = 0; i < ChallengeLevelButtons.Length; i++)
+		{
+			bool isActive;
+			ChallengeMode modes;
+			if (i < infoList.Count)
+			{
+				isActive = true;
+				modes = infoList[i].Modes;
+			}
+			else if (i == infoList.Count)
+			{
+				isActive = true;
+				modes = ChallengeMode.None;
+			}
+			else
+			{
+				isActive = false;
+				modes = ChallengeMode.None;
+			}
+
+			ChallengeLevelButtons[i].InitChallengeButton(modes, i, isActive);
+		}
     }
     
     public void OnChallengeButtonClicked()
@@ -165,6 +185,12 @@ public class MenuController : MonoBehaviour
         StartCoroutine(LerpCanvasGroupAlpha(MainMenuParent, false));
         StartCoroutine(LerpCanvasGroupAlpha(ChallengeMenuParent, true));
     }
+
+	public void OnFullscreenBackButtonClicked()
+	{
+		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, false));
+		FullscreenBackButton.SetActive(false);
+	}
 
     public void OnTutorialButtonClicked()
     {

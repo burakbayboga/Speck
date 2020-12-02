@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,7 +50,8 @@ public class BasicTutorialController : MonoBehaviour
         PlayerPrefs.SetInt(Utility.PrefsPlayedTutorialKey, 1);
         TutorialFinishedText.SetActive(true);
         yield return new WaitForSeconds(3.5f);
-        //SceneManager.LoadScene("menu");
+		Utility.CurrentChallengeIndex = 0;
+		Utility.CurrentChallengeMode = ChallengeMode.None;
         SceneManager.LoadScene("challenge");
     }
 

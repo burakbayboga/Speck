@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,9 +7,9 @@ public class SButton : MonoBehaviour
 {
     public float TransitionTime;
     public Graphic[] Graphics;
-    public Color BaseColor;
-    public Color PressedColor;
-    public Color InactiveColor;
+    public Color[] BaseColors;
+    public Color[] PressedColors;
+    public Color[] InactiveColors;
     public UnityEvent OnClickEvent;
     public UnityEvent InActiveOnClickEvent;
     public bool OnClickEventLoadsScene;
@@ -24,10 +22,21 @@ public class SButton : MonoBehaviour
         {
             for (int i=0; i < Graphics.Length; i++)
             {
-                Graphics[i].color = InactiveColor;
+                Graphics[i].color = InactiveColors[i];
             }
         }
     }
+
+	public void SetActivity(bool isActive)
+	{
+		Color[] colors = isActive ? BaseColors : InactiveColors;
+		for (int i = 0; i < Graphics.Length; i++)
+		{
+			Graphics[i].color = colors[i];
+		}
+
+		IsButtonActive = isActive;
+	}
 
     public void OnDown()
     {
@@ -62,10 +71,10 @@ public class SButton : MonoBehaviour
 
         while (lerpParameter < 1.0f)
         {
-            lerpParameter = Mathf.Clamp((Time.unscaledTime - startTime) * 1.0f / TransitionTime, 0.0f, 1.0f);
+            lerpParameter = Mathf.Clamp((Time.unscaledTime - startTime) / TransitionTime, 0.0f, 1.0f);
             for (int i=0; i < Graphics.Length; i++)
             {
-                Graphics[i].color = Color.Lerp(BaseColor, PressedColor, lerpParameter);
+                Graphics[i].color = Color.Lerp(BaseColors[i], PressedColors[i], lerpParameter);
             }
 
             yield return null;
@@ -99,13 +108,12 @@ public class SButton : MonoBehaviour
 
         float lerpParameter = 0.0f;
         float startTime = Time.unscaledTime;
-
         while (lerpParameter < 1.0f)
         {
             lerpParameter = Mathf.Clamp((Time.unscaledTime - startTime) * 1.0f / TransitionTime, 0.0f, 1.0f);
             for (int i = 0; i < Graphics.Length; i++)
             {
-                Graphics[i].color = Color.Lerp(PressedColor, BaseColor, lerpParameter);
+                Graphics[i].color = Color.Lerp(PressedColors[i], BaseColors[i], lerpParameter);
             }
 
             yield return null;

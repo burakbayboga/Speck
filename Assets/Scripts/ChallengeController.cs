@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +25,6 @@ public class ChallengeController : MonoBehaviour
     private ChallengeLevel CurrentLevel;
     private ChallengeWave CurrentWave;
     private int CurrentLevelIndex;
-    private int PlayerHighestLevel;
 
     private LilB LilB;
 
@@ -47,31 +47,6 @@ public class ChallengeController : MonoBehaviour
 	private ChallengeMode CurrentChallengeMode;
 	private ElectricFence[] EdgeFences;
 
-
-	private bool IsDouble
-	{
-		get
-		{
-			return !((CurrentChallengeMode & ChallengeMode.Double) == 0);
-		}
-	}
-
-	private bool IsFast
-	{
-		get
-		{
-			return !((CurrentChallengeMode & ChallengeMode.Fast) == 0);
-		}
-	}
-
-	private bool IsHardcore
-	{
-		get
-		{
-			return !((CurrentChallengeMode & ChallengeMode.Hardcore) == 0);
-		}
-	}
-
     public void OnBackToMenuButtonCLicked()
     {
         Time.timeScale = 1f;
@@ -83,7 +58,6 @@ public class ChallengeController : MonoBehaviour
     public void Awake()
     {
         instance = this;
-		CurrentChallengeMode = Utility.CurrentChallengeMode;
 
         LilB = FindObjectOfType<LilB>();
         LilB.IsChallenge = true;
@@ -108,15 +82,16 @@ public class ChallengeController : MonoBehaviour
 
         ChallengeData = JsonConvert.DeserializeObject<ChallengeData>(challengeText);
 
-        PlayerHighestLevel = PlayerPrefs.GetInt(Utility.PrefsChallengeLevelKey, 0);
 
-        CurrentLevelIndex = PlayerPrefs.GetInt(Utility.PrefsCurrentChallengeLevelKey, 0);
+        CurrentLevelIndex = Utility.CurrentChallengeIndex;
+
+		CurrentChallengeMode = Utility.CurrentChallengeMode;
 
         CurrentLevel = ChallengeData.Levels[CurrentLevelIndex];
 
         CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
 
-		if (IsHardcore)
+		if (Utility.IsHardcore(CurrentChallengeMode))
 		{
 			CreateHardcoreEdges();
 		}
@@ -174,7 +149,7 @@ public class ChallengeController : MonoBehaviour
             for (int j = 0; j < CurrentWave.Enemies.Count; j++)
             {
                 SpawnEnemy(CurrentWave.Enemies[j]);
-				if (IsDouble)
+				if (Utility.IsDouble(CurrentChallengeMode))
 				{
 					SpawnEnemy(CurrentWave.Enemies[j]);
 				}
@@ -198,7 +173,7 @@ public class ChallengeController : MonoBehaviour
 			delay = CurrentWave.Time - CurrentLevel.Waves[waveIndex - 1].Time;
 		}
 
-		return IsFast ? (delay / 2f) : delay;
+		return Utility.IsFast(CurrentChallengeMode) ? (delay / 2f) : delay;
 	}
 
     private IEnumerator BossTimer(float bossTime)
@@ -222,14 +197,11 @@ public class ChallengeController : MonoBehaviour
                 StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, true));
                 PauseGameButton.IsButtonActive = false;
                 LevelOverText.text = "Level " + (CurrentLevelIndex + 1) + " Completed !!";
+				SaveChallengeInfo();
                 CurrentLevelIndex++;
-                PlayerPrefs.SetInt(Utility.PrefsCurrentChallengeLevelKey, CurrentLevelIndex);
-                if (CurrentLevelIndex > PlayerHighestLevel)
-                {
-                    PlayerHighestLevel = CurrentLevelIndex;
-                    PlayerPrefs.SetInt(Utility.PrefsChallengeLevelKey, PlayerHighestLevel);
-                }
-				if (IsHardcore)
+				Utility.CurrentChallengeIndex = CurrentLevelIndex;
+                
+				if (Utility.IsHardcore(CurrentChallengeMode))
 				{
 					for(int i = 0; i < EdgeFences.Length; i++)
 					{
@@ -241,6 +213,38 @@ public class ChallengeController : MonoBehaviour
         }
     }
 
+	private void SaveChallengeInfo()
+	{
+		bool levelInfoExists = false;
+		List<PlayerChallengeLevelInfo> infoList = Utility.ChallengeInfo.ChallengeLevelInfoList;
+		for (int i = 0; i < infoList.Count; i++)
+		{
+			if (infoList[i].Level == CurrentLevelIndex)
+			{
+				infoList[i].Modes |= CurrentChallengeMode;
+				levelInfoExists = true;
+				break;
+			}
+		}
+
+		if (!levelInfoExists)
+		{
+			PlayerChallengeLevelInfo newInfo = new PlayerChallengeLevelInfo()
+			{
+				Level = CurrentLevelIndex,
+				Modes = CurrentChallengeMode
+			};
+
+			infoList.Add(newInfo);
+		}
+		
+		Utility.ChallengeInfo.ChallengeLevelInfoList = infoList;
+		string infoJson = JsonConvert.SerializeObject(Utility.ChallengeInfo);
+		PlayerPrefs.SetString(Utility.PrefsChallengeInfoKey, infoJson);
+
+
+	}
+
     public void OnNextLevelClicked()
     {
         StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, false));
@@ -248,7 +252,7 @@ public class ChallengeController : MonoBehaviour
         CurrentLevel = ChallengeData.Levels[CurrentLevelIndex];
 		CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
 
-		if (IsHardcore)
+		if (Utility.IsHardcore(CurrentChallengeMode))
 		{
 			CreateHardcoreEdges();
 		}
@@ -379,6 +383,7 @@ public class ChallengeController : MonoBehaviour
 
 public enum ChallengeMode
 {
+	None = 0,
 	Normal = 1 << 0,
 	Double = 1 << 1,
 	Fast = 1 << 2,
