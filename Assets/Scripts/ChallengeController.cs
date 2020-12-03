@@ -194,6 +194,11 @@ public class ChallengeController : MonoBehaviour
             }
             else
             {
+				if (Utility.IsTest)
+				{
+					SceneManager.LoadScene("challenge_editor");
+					yield break;
+				}
                 StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, true));
                 PauseGameButton.IsButtonActive = false;
                 LevelOverText.text = "Level " + (CurrentLevelIndex + 1) + " Completed !!";

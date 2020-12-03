@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.IO;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class ChallengeEditor : MonoBehaviour
 {
@@ -202,6 +203,46 @@ public class ChallengeEditor : MonoBehaviour
 
         }
     }
+
+	public void OnPlayUnmodifiedClicked()
+	{
+		Utility.CurrentChallengeIndex = CurrentLevel.Level;
+		Utility.CurrentChallengeMode = ChallengeMode.None;
+		Utility.IsTest = true;
+		SceneManager.LoadScene("challenge");
+	}
+
+	public void OnPlayDoubleClicked()
+	{
+		Utility.CurrentChallengeIndex = CurrentLevel.Level;
+		Utility.CurrentChallengeMode = ChallengeMode.Double;
+		Utility.IsTest = true;
+		SceneManager.LoadScene("challenge");
+	}
+
+	public void OnPlayFastClicked()
+	{
+		Utility.CurrentChallengeIndex = CurrentLevel.Level;
+		Utility.CurrentChallengeMode = ChallengeMode.Fast;
+		Utility.IsTest = true;
+		SceneManager.LoadScene("challenge");
+	}
+
+	public void OnPlayDoubleFastClicked()
+	{
+		Utility.CurrentChallengeIndex = CurrentLevel.Level;
+		Utility.CurrentChallengeMode = ChallengeMode.Double | ChallengeMode.Fast;
+		Utility.IsTest = true;
+		SceneManager.LoadScene("challenge");
+	}
+
+	public void OnPlayHardcoreClicked()
+	{
+		Utility.CurrentChallengeIndex = CurrentLevel.Level;
+		Utility.CurrentChallengeMode = ChallengeMode.Hardcore | ChallengeMode.Double | ChallengeMode.Fast;
+		Utility.IsTest = true;
+		SceneManager.LoadScene("challenge");
+	}
 
     public void OnSaveWaveClicked()
     {
