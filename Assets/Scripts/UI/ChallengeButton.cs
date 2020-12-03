@@ -17,6 +17,7 @@ public class ChallengeButton : SButton
 
 	public void InitChallengeButton(ChallengeMode modes, int level, bool isActive, bool passed)
 	{
+		ButtonImage.sprite = ButtonSprites[Random.Range(0, ButtonSprites.Length)];
 		Modes = modes;
 		IsButtonActive = isActive;
 		Level = level;

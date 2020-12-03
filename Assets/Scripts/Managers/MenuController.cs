@@ -25,6 +25,9 @@ public class MenuController : MonoBehaviour
 	public Image PassedFastImage;
 	public Image PassedHardcoreImage;
 
+	public Text TotalStarCountText;
+	private int TotalStarCount;
+
 	public GameObject FullscreenBackButton;
 
 	public Color ActiveModeColor;
@@ -196,7 +199,33 @@ public class MenuController : MonoBehaviour
 
 			ChallengeLevelButtons[i].InitChallengeButton(modes, i, isActive, passed);
 		}
+
+		SetTotalStarCount();
     }
+
+	private void SetTotalStarCount()
+	{
+		List<PlayerChallengeLevelInfo> infoList = Utility.ChallengeInfo.ChallengeLevelInfoList;
+		
+		for (int i = 0; i < infoList.Count; i++)
+		{
+			TotalStarCount++;
+			if (Utility.IsDouble(infoList[i].Modes))
+			{
+				TotalStarCount++;
+			}
+			if (Utility.IsFast(infoList[i].Modes))
+			{
+				TotalStarCount++;
+			}
+			if (Utility.IsHardcore(infoList[i].Modes))
+			{
+				TotalStarCount++;
+			}
+		}
+
+		TotalStarCountText.text = TotalStarCount.ToString() + " x";
+	}
     
     public void OnChallengeButtonClicked()
     {
