@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
     public GameObject MainMenuParent;
     public GameObject ChallengeMenuParent;
 	public GameObject ChallengeModePopupParent;
+	public Image PassedUnmodifiedImage;
 	public Image PassedDoubleImage;
 	public Image PassedFastImage;
 	public Image PassedHardcoreImage;
@@ -88,13 +89,26 @@ public class MenuController : MonoBehaviour
         PadlockAnimators[1].SetTrigger("jiggle");
     }
 
-	public void OnChallengeLevelClicked(ChallengeMode modes)
+	public void OnChallengeLevelClicked(ChallengeMode modes, bool passed)
 	{
-		PassedDoubleImage.color = Utility.IsDouble(modes) ? ActiveModeColor : InactiveModeColor;
-		PassedFastImage.color = Utility.IsFast(modes) ? ActiveModeColor : InactiveModeColor;
-		PassedHardcoreImage.color = Utility.IsHardcore(modes) ? ActiveModeColor : InactiveModeColor;
+		InitPassedImage(PassedUnmodifiedImage, passed);
+		InitPassedImage(PassedDoubleImage, Utility.IsDouble(modes));
+		InitPassedImage(PassedFastImage, Utility.IsFast(modes));
+		InitPassedImage(PassedHardcoreImage, Utility.IsHardcore(modes));
+
 		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, true));
 		FullscreenBackButton.SetActive(true);
+	}
+
+	private void InitPassedImage(Image image, bool passed)
+	{
+		Color color;
+		float alpha;
+
+		color = image.color;
+		alpha = passed ? 1f : 0f;
+		color.a = alpha;
+		image.color = color;
 	}
 
 	public void OnChallengeModeHardcoreClicked(bool isSelected)
@@ -160,23 +174,27 @@ public class MenuController : MonoBehaviour
 		{
 			bool isActive;
 			ChallengeMode modes;
+			bool passed;
 			if (i < infoList.Count)
 			{
 				isActive = true;
 				modes = infoList[i].Modes;
+				passed = true;
 			}
 			else if (i == infoList.Count)
 			{
 				isActive = true;
 				modes = ChallengeMode.None;
+				passed = false;
 			}
 			else
 			{
 				isActive = false;
 				modes = ChallengeMode.None;
+				passed = false;		
 			}
 
-			ChallengeLevelButtons[i].InitChallengeButton(modes, i, isActive);
+			ChallengeLevelButtons[i].InitChallengeButton(modes, i, isActive, passed);
 		}
     }
     
