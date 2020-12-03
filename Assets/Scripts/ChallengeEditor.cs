@@ -135,12 +135,15 @@ public class ChallengeEditor : MonoBehaviour
                                     FryType = enemyType < 5 ? FryType.SmallFry : FryType.Boss,
                                     EnemyType = (EnemyType)enemyType
                                 });
+
+		OnLevelContentInputEdited();
     }
 
     public void OnWaveTimeEdited()
     {
         CurrentWave.Time = float.Parse(TimeInputField.text);
-    }
+		OnLevelContentInputEdited();
+ 	}
 
     public void OnScrollLevelInfoUpClicked()
     {
