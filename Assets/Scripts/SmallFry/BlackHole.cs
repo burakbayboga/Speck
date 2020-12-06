@@ -10,6 +10,10 @@ public class BlackHole : SmallFry
     public GameObject PreSpawnParticle;
     public GameObject PreSpawnParticleScatter;
 
+	[HideInInspector]
+	public float WaveRadiusStart;
+	public float WaveThickness;
+
     private Rigidbody2D LilBRigidBody;
     private CircleCollider2D Collider;
 
@@ -42,7 +46,7 @@ public class BlackHole : SmallFry
         AudioSource.Play();
         StartCoroutine(DeathCountdown(LifeTime));
 
-        //BackgroundManager.instance.OnBlackHoleActivated(transform.position, LifeTime);
+		Background.instance.StartBlackHoleWave(transform.position, LifeTime, this);
     }
 
     private IEnumerator DeathCountdown(float delay)
@@ -62,39 +66,51 @@ public class BlackHole : SmallFry
 
     void ApplySingularity()
     {
-        Vector2 forceBase = new Vector2(transform.position.x - LilBTransform.position.x, transform.position.y - LilBTransform.position.y);
+		Vector2 forceBase = transform.position - LilBTransform.position;
         Vector2 force = (forceBase.normalized * SingularityForceMultiplier) / (forceBase.magnitude) * Time.deltaTime;
 
         LilBRigidBody.AddForce(force);
     }
 
-    void ApplyWaveSingularity()
-    {
-        float sineValue = Mathf.Clamp01(CalculateSine());
-        LilBRigidBody.AddForce((transform.position - LilBTransform.position).normalized * sineValue * SingularityForceMultiplier * Time.deltaTime);
-    }
+	void ApplyWaveSingularity()
+	{
+		Vector2 forceBase = transform.position - LilBTransform.position;
+		float speckRadius = forceBase.magnitude;
+		float WaveRadiusEnd = WaveRadiusStart - WaveThickness;
+		if (speckRadius > WaveRadiusEnd && speckRadius < WaveRadiusStart)
+		{
+			Vector2 force = (forceBase.normalized * SingularityForceMultiplier) * Time.deltaTime;
+			LilBRigidBody.AddForce(force);
+		}
+	}
 
-    float CalculateSine()
-    {
-        Vector3 radiusVector = LilBTransform.position - transform.position;
-        radiusVector = new Vector3(radiusVector.x / 50f, radiusVector.y / 28f, 0f);
-        float radius = radiusVector.magnitude;
-
-
-        return Mathf.Sin(radius * 4f * Mathf.PI / LenghtMapped(radius) - Time.time * 8f) + OffsetMapped(radius);
-    }
-
-    float LenghtMapped(float radius)
-    {
-        float mapNormalized = radius / 1.4f;
-        return 0.51f * (1f - mapNormalized);
-    }
-
-    float OffsetMapped(float radius)
-    {
-        float mapNormalized = radius / 1.4f;
-        return -1.33f * mapNormalized;
-    }
+    //void ApplyWaveSingularity()
+    //{
+        //float sineValue = Mathf.Clamp01(CalculateSine());
+        //LilBRigidBody.AddForce((transform.position - LilBTransform.position).normalized * sineValue * SingularityForceMultiplier * Time.deltaTime);
+    //}
+//
+    //float CalculateSine()
+    //{
+        //Vector3 radiusVector = LilBTransform.position - transform.position;
+        //radiusVector = new Vector3(radiusVector.x / 50f, radiusVector.y / 28f, 0f);
+        //float radius = radiusVector.magnitude;
+//
+//
+        //return Mathf.Sin(radius * 4f * Mathf.PI / LenghtMapped(radius) - Time.time * 8f) + OffsetMapped(radius);
+    //}
+//
+    //float LenghtMapped(float radius)
+    //{
+        //float mapNormalized = radius / 1.4f;
+        //return 0.51f * (1f - mapNormalized);
+    //}
+//
+    //float OffsetMapped(float radius)
+    //{
+        //float mapNormalized = radius / 1.4f;
+        //return -1.33f * mapNormalized;
+    //}
 
 
 

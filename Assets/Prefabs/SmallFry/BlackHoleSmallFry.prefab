@@ -50,16 +50,16 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   OriginalVelocity: {x: 0, y: 0}
   OriginalAngularVelocity: 0
-  IsFrozen: 0
-  SpeedMultiplier: 0
   EnemyType: 0
   LilBTransform: {fileID: 0}
-  SingularityForceMultiplier: 2900
-  LifeTime: 6
+  SingularityForceMultiplier: 1200
+  LifeTime: 8
   PreSpawnParticle: {fileID: 5317538033332336917, guid: e0c99654239feba4a9c7c8dfe363b407,
     type: 3}
   PreSpawnParticleScatter: {fileID: 5317538033332336917, guid: 1f34cd9b091387d439d8d02077426c18,
     type: 3}
+  WaveRadiusStart: 0
+  WaveThickness: 5
 --- !u!58 &58814814515086370
 CircleCollider2D:
   m_ObjectHideFlags: 0
