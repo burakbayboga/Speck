@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446511e06cae9574e8b2bdd66a10042c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBlackHoleCount: 0
 --- !u!1 &173119950
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,8 +903,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 1
-  - 0.2
+  - 0.9
+  - 0.1
 --- !u!1 &1095457739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,8 +1143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157506e530aaf534a964befafaaef2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallFryMinDelay: 8
-  SmallFryMaxDelay: 8
+  SmallFryMinDelay: 2
+  SmallFryMaxDelay: 3
   BossDelay: 3
 --- !u!1 &1405998364
 GameObject:
@@ -1181,7 +1182,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   BossEncounterIntroParent: {fileID: 1095457739}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 4
+  BossInterval: 8
   BossSmallFryCountdownActive: 0
   AllSButtons:
   - {fileID: 1705094531}

@@ -13,10 +13,10 @@ public class Background : MonoBehaviour
 	Renderer Renderer;
 	
 	// sent to shader
-	Vector4[] WaveCenter = new Vector4[5];
-	float[] WaveRadiusStart = new float[5];
+	Vector4[] WaveCenter = new Vector4[4];
+	float[] WaveRadiusStart = new float[4];
 	
-	float[] WaveStartTime = new float[5];
+	float[] WaveStartTime = new float[4];
 	List<bool> IndexStates = new List<bool>() { true, true, true, true, true };
 
 	void Awake()

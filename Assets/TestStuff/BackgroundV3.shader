@@ -38,8 +38,8 @@
 			half4 _WaveColor;
 			half _BaseWaveThickness;
 
-			half2 _WaveCenter[5];
-			half _WaveRadiusStart[5];
+			half2 _WaveCenter[4];
+			half _WaveRadiusStart[4];
 
             v2f VertexFunction(appdata v)
             {
@@ -54,7 +54,7 @@
             {
 				half lp = 0;
 				[unroll]
-				for (half index = 0; index < 5; index += 1)
+				for (half index = 0; index < 4; index += 1)
 				{
 					half waveRadiusEnd = _WaveRadiusStart[index] - _BaseWaveThickness;
 					half pixelRadius = distance(i.worldPos.xy, _WaveCenter[index]);
@@ -64,7 +64,7 @@
 					lp += lpForWave;
 				}
 				lp = clamp(lp, 0, 1);
-
+				 
 				half4 pixelColor = lerp(_BaseColor, _WaveColor, lp);
 				return pixelColor;
 			}

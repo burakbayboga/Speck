@@ -55,6 +55,16 @@ public class BlackHole : SmallFry
         HandleDeath();
     }
 
+	public override void HandleDeath()
+	{
+		LilB speck = LilBTransform.GetComponent<LilB>();
+		if (speck.IsEndless)
+		{
+			SmallFryManager.instance.CurrentBlackHoleCount--;
+		}
+		base.HandleDeath();
+	}
+
     private void Update()
     {
         if (Active)

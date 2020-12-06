@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SmallFryGenerator : MonoBehaviour
 {
@@ -28,18 +27,32 @@ public class SmallFryGenerator : MonoBehaviour
 
     int GetRandomSmallFryIndex()
     {
-        float random = Random.Range(0.0f, 1.0f);
-        float sum = 0.0f;
-        for (int i=0; i < SmallFrySpawnChances.Length; i++)
-        {
-            sum += SmallFrySpawnChances[i];
-            if (random <= sum)
-            {
-                return i;
-            }
-        }
 
-        return Random.Range(0, SmallFrySpawnChances.Length);
+		bool canSpawnBlackHole = SmallFryManager.instance.CurrentBlackHoleCount < 4;
+		int spawnIndex = 0;
+		do
+		{
+			float random = Random.Range(0.0f, 1.0f);
+			float sum = 0.0f;
+
+			for (int i=0; i < SmallFrySpawnChances.Length; i++)
+			{
+				sum += SmallFrySpawnChances[i];
+				if (random <= sum)
+				{
+					spawnIndex = i;
+					break;
+				}
+			}
+		}
+		while (!canSpawnBlackHole && spawnIndex == 3);
+
+		if (spawnIndex == 3)
+		{
+			SmallFryManager.instance.CurrentBlackHoleCount++;
+		}
+
+        return spawnIndex;
     }
 
     

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SmallFryManager : MonoBehaviour
 {
     public static SmallFryManager instance;
 
-    [HideInInspector] public Action<SmallFry> OnSmallFrySpawned;
-
     List<SmallFry> SmallFryList;
-    
+    public int CurrentBlackHoleCount = 0;
 
     void Awake()
     {
@@ -21,10 +17,6 @@ public class SmallFryManager : MonoBehaviour
     public void AddToSmallFryList(SmallFry smallFry)
     {
         SmallFryList.Add(smallFry);
-        if (OnSmallFrySpawned != null)
-        {
-            OnSmallFrySpawned(smallFry);
-        }
     }
 
     public bool SmallFryExists()
