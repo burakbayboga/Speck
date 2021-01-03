@@ -34,6 +34,7 @@ public class BlackHole : SmallFry
         Collider.enabled = false;
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         renderer.enabled = false;
+		Animator.enabled = false;
         GameObject particle = Instantiate(PreSpawnParticleScatter, transform);
         yield return new WaitForSeconds(1.5f);
         Destroy(particle);
@@ -43,6 +44,7 @@ public class BlackHole : SmallFry
         Active = true;
         renderer.enabled = true;
         Collider.enabled = true;
+		Animator.enabled = true;
         AudioSource.Play();
         StartCoroutine(DeathCountdown(LifeTime));
 

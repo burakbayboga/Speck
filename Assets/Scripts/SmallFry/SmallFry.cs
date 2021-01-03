@@ -21,10 +21,13 @@ public class SmallFry : MonoBehaviour
 
     protected AudioSource AudioSource;
 
+	protected Animator Animator;
+
     public virtual void Init()
     {
         AudioSource = GetComponent<AudioSource>();
         Rigidbody = GetComponent<Rigidbody2D>();
+		Animator = GetComponent<Animator>();
         LilBTransform = GameObject.FindWithTag("LilB").transform;
 
         MainCamera = Camera.main;
