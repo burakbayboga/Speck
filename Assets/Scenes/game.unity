@@ -466,7 +466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553810490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 50, y: 28, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -900,11 +900,11 @@ MonoBehaviour:
   - {fileID: 1332802183716292, guid: 49b37e82bd0fdd7479f9ea0a0807d6b5, type: 3}
   - {fileID: 1794625117283930, guid: f31bbda8f6126484c88761cc9a5f0050, type: 3}
   SmallFrySpawnChances:
-  - 0
-  - 0
-  - 0
-  - 0.9
-  - 0.1
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
 --- !u!1 &1095457739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmallFryMinDelay: 2
-  SmallFryMaxDelay: 3
+  SmallFryMaxDelay: 5
   BossDelay: 3
 --- !u!1 &1405998364
 GameObject:
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   BossEncounterIntroParent: {fileID: 1095457739}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 8
+  BossInterval: 15
   BossSmallFryCountdownActive: 0
   AllSButtons:
   - {fileID: 1705094531}
