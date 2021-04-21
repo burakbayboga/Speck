@@ -48,7 +48,7 @@
                 fixed4 textureColor = tex2D(_MainTex, i.uv);
 				fixed4 pixelColor;
 				pixelColor.a = textureColor.a;
-				pixelColor.rgb = i.spriteColor.rgb * pixelColor.a;
+				pixelColor.rgb = i.spriteColor.rgb * textureColor.rgb * pixelColor.a;
 				return pixelColor;
             }
             ENDCG
