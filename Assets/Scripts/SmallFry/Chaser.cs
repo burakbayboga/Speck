@@ -15,7 +15,6 @@ public class Chaser : SmallFry
 
     private float OriginalSpeed;
     private bool IsSpawnOver;
-    private Animator Animator;
     private Collider2D Collider;
 
     public override void Init()
@@ -25,7 +24,6 @@ public class Chaser : SmallFry
         Renderer = GetComponent<Renderer>();
         OriginalSpeed = Speed;
         IsSpawnOver = false;
-        Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider2D>();
     }
 
