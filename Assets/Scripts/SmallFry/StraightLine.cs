@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StraightLine : SmallFry
@@ -94,12 +93,12 @@ public class StraightLine : SmallFry
 
 	IEnumerator HandleSpawnParticleRadiusChanges()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		float lerpParameter = 0f;
 		float startTime = Time.time;
 		while (lerpParameter < 1f)
 		{
-			lerpParameter = (Time.time - startTime) / 2f;
+			lerpParameter = (Time.time - startTime) / 1f;
 			lerpParameter = Mathf.Clamp01(lerpParameter);
 			OuterSpawnParticleCurrentRadius = Mathf.Lerp(OuterSpawnParticleRadius0,
 														OuterSpawnParticleRadius1,
@@ -110,7 +109,7 @@ public class StraightLine : SmallFry
 			yield return null;
 		}
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 
 		lerpParameter = 0f;
 		startTime = Time.time;
@@ -126,7 +125,7 @@ public class StraightLine : SmallFry
 														lerpParameter);
 			yield return null;
 		}
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.7f);
 	}
 
 	IEnumerator SpinInnerSpawnParticle()
