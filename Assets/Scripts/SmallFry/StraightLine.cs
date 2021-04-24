@@ -5,10 +5,6 @@ public class StraightLine : SmallFry
 {
     public float SpeedMultiplier;
 
-    public SpriteRenderer OuterSpriteRenderer;
-    Material OuterMaterial;
-    Vector2 TextureResolution;
-
     bool ShouldMove = false;
     Vector3 Velocity;
 
@@ -26,15 +22,6 @@ public class StraightLine : SmallFry
 	float InnerSpawnParticleCurrentRadius;
 
 	Coroutine[] SpinSpawnParticleCoroutines = new Coroutine[2];
-
-    private void Start()
-    {
-
-        Texture2D texture = OuterSpriteRenderer.sprite.texture;
-        TextureResolution = new Vector2(texture.width, texture.height);
-        OuterMaterial = OuterSpriteRenderer.material;
-        //OuterMaterial.SetFloat("_HalfSliceSize", (OuterSpriteRenderer.sprite.rect.height / TextureResolution.y) / 2f);
-    }
 
     public override void Init()
     {
@@ -57,18 +44,6 @@ public class StraightLine : SmallFry
         }
     }
 
-    private void LateUpdate()
-    {
-        //SetShaderProperties();
-    }
-
-    void SetShaderProperties()
-    {
-        Sprite sprite = OuterSpriteRenderer.sprite;
-        Vector2 center = new Vector2((sprite.rect.xMin + sprite.pivot.x) / TextureResolution.x, (sprite.rect.yMin + sprite.pivot.y) / TextureResolution.y);
-        OuterMaterial.SetVector("_Center", center);
-    }
-
     public void OnSpinStarted()
     {
         AudioSource.Play();
@@ -81,8 +56,6 @@ public class StraightLine : SmallFry
 
     IEnumerator Action()
     {
-        //yield return new WaitForSeconds(1.0f);
-        //Animator.SetTrigger("SpinTrigger");
 		SpinSpawnParticleCoroutines[0] = StartCoroutine(SpinOuterSpawnParticle());
 		SpinSpawnParticleCoroutines[1] = StartCoroutine(SpinInnerSpawnParticle());
 		yield return StartCoroutine(HandleSpawnParticleRadiusChanges());
