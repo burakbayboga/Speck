@@ -33,12 +33,13 @@ public class ElectricFence : SmallFry
         Vector3 deathColliderRotationEuler = new Vector3(0.0f, 0.0f, rotationEulerZ);
         DeathCollider = Instantiate(DeathColliderPrefab, transform.position + deathColliderOffset, Quaternion.Euler(deathColliderRotationEuler));
 
+		float deathColliderOffsetMagnitude = deathColliderOffset.magnitude;
         BoxCollider2D deathColliderBox = DeathCollider.GetComponent<BoxCollider2D>();
-        deathColliderBox.size = new Vector2(deathColliderOffset.magnitude * 2.0f, 0.3f);
+        deathColliderBox.size = new Vector2(deathColliderOffsetMagnitude * 2.0f, 0.3f);
 
         ParticleSystem deathColliderParticle = DeathCollider.transform.GetChild(0).GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule particleShape = deathColliderParticle.shape;
-        particleShape.radius = deathColliderOffset.magnitude;
+        particleShape.radius = deathColliderOffsetMagnitude;
     }
 
     private IEnumerator DeathCountdown(float delay)
