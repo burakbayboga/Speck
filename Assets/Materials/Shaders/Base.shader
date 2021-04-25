@@ -3,6 +3,7 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		[Toggle(IGNORE_TEXTURE_COLOR)] _IgnoreTextureColor ("Ignore Texture Color?", Float) = 0
     }
     SubShader
     {
@@ -14,6 +15,7 @@
             CGPROGRAM
             #pragma vertex VertexFunction
             #pragma fragment FragmentFunction
+			#pragma shader_feature IGNORE_TEXTURE_COLOR
 
             #include "UnityCG.cginc"
 
@@ -47,8 +49,12 @@
             {
                 fixed4 textureColor = tex2D(_MainTex, i.uv);
 				fixed4 pixelColor;
-				pixelColor.a = textureColor.a;
+				pixelColor.a = textureColor.a * i.spriteColor.a;
+#if defined(IGNORE_TEXTURE_COLOR)
+				pixelColor.rgb = i.spriteColor.rgb * pixelColor.a;
+#else
 				pixelColor.rgb = i.spriteColor.rgb * textureColor.rgb * pixelColor.a;
+#endif
 				return pixelColor;
             }
             ENDCG
