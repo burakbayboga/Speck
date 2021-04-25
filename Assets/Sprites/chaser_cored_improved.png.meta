@@ -1,0 +1,310 @@
+fileFormatVersion: 2
+guid: e24232f7871d2ec439c2c6ffee47ce37
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: chaser_cored_improved_0
+    21300002: chaser_cored_improved_1
+    21300004: chaser_cored_improved_2
+    21300006: chaser_cored_improved_3
+    21300008: chaser_cored_improved_4
+    21300010: chaser_cored_improved_5
+    21300012: chaser_cored_improved_6
+    21300014: chaser_cored_improved_7
+    21300016: chaser_cored_improved_8
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 80
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: chaser_cored_improved_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 399
+        width: 76
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5076693, y: 0.48438755}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ec5f75f4797ad048b766691940df649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_1
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 401
+        width: 83
+        height: 110
+      alignment: 9
+      pivot: {x: 0.4929773, y: 0.46820733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ee9b68a88025d40b33c47fceb5af53
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_2
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 391
+        width: 100
+        height: 120
+      alignment: 9
+      pivot: {x: 0.47668487, y: 0.509715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b76cfc892bfa248827d1f3bcdb5b2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 192
+        width: 110
+        height: 185
+      alignment: 9
+      pivot: {x: 0.5027002, y: 0.5909437}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93f88ed24e5500c45b590c9775dd6ed4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_4
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 193
+        width: 119
+        height: 184
+      alignment: 9
+      pivot: {x: 0.48610604, y: 0.5709995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc0b4080f231c7449458873e5d108b7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_5
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 191
+        width: 150
+        height: 184
+      alignment: 9
+      pivot: {x: 0.4772457, y: 0.52232474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df075b5b4b836bd4f966b64ea7a760d3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_6
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 35
+        width: 118
+        height: 132
+      alignment: 9
+      pivot: {x: 0.4867961, y: 0.46781546}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66c23fd59468eba44b0b3cc029bb11a7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_7
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 26
+        width: 121
+        height: 142
+      alignment: 9
+      pivot: {x: 0.4798516, y: 0.5549401}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de4d4f03535a3cd439ff0ec406507d4f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_8
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 11
+        width: 123
+        height: 156
+      alignment: 9
+      pivot: {x: 0.48414326, y: 0.609396}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceddd4706eab3cc4082b8b78a1ab23ea
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2c0b10cebe0e5cb47a835c5dd21ee368
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChaserMat
-  m_Shader: {fileID: 4800000, guid: 11c2cb199249aa84a9937957b67654cc, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7331ba8c45f911b4aa6e9a62897ab127, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -78,5 +78,6 @@ Material:
     - _Color: {r: 0, g: 0.17254902, b: 1, a: 1}
     - _Color0: {r: 0.2, g: 0.93333334, b: 0.38039216, a: 1}
     - _Color1: {r: 0.49803922, g: 0.87058824, b: 0.90588236, a: 1}
+    - _Color2: {r: 1, g: 0.987611, b: 0.33490568, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 0, b: 0.74123955, a: 1}
