@@ -184,57 +184,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360186421}
   m_CullTransparentMesh: 0
---- !u!1 &573237728
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 573237730}
-  - component: {fileID: 573237729}
-  m_Layer: 0
-  m_Name: splinedecorator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &573237729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573237728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50583d71d01ba3a47a4e8e0482ac542a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spline: {fileID: 2051607122}
-  frequency: 3
-  lookForward: 1
-  items:
-  - {fileID: 7295181438489610188, guid: 62e0d75d7bb700147944cb5a09fc78a2, type: 3}
-  - {fileID: 6073912851490791389, guid: d6dba1d928f16fc4d9dda50527cf1a79, type: 3}
-  - {fileID: 5678575460955626268, guid: fd6da7b214a4991418ccacdd690a9f6e, type: 3}
-  - {fileID: 2379297545028222570, guid: 5c47e9ec0734f964798b6ffcad1d4228, type: 3}
---- !u!4 &573237730
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573237728}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &691761564
 GameObject:
   m_ObjectHideFlags: 0
