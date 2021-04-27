@@ -26,7 +26,6 @@ public class StraightLine : SmallFry
     public override void Init()
     {
         base.Init();
-        EnemyType = EnemyType.StraightLine;
         StartCoroutine(Action());
         GetComponent<Collider2D>().enabled = false;
     }

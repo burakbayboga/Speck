@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TracePool : MonoBehaviour
 {
     public static TracePool instance;
 	
-	public Sprite[] TraceSprites;
-
 	public GameObject[] TraceObjects;
+
 	bool[] TraceInUse;
 	int AvailableIndexCount;
 
@@ -20,15 +17,13 @@ public class TracePool : MonoBehaviour
 
 	void InitTraceObjects()
 	{
-		for (int i = 0; i < TraceObjects.Length; i++)
-		{
-			TraceObjects[i].GetComponent<SpriteRenderer>().sprite = TraceSprites[Random.Range(0, TraceSprites.Length)];
-		}
-
 		TraceInUse = new bool[TraceObjects.Length];
 		AvailableIndexCount = TraceInUse.Length;
 	}
 
+	// TODO: use database indexing like system to optimize?
+	// cache last given index to search for available indexes,
+	// instead of starting from beginning every time
 	public GameObject[] GetTrace(int count, out int[] availableIndexes)
 	{
 		if (count > AvailableIndexCount)

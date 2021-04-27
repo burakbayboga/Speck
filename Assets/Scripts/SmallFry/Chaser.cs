@@ -20,7 +20,6 @@ public class Chaser : SmallFry
     public override void Init()
     {
         base.Init();
-        EnemyType = EnemyType.Chaser;
         Renderer = GetComponent<Renderer>();
         OriginalSpeed = Speed;
         IsSpawnOver = false;

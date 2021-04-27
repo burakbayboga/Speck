@@ -22,7 +22,6 @@ public class BlackHole : SmallFry
     public override void Init()
     {
         base.Init();
-        EnemyType = EnemyType.BlackHole;
         LilBRigidBody = LilBTransform.gameObject.GetComponent<Rigidbody2D>();
         Collider = GetComponent<CircleCollider2D>();
         StartCoroutine(PreSpawnCoroutine());

@@ -103,7 +103,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   OriginalVelocity: {x: 0, y: 0}
   OriginalAngularVelocity: 0
-  EnemyType: 0
+  EnemyType: 1
   LilBTransform: {fileID: 0}
   Speed: 5
   TargetAlpha: 0.1

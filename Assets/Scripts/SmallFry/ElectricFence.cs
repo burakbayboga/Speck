@@ -17,7 +17,6 @@ public class ElectricFence : SmallFry
     public override void Init()
     {
         base.Init();
-        EnemyType = EnemyType.ElectricFence;
         DetermineStartTheta();
         StartCoroutine(Activate());
     }

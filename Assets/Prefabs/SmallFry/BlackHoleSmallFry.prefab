@@ -50,7 +50,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   OriginalVelocity: {x: 0, y: 0}
   OriginalAngularVelocity: 0
-  EnemyType: 0
+  EnemyType: 3
   LilBTransform: {fileID: 0}
   SingularityForceMultiplier: 1200
   LifeTime: 8

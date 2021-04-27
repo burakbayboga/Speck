@@ -50,7 +50,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   OriginalVelocity: {x: 0, y: 0}
   OriginalAngularVelocity: 0
-  EnemyType: 0
+  EnemyType: 4
   LilBTransform: {fileID: 0}
   LifeTime: 8
   DeathColliderPrefab: {fileID: 1943969453234218, guid: e564ee5566792c0438a0d74f8680ce18,
