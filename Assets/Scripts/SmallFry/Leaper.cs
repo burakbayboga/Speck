@@ -9,6 +9,7 @@ public class Leaper : SmallFry
     public float LeapDelay;
     public int LeapCount;
     public float LeapSpeed;
+	public float TraceDrawDelay;
 
 	public float TraceInterval;
 
@@ -128,7 +129,7 @@ public class Leaper : SmallFry
 
     private IEnumerator DrawSequenceLines(Vector3[] leapSequence) 
     { 
-		WaitForSeconds delay = new WaitForSeconds(0.02f);
+		WaitForSeconds delay = new WaitForSeconds(TraceDrawDelay);
 
 		float totalDistance = 0f;
 		Vector3 leapSrc = transform.position;

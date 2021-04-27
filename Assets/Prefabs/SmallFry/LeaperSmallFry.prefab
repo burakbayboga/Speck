@@ -56,7 +56,8 @@ MonoBehaviour:
   ActiveParticle: {fileID: 1195951602391648907}
   LeapDelay: 3
   LeapCount: 3
-  LeapSpeed: 1.3
+  LeapSpeed: 1.1
+  TraceDrawDelay: 0.01
   TraceInterval: 1.6
 --- !u!58 &3013645259182778444
 CircleCollider2D:
