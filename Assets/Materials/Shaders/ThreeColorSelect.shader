@@ -50,7 +50,6 @@
             {
                 half4 textureColor = tex2D(_MainTex, i.uv);
 				half4 pixelColor;
-				//pixelColor.rgb = textureColor.r < 0.5 ? _Color0.rgb : _Color1.rgb;
 				pixelColor.rgb = _Color0.rgb;
 				pixelColor.rgb = textureColor.r > 0.5 ? _Color1.rgb : pixelColor.rgb;
 				pixelColor.rgb = textureColor.g > 0.5 ? _Color2.rgb : pixelColor.rgb;

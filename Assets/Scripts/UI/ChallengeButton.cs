@@ -10,6 +10,8 @@ public class ChallengeButton : SButton
 	public Image HardcoreImg;
 	public Text LevelText;
 	public Sprite[] ButtonSprites;
+	public Image[] LevelImages;
+	public Sprite[] NumberSprites;
 
 	private int Level;
 	private ChallengeMode Modes;
@@ -21,7 +23,7 @@ public class ChallengeButton : SButton
 		Modes = modes;
 		IsButtonActive = isActive;
 		Level = level;
-		LevelText.text = (Level+1).ToString();
+		SetLevelImages(level);
 		Passed = passed;
 
 		if (IsButtonActive)
@@ -33,6 +35,22 @@ public class ChallengeButton : SButton
 			{
 				InitPassedImage(UnmodifiedImg, ChallengeMode.None, true);
 			}
+		}
+	}
+
+	private void SetLevelImages(int level)
+	{
+		level++;
+
+		LevelImages[1].sprite = NumberSprites[level % 10];
+
+		if (level < 10)
+		{
+			LevelImages[0].gameObject.SetActive(false);
+		}
+		else
+		{
+			LevelImages[0].sprite = NumberSprites[level / 10];
 		}
 	}
 
