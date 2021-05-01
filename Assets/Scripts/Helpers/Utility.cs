@@ -54,3 +54,9 @@ public enum FryType
     SmallFry = 0,
     Boss = 1
 }
+
+struct ScreenSection
+{
+    public int x;
+    public int y;
+}
