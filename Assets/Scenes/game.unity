@@ -27342,11 +27342,11 @@ MonoBehaviour:
   - {fileID: 1332802183716292, guid: 49b37e82bd0fdd7479f9ea0a0807d6b5, type: 3}
   - {fileID: 1794625117283930, guid: f31bbda8f6126484c88761cc9a5f0050, type: 3}
   SmallFrySpawnChances:
-  - 0
-  - 0
-  - 1
-  - 0
-  - 0
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
 --- !u!1001 &1051690936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36254,7 +36254,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   BossEncounterIntroParent: {fileID: 1095457739}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 15
+  BossInterval: 3
   BossSmallFryCountdownActive: 0
   AllSButtons:
   - {fileID: 1705094531}
@@ -41673,8 +41673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bosses:
-  - {fileID: 1684291983234668, guid: d4dfe1a2e81a1d043b3778757a421d0c, type: 3}
-  - {fileID: 1513176438097528, guid: 78b5dec8ad1276844bb6c2e04802d25d, type: 3}
+  - {fileID: 1656578777306972, guid: 927ed7bd93b1353499dc39c6313a4fca, type: 3}
+  - {fileID: 1656578777306972, guid: 927ed7bd93b1353499dc39c6313a4fca, type: 3}
   - {fileID: 1656578777306972, guid: 927ed7bd93b1353499dc39c6313a4fca, type: 3}
 --- !u!1001 &1653225796
 PrefabInstance:

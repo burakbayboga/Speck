@@ -13,6 +13,7 @@ public class SwissCheeseBoss : Boss
     
     public int MobCount;
     public float MobSpawnInterval;
+	public float MobSpawnDelay;
     public GameObject MobPrefab;
     public GameObject VisualCuePrefab;
 
@@ -53,7 +54,7 @@ public class SwissCheeseBoss : Boss
 
     private IEnumerator SpawnMobCoroutine()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(MobSpawnDelay);
         AudioSource.Play();
         for (int i=0; i < MobCount; i++)
         {
@@ -62,21 +63,7 @@ public class SwissCheeseBoss : Boss
             Destroy(tempVisualCue);
             SmallFry newMob = Instantiate(MobPrefab, SpawnPositions[i], Quaternion.identity).GetComponent<SmallFry>();
             newMob.Init();
-            //SpawnMob(i);
             yield return new WaitForSeconds(MobSpawnInterval);
         }
     }
-
-    private void SpawnMob(int index)
-    {
-        float x = ScreenMiddleScreenSpace.x + Mathf.Cos(index * (360.0f / MobCount) * Mathf.Deg2Rad) * Radius;
-        float y = ScreenMiddleScreenSpace.y + Mathf.Sin(index * (360.0f / MobCount) * Mathf.Deg2Rad) * Radius;
-        Vector3 screenPos = new Vector3(x, y, 25.0f);
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-        SmallFry newMob = Instantiate(MobPrefab, worldPos, Quaternion.identity).GetComponent<SmallFry>();
-        newMob.Init();
-    }
-
-
-
 }

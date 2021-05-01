@@ -47,8 +47,10 @@ MonoBehaviour:
   EncounterTime: 15
   MobCount: 5
   MobSpawnInterval: 0.4
-  MobPrefab: {fileID: 1657611370797658, guid: fa095137f567528409aafe5ba49d9878, type: 3}
-  VisualCuePrefab: {fileID: 1684092704205566, guid: 8f0f7e645e7d3f347bc388e999a01560,
+  MobSpawnDelay: 3
+  MobPrefab: {fileID: 3610554941731974871, guid: 86182ced1c2d60347894c5983db2ef53,
+    type: 3}
+  VisualCuePrefab: {fileID: 158646735245093832, guid: 324417c3469fe884cb485098b53af5b4,
     type: 3}
 --- !u!82 &4307082179389174470
 AudioSource:
