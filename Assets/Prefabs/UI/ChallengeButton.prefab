@@ -430,12 +430,20 @@ MonoBehaviour:
   TransitionTime: 0.2
   Graphics:
   - {fileID: 273937736606303510}
+  - {fileID: 5031429547504274628}
+  - {fileID: 852406602883132437}
   BaseColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   PressedColors:
   - {r: 0.4117647, g: 1, b: 0.9843137, a: 1}
+  - {r: 1, g: 0.7137255, b: 0.78431374, a: 1}
+  - {r: 1, g: 0.7137255, b: 0.78431374, a: 1}
   InactiveColors:
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  - {r: 0.28235295, g: 0.047058824, b: 0, a: 1}
+  - {r: 0.28235295, g: 0.047058824, b: 0, a: 1}
   OnClickEvent:
     m_PersistentCalls:
       m_Calls:
