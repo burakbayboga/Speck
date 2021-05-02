@@ -73,6 +73,7 @@ public class BlackHoleScreenEffect : MonoBehaviour
 		ReleaseIndex(index);
 
 		ActiveBlackHoleCount--;
+		CheckEffectDisable();
 	}
 
 	void CheckEffectDisable()
