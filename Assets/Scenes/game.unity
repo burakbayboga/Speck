@@ -13728,7 +13728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &553810491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27342,10 +27342,10 @@ MonoBehaviour:
   - {fileID: 1332802183716292, guid: 49b37e82bd0fdd7479f9ea0a0807d6b5, type: 3}
   - {fileID: 1794625117283930, guid: f31bbda8f6126484c88761cc9a5f0050, type: 3}
   SmallFrySpawnChances:
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
+  - 0
+  - 0
+  - 0
+  - 0.8
   - 0.2
 --- !u!1001 &1051690936
 PrefabInstance:
@@ -33968,7 +33968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmallFryMinDelay: 2
-  SmallFryMaxDelay: 4
+  SmallFryMaxDelay: 2
   BossDelay: 4
 --- !u!1001 &1323677942
 PrefabInstance:
@@ -36254,7 +36254,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   BossEncounterIntroParent: {fileID: 1095457739}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 3
+  BossInterval: 10
   BossSmallFryCountdownActive: 0
   AllSButtons:
   - {fileID: 1705094531}
@@ -52246,6 +52246,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4918376924175008, guid: aa54657c5a813e048be65a4632b81faf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 514137897297419992, guid: aa54657c5a813e048be65a4632b81faf,
+        type: 3}
+      propertyPath: WaveThickness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 514137897297419992, guid: aa54657c5a813e048be65a4632b81faf,
+        type: 3}
+      propertyPath: WaveSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 514137897297419992, guid: aa54657c5a813e048be65a4632b81faf,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

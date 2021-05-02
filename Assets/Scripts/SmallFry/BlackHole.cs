@@ -14,14 +14,20 @@ public class BlackHole : SmallFry
 	public float WaveRadiusStart;
 	public float WaveThickness;
 
+	[HideInInspector]
+	public Vector2 WaveRadiusData;
+
     private Rigidbody2D LilBRigidBody;
     private CircleCollider2D Collider;
 
     bool Active;
 
+	BlackHoleScreenEffect ScreenEffect;
+
     public override void Init()
     {
         base.Init();
+		ScreenEffect = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BlackHoleScreenEffect>();
         LilBRigidBody = LilBTransform.gameObject.GetComponent<Rigidbody2D>();
         Collider = GetComponent<CircleCollider2D>();
         StartCoroutine(PreSpawnCoroutine());
@@ -47,7 +53,8 @@ public class BlackHole : SmallFry
         AudioSource.Play();
         StartCoroutine(DeathCountdown(LifeTime));
 
-		Background.instance.StartBlackHoleWave(transform.position, LifeTime, this);
+		//Background.instance.StartBlackHoleWave(transform.position, LifeTime, this);
+		ScreenEffect.StartBlackHoleEffect(transform.position, LifeTime, this);
     }
 
     private IEnumerator DeathCountdown(float delay)
@@ -87,8 +94,7 @@ public class BlackHole : SmallFry
 	{
 		Vector2 forceBase = transform.position - LilBTransform.position;
 		float speckRadius = forceBase.magnitude;
-		float WaveRadiusEnd = WaveRadiusStart - WaveThickness;
-		if (speckRadius > WaveRadiusEnd && speckRadius < WaveRadiusStart)
+		if (speckRadius > WaveRadiusData.x && speckRadius < WaveRadiusData.y)
 		{
 			Vector2 force = (forceBase.normalized * SingularityForceMultiplier) * Time.deltaTime;
 			LilBRigidBody.AddForce(force);

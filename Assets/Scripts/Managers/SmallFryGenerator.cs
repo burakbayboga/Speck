@@ -28,7 +28,7 @@ public class SmallFryGenerator : MonoBehaviour
     int GetRandomSmallFryIndex()
     {
 
-		bool canSpawnBlackHole = SmallFryManager.instance.CurrentBlackHoleCount < 4;
+		bool canSpawnBlackHole = SmallFryManager.instance.CurrentBlackHoleCount < 2;
 		int spawnIndex = 0;
 		do
 		{
