@@ -14,8 +14,7 @@ public class MenuController : MonoBehaviour
 
     public Text HighScoreText;
     public Animator EndlessWarningAnimator;
-    public GameObject[] Padlocks;
-    public Animator[] PadlockAnimators;
+	public GameObject EndlessChain;
 
     public GameObject MainMenuParent;
     public GameObject ChallengeMenuParent;
@@ -49,22 +48,24 @@ public class MenuController : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
 
-        int highScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
+	void Start()
+	{
+		int highScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
         HighScoreText.text = "HighScore: " + highScore.ToString();
 		
         PlayerChallengeLevel = Utility.ChallengeInfo.ChallengeLevelInfoList.Count + 1;
         CanPlayEndless = PlayerChallengeLevel >= 5;
         if (!CanPlayEndless)
         {
-            Padlocks[0].SetActive(true);
-            Padlocks[1].SetActive(true);
-            EndlessButton.IsButtonActive = false;
+			EndlessChain.SetActive(true);
+			EndlessButton.SetActivity(false);
         }
 
 		Utility.CurrentChallengeMode = ChallengeMode.None;
         InitializeChallengeMenu();
-    }
+	}
 
     public void DisableAllSButtons()
     {
@@ -87,9 +88,6 @@ public class MenuController : MonoBehaviour
             EndlessWarningAnimator.SetTrigger("show_warning");
             StartCoroutine(EndlessWarningTimer());
         }
-
-        PadlockAnimators[0].SetTrigger("jiggle");
-        PadlockAnimators[1].SetTrigger("jiggle");
     }
 
 	public void OnChallengeLevelClicked(ChallengeMode modes, bool passed)

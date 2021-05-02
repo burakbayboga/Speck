@@ -20,7 +20,7 @@ public class SButton : MonoBehaviour
 	private Material Material;
 	private string[] MaterialColorIds;
 
-    private void Start()
+    private void Awake()
     {
 		if (IsMaterialColorDst)
 		{
