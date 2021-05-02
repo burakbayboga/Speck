@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8529437469724522911}
   - component: {fileID: 7342705401926160416}
   m_Layer: 11
-  m_Name: icon
+  m_Name: ChallengeModeIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,13 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.13501246, g: 0.21690123, b: 0.7735849, a: 1}
+  m_Material: {fileID: 2100000, guid: 052c7cdad5fa1da45a90858e68962cd3, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c466cda170ea78b4b952fab4d7fd441a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b99900bd1e0611b42966809ebad98228, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -131,12 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7924528, g: 0.09344961, b: 0.40682966, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.09560871, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e12c87101ba438645893920aba83780e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9286fd614dd31442954f2899964b020, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
