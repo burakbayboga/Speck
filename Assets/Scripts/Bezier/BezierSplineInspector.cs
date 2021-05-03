@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(BezierSpline))]
@@ -141,3 +142,4 @@ public class BezierSplineInspector : Editor
 		}
 	}
 }
+#endif

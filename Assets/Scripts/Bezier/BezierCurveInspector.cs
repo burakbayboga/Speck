@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(BezierCurve))]
@@ -76,3 +77,4 @@ public class BezierCurveInspector : Editor
 	}
     
 }
+#endif
