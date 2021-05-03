@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmallFryMinDelay: 2
-  SmallFryMaxDelay: 2
+  SmallFryMaxDelay: 3
   BossDelay: 4
 --- !u!1 &1405998364
 GameObject:
