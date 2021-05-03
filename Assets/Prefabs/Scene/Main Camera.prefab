@@ -114,5 +114,5 @@ MonoBehaviour:
   BlackHoleScreenEffectMat: {fileID: 2100000, guid: e55a18ddae98ec242827ff57e1096a2e,
     type: 2}
   WaveFrequency: 3
-  WaveSpeed: 20
+  WaveSpeed: 15
   WaveThickness: 5
