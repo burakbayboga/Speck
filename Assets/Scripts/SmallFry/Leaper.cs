@@ -58,6 +58,8 @@ public class Leaper : SmallFry
         InactiveParticle.SetActive(false); 
         ActiveParticle.SetActive(true);
 		int deactivationTraceIndex = 0;
+
+		WaitForSeconds singleFrame = new WaitForSeconds(0.0001f);
  
 		float movementSinceTrace = 0f;
         for (int i = 0; i < leapSequence.Length; i++) 
@@ -76,7 +78,7 @@ public class Leaper : SmallFry
 					deactivationTraceIndex++;
 					movementSinceTrace -= TraceInterval;
 				}
-                yield return null; 
+                yield return singleFrame;
             } 
         } 
  
@@ -111,9 +113,10 @@ public class Leaper : SmallFry
 		float tracePerFrame = LeapSpeed / TraceInterval;
 		float traceCount = 0f;
 		bool done = false;
+		WaitForSeconds singleFrame = new WaitForSeconds(0.0001f);
 		while (!done)
 		{
-			yield return null;
+			yield return singleFrame;
 			traceCount += tracePerFrame;
 			if (traceCount >= TraceObjects.Length)
 			{
