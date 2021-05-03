@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Blur: {fileID: 2100000, guid: d4baaedd575d75d48a788cb3d953cfb8, type: 2}
-  Iteration: 20
-  DownRes: 0
+  Iteration: 2
+  DownRes: 2
 --- !u!114 &514137897297419992
 MonoBehaviour:
   m_ObjectHideFlags: 0
