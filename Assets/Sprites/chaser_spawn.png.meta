@@ -1,21 +1,16 @@
 fileFormatVersion: 2
-guid: 19f08516c6bd0b54288ce98ccf730381
+guid: e4b419d03e6712e4a8eb7d40a22e9315
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chaser_idle_and_moving_0
-    21300002: chaser_idle_and_moving_1
-    21300004: chaser_idle_and_moving_2
-    21300006: chaser_idle_and_moving_3
-    21300008: chaser_idle_and_moving_4
-    21300010: chaser_idle_and_moving_5
-    21300012: chaser_idle_and_moving_6
-    21300014: chaser_idle_and_moving_7
-    21300016: chaser_idle_and_moving_8
-    21300018: chaser_idle_and_moving_9
-    21300020: chaser_idle_and_moving_10
-    21300022: chaser_idle_and_moving_11
-    21300024: chaser_idle_and_moving_12
-    21300026: chaser_idle_and_moving_13
+    21300000: chaser_cored_improved_0
+    21300002: chaser_cored_improved_1
+    21300004: chaser_cored_improved_2
+    21300006: chaser_cored_improved_3
+    21300008: chaser_cored_improved_4
+    21300010: chaser_cored_improved_5
+    21300012: chaser_cored_improved_6
+    21300014: chaser_cored_improved_7
+    21300016: chaser_cored_improved_8
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -105,145 +100,196 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chaser_idle_and_moving_7
+      name: chaser_cored_improved_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 462
-        width: 182
-        height: 211
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 56
+        y: 440
+        width: 76
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5076693, y: 0.48438755}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 16c2bd6dc4b9691488cc31eab7051f1f
+      spriteID: fb4195839811f7f4e9c1321acf9f921a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chaser_idle_and_moving_8
+      name: chaser_cored_improved_1
       rect:
         serializedVersion: 2
-        x: 232
-        y: 423
-        width: 190
-        height: 244
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 217
+        y: 431
+        width: 83
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4929773, y: 0.46820733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5a9e1025d94db63438de83a53a55178f
+      spriteID: ea691f0b189d0f140bfe193a3ddb4572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chaser_idle_and_moving_9
+      name: chaser_cored_improved_2
       rect:
         serializedVersion: 2
-        x: 471
-        y: 408
-        width: 194
-        height: 236
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 373
+        y: 420
+        width: 100
+        height: 91
+      alignment: 9
+      pivot: {x: 0.47668487, y: 0.509715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 16a6c283a7483be4a812bc34261d7d63
+      spriteID: 6a050e3b55507e448b96f01c76ca5156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chaser_idle_and_moving_10
+      name: chaser_cored_improved_3
       rect:
         serializedVersion: 2
-        x: 722
-        y: 426
-        width: 205
-        height: 240
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 45
+        y: 266
+        width: 110
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5027002, y: 0.5909437}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 534c0e3dbbe0bf94eac39ef995fd229f
+      spriteID: 38c77235d4d1fc14c9a6e19693a49aa2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chaser_idle_and_moving_11
+      name: chaser_cored_improved_4
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 436
-        width: 209
-        height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 195
+        y: 255
+        width: 119
+        height: 122
+      alignment: 9
+      pivot: {x: 0.48610604, y: 0.5709995}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 53b8c637a60afb64f9e592bcdc18e296
+      spriteID: d5579f968fd4381478e78fdba93407cf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chaser_idle_and_moving_12
+      name: chaser_cored_improved_5
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 152
-        height: 263
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 350
+        y: 246
+        width: 150
+        height: 129
+      alignment: 9
+      pivot: {x: 0.4772457, y: 0.52232474}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8685b7a23f1d6f842bcedf0049269ada
+      spriteID: adabc87d5686def4b9be532c0d17f236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chaser_idle_and_moving_13
+      name: chaser_cored_improved_6
       rect:
         serializedVersion: 2
-        x: 231
-        y: 25
-        width: 207
-        height: 238
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 35
+        y: 40
+        width: 118
+        height: 127
+      alignment: 9
+      pivot: {x: 0.4867961, y: 0.46781546}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 980ce7fb2da31ef46970bd5490cd2551
+      spriteID: 00dc8cdd71ffd1c468b8a580691d4ffc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_7
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 36
+        width: 121
+        height: 132
+      alignment: 9
+      pivot: {x: 0.4798516, y: 0.5549401}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57ff8a6e7d0c36448cd682336fed85b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chaser_cored_improved_8
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 11
+        width: 123
+        height: 156
+      alignment: 9
+      pivot: {x: 0.48414326, y: 0.609396}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9004d7f8cf868654786c43e134865728
       vertices: []
       indices: 
       edges: []
@@ -251,7 +297,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8008aa46c939b7945b6d2ea874b2b664
     vertices: []
     indices: 
     edges: []

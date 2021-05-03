@@ -1,21 +1,20 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Chaser : SmallFry
 {
     public float Speed;
-    public float TargetAlpha;
     public float LifeTime;
 
-    public Color FarColor;
-    public Color NearColor;
+	public float InitialSpeedBoost;
+	public float InitialSpeedBoostEaseTime;
 
     private Renderer Renderer;
 
     private float OriginalSpeed;
     private bool IsSpawnOver;
     private Collider2D Collider;
+	private float BoostMultiplier;
 
     public override void Init()
     {
@@ -28,23 +27,33 @@ public class Chaser : SmallFry
 
     void Update()
     {
-
+		RotateToSpeck();;
         if (!IsSpawnOver && !ShouldChase())
         {
             return;
         }
 
-        float distance = (transform.position - LilBTransform.position).magnitude;
-        float lerpParameter = Mathf.InverseLerp(0.0f, 30.0f, distance);
+        Rigidbody.velocity = (LilBTransform.position - transform.position).normalized * Speed * BoostMultiplier;
+    }
 
-        Color outlineColor = Color.Lerp(NearColor, FarColor, lerpParameter);
-        Renderer.material.SetColor("_OutlineColor", outlineColor);
-
-        Rigidbody.velocity = (LilBTransform.position - transform.position).normalized * Speed;
+	void RotateToSpeck()
+	{
         float zRotation = Vector3.SignedAngle(LilBTransform.position - transform.position, Vector3.up, Vector3.forward * -1.0f);
         transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, zRotation));
+	}
 
-    }
+	IEnumerator EaseInitialSpeedBoost()
+	{
+		float startTime = Time.time;
+		float t = 0f;
+		while (t < 1f)
+		{
+			t = Mathf.Clamp01((Time.time - startTime) / InitialSpeedBoostEaseTime);
+			BoostMultiplier = Mathf.Lerp(InitialSpeedBoost, 1f, t);
+			
+			yield return null;
+		}
+	}
 
     bool ShouldChase()
     {
@@ -55,6 +64,7 @@ public class Chaser : SmallFry
             StartCoroutine(DeathCountdown(LifeTime));
             Collider.enabled = true;
             AudioSource.Play();
+			StartCoroutine(EaseInitialSpeedBoost());
         }
         return spawnOver;
     }
