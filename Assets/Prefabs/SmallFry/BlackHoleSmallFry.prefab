@@ -60,6 +60,7 @@ MonoBehaviour:
     type: 3}
   WaveRadiusStart: 0
   WaveThickness: 5
+  WaveRadiusData: {x: 0, y: 0}
 --- !u!58 &58814814515086370
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -150,7 +151,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332802183716292}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 670f4d77bc5537d4ea7db7b5cc133504, type: 3}
