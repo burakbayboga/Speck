@@ -3,8 +3,9 @@
 
 	Properties
 	{
-		_MainTex("Texture", 2D) = "white" { }
-		_NoiseTex("Noise Texture (RG)", 2D) = "white" {  }
+		_MainTex ("Texture", 2D) = "white" { }
+		_NoiseTex ("Noise Texture (RG)", 2D) = "white" { }
+		_EffectTex ("Effect Texture", 2D) = "white" { }
 	}
 
 	SubShader
@@ -36,6 +37,7 @@
 
 			sampler2D _MainTex;
 			sampler2D _NoiseTex;
+			sampler2D _EffectTex;
 			float4 _BlackHoleData[2];	//x,y = world pos   z = waveRadiusStart   w = waveRadiusEnd
 
 			v2f VertexFunction(appdata v)
@@ -52,20 +54,24 @@
 				i.worldPos = float2(i.worldPos.x * 50 - 25, i.worldPos.y * 28 - 14);	// 何 the fuck
 				float2 totalDistortion = float2(0, 0);
 				float brightnessFactor = 0;
+				half4 effectColor = half4(0, 0, 0, 0);
 				[unroll]
 				for (half index = 0; index < 2; index += 1)
 				{
 					float2 pixelToCenter = _BlackHoleData[index].xy - i.worldPos.xy;
 					float pixelRadius = length(pixelToCenter);
+					float2 pixelToCenterNormalized = normalize(pixelToCenter);
 					half applyDistortion = pixelRadius > _BlackHoleData[index].z && pixelRadius < _BlackHoleData[index].w;
-					float2 distortionVector = applyDistortion ? normalize(pixelToCenter) / 8 : half2(0, 0);
-					//float2 distortionVector = applyDistortion ? pixelToCenter / 10 : half2(0, 0);
+					float2 distortionVector = applyDistortion ? pixelToCenterNormalized / 8 : half2(0, 0);
 					float t = (pixelRadius - _BlackHoleData[index].z) / (_BlackHoleData[index].w - _BlackHoleData[index].z);
 					brightnessFactor += applyDistortion ? 1 - t : 0;
-					t -= 0.5;
-					float scale = applyDistortion ? t : 1;
+					float scale = applyDistortion ? t - 0.5 : 1;
 					totalDistortion += distortionVector * scale;
+					float2 effectUv = -pixelToCenterNormalized * t * 0.5 + float2(0.5, 0.5);
+					effectColor += applyDistortion ? tex2D(_EffectTex, effectUv) : 0;
 				}
+				effectColor.rgb *= effectColor.a;
+
 				brightnessFactor = clamp(brightnessFactor, 0, 1);
 				half distortionExists = totalDistortion != float2(0, 0);
 
@@ -75,7 +81,9 @@
 				
 				half4 color = tex2D(_MainTex, finalUv);
 				float brightnessCoefficient = lerp(1, 1.2, brightnessFactor);
-				color = distortionExists ? color * brightnessCoefficient : color;
+				brightnessCoefficient = 1;
+				half4 finalBlackHoleColor = color * brightnessCoefficient + effectColor;
+				color = distortionExists ? finalBlackHoleColor : color;
 				return color;
 			}
 
