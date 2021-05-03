@@ -46,12 +46,12 @@
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = v.uv;
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+				o.worldPos = float2(o.worldPos.x * 50 - 25, o.worldPos.y * 28 - 14);	// classy
 				return o;
 			}
 
 			half4 FragmentFunction(v2f i) : SV_Target
 			{
-				i.worldPos = float2(i.worldPos.x * 50 - 25, i.worldPos.y * 28 - 14);	// 何 the fuck
 				float2 totalDistortion = float2(0, 0);
 				float brightnessFactor = 0;
 				half4 effectColor = half4(0, 0, 0, 0);
@@ -60,7 +60,7 @@
 				{
 					float2 pixelToCenter = _BlackHoleData[index].xy - i.worldPos.xy;
 					float pixelRadius = length(pixelToCenter);
-					float2 pixelToCenterNormalized = normalize(pixelToCenter);
+					float2 pixelToCenterNormalized = pixelToCenter / pixelRadius;
 					half applyDistortion = pixelRadius > _BlackHoleData[index].z && pixelRadius < _BlackHoleData[index].w;
 					float2 distortionVector = applyDistortion ? pixelToCenterNormalized / 8 : half2(0, 0);
 					float t = (pixelRadius - _BlackHoleData[index].z) / (_BlackHoleData[index].w - _BlackHoleData[index].z);
