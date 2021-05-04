@@ -19,10 +19,9 @@ public class MenuController : MonoBehaviour
     public GameObject MainMenuParent;
     public GameObject ChallengeMenuParent;
 	public GameObject ChallengeModePopupParent;
-	public Image PassedUnmodifiedImage;
-	public Image PassedDoubleImage;
-	public Image PassedFastImage;
-	public Image PassedHardcoreImage;
+	public GameObject PassedDoubleImage;
+	public GameObject PassedFastImage;
+	public GameObject PassedHardcoreImage;
 
 	public Text TotalStarCountText;
 	private int TotalStarCount;
@@ -90,26 +89,14 @@ public class MenuController : MonoBehaviour
         }
     }
 
-	public void OnChallengeLevelClicked(ChallengeMode modes, bool passed)
+	public void OnChallengeLevelClicked(ChallengeMode passedModes)
 	{
-		InitPassedImage(PassedUnmodifiedImage, passed);
-		InitPassedImage(PassedDoubleImage, Utility.IsDouble(modes));
-		InitPassedImage(PassedFastImage, Utility.IsFast(modes));
-		InitPassedImage(PassedHardcoreImage, Utility.IsHardcore(modes));
+		PassedDoubleImage.SetActive(Utility.IsDouble(passedModes));
+		PassedFastImage.SetActive(Utility.IsFast(passedModes));
+		PassedHardcoreImage.SetActive(Utility.IsHardcore(passedModes));
 
 		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, true));
 		FullscreenBackButton.SetActive(true);
-	}
-
-	private void InitPassedImage(Image image, bool passed)
-	{
-		Color color;
-		float alpha;
-
-		color = image.color;
-		alpha = passed ? 1f : 0f;
-		color.a = alpha;
-		image.color = color;
 	}
 
 	public void OnChallengeModeHardcoreClicked(bool isSelected)

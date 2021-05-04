@@ -4,10 +4,10 @@ using UnityEngine.UI;
 public class ChallengeButton : SButton
 {
 	public Image ButtonImage;
-	public Image UnmodifiedImg;
-	public Image DoubleImg;
-	public Image FastImg;
-	public Image HardcoreImg;
+	public GameObject UnmodifiedImg;
+	public GameObject DoubleImg;
+	public GameObject FastImg;
+	public GameObject HardcoreImg;
 	public Sprite[] ButtonSprites;
 	public Image[] LevelImages;
 	public Sprite[] NumberSprites;
@@ -29,13 +29,11 @@ public class ChallengeButton : SButton
 
 		if (IsButtonActive)
 		{
-			InitPassedImage(DoubleImg, ChallengeMode.Double);
-			InitPassedImage(FastImg, ChallengeMode.Fast);
-			InitPassedImage(HardcoreImg, ChallengeMode.Hardcore);
-			if (Passed)
-			{
-				InitPassedImage(UnmodifiedImg, ChallengeMode.None, true);
-			}
+			UnmodifiedImg.SetActive(Passed);
+			DoubleImg.SetActive(Utility.IsDouble(Modes));
+			FastImg.SetActive(Utility.IsFast(Modes));
+			HardcoreImg.SetActive(Utility.IsHardcore(Modes));
+			
 			Chain.SetActive(false);
 		}
 	}
@@ -56,21 +54,9 @@ public class ChallengeButton : SButton
 		}
 	}
 
-	private void InitPassedImage(Image image, ChallengeMode comparedMode, bool forceInit = false)
-	{
-		Color color;
-		float alpha;
-
-		color = image.color;
-		alpha = (((Modes & comparedMode) == comparedMode) || forceInit) ? 1f : 0f;
-		color.a = alpha;
-		image.color = color;
-	}
-
 	public void OnChallengeButtonClicked()
 	{
 		Utility.CurrentChallengeIndex = Level;
-		MenuController.instance.OnChallengeLevelClicked(Modes, Passed);
+		MenuController.instance.OnChallengeLevelClicked(Modes);
 	}
-
 }
