@@ -4853,7 +4853,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d035b82821044514bbafb2fb6fb535e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 721d0f6c28142ea4d8bacf3b267db6d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4878,7 +4878,7 @@ GameObject:
   - component: {fileID: 7468747026325356602}
   - component: {fileID: 375182129612988320}
   m_Layer: 0
-  m_Name: StraightlineV2
+  m_Name: Straightline
   m_TagString: SmallFry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

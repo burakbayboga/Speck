@@ -1,0 +1,436 @@
+fileFormatVersion: 2
+guid: 721d0f6c28142ea4d8bacf3b267db6d3
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: straightLineV2_3_0
+    21300002: straightLineV2_3_1
+    21300004: straightLineV2_3_2
+    21300006: straightLineV2_3_3
+    21300008: straightLineV2_3_4
+    21300010: straightLineV2_3_5
+    21300012: straightLineV2_3_6
+    21300014: straightLineV2_3_7
+    21300016: straightLineV2_3_8
+    21300018: straightLineV2_3_9
+    21300020: straightLineV2_3_10
+    21300022: straightLineV2_3_11
+    21300024: straightLineV2_3_12
+    21300026: straightLineV2_3_13
+    21300028: straightLineV2_3_14
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: straightLineV2_3_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 728
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.4866646, y: 0.54445064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e3300d6235b19e42bbe4139fbb25281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_1
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 728
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.5355609, y: 0.48666435}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a84a3ecce68e6b499b7aa1535319c5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_2
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 728
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.51778007, y: 0.5533408}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ae550d4ddd5a484b928c80d019efc36
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_3
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 728
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.5355605, y: 0.5266702}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b351f82c2a2ae141ad637d5e8e77e92
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_4
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 728
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.48666418, y: 0.51333493}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 805b82eb830cd814b8d6a2568d3192e6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_5
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 371
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.45554885, y: 0.5044448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3911e88c1a0955e48a7d3f1fd8e0b0f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_6
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 373
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.54000586, y: 0.57556635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0796152da2b361a4a8c6285bba5ba32f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_7
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 371
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.51333493, y: 0.6022371}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83300c2e0b277ba43b5cee9d83ec8e4b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_8
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 371
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.50889, y: 0.59779197}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35d5cd36a65ee149875dccaca3c257f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_9
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 371
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.46888393, y: 0.5133351}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9f7d1fde33b0944ae9bc487b0a8125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_10
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 14
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.5355607, y: 0.5711214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b0c9d90efe569241beb881734461058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_11
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 14
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.55334115, y: 0.5488959}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9005b708df167a40b0b3aedac55acee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_12
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 14
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.47332907, y: 0.5266704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3710370a53b7c034f92b8b2f921976fb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_13
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 14
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.47332907, y: 0.56667626}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccacf92f0a1d13d409f76311697d051e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: straightLineV2_3_14
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 14
+        width: 340
+        height: 340
+      alignment: 9
+      pivot: {x: 0.47777423, y: 0.57556653}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b3835ade14bbbc4fbc98407fca4999c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ac79777bbcab32149922f6475c0130da
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

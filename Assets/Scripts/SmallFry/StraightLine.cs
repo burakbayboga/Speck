@@ -43,8 +43,9 @@ public class StraightLine : SmallFry
         }
     }
 
-    public void OnSpinStarted()
+    void StartSpin()
     {
+		Animator.Play("Straightline_spin");
         AudioSource.Play();
         Velocity = GetVelocity();
 		Animator.speed = Mathf.Clamp(Velocity.magnitude / 10f, 1f, 1.9f);
@@ -58,7 +59,7 @@ public class StraightLine : SmallFry
 		SpinSpawnParticleCoroutines[0] = StartCoroutine(SpinOuterSpawnParticle());
 		SpinSpawnParticleCoroutines[1] = StartCoroutine(SpinInnerSpawnParticle());
 		yield return StartCoroutine(HandleSpawnParticleRadiusChanges());
-		Animator.SetTrigger("SpinTrigger");
+		StartSpin();
 		OuterSpawnParticle.gameObject.SetActive(false);
 		InnerSpawnParticle.gameObject.SetActive(false);
     }
