@@ -10,16 +10,27 @@ public class ChallengeModeButton : SButton
 	public ChallengeMode Mode;
 	public Color ModeBaseColor;
 	public Color ModeSelectedColor;
-	public Color ModeSelectLockedColor;
-
+	public GameObject Chain;
+	public GameObject SelectedSpeck;
 
 	private bool IsSelected;
 
 	public void OnChallengeModeButtonClicked()
 	{
 		IsSelected = !IsSelected;
-		SelectImage.sprite = IsSelected ? SelectedSprite : NotSelectedSprite;
-		ModeNameImage.color = IsSelected ? ModeSelectedColor : ModeBaseColor;
+
+		if (IsSelected)
+		{
+			SelectImage.color = ModeSelectedColor;
+			ModeNameImage.color = ModeSelectedColor;
+			SelectedSpeck.SetActive(true);
+		}
+		else
+		{
+			SelectImage.color = ModeBaseColor;
+			ModeNameImage.color = ModeBaseColor;
+			SelectedSpeck.SetActive(false);
+		}
 
 		Utility.CurrentChallengeMode ^= Mode;
 
@@ -29,22 +40,25 @@ public class ChallengeModeButton : SButton
 		}
 	}	
 
-	public void SelectMode()
+	public void ForceSelectMode()
 	{
 		IsSelected = true;
-		SelectImage.sprite = SelectedSprite;
+		SelectImage.color = ModeSelectedColor;
+		ModeNameImage.color = ModeSelectedColor;
+		SelectedSpeck.SetActive(true);
 		Utility.CurrentChallengeMode |= Mode;
-		ModeNameImage.color = ModeSelectLockedColor;
+		Chain.SetActive(true);
 	}
 
-	public void UnselectMode()
+	public void ForceUnselectMode()
 	{
 		IsSelected = false;
-		SelectImage.sprite = NotSelectedSprite;
+		SelectImage.color = ModeBaseColor;
+		ModeNameImage.color = ModeBaseColor;
+		SelectedSpeck.SetActive(false);
 		Utility.CurrentChallengeMode |= Mode;
 		Utility.CurrentChallengeMode ^= Mode;
 		ModeNameImage.color = ModeBaseColor;
+		Chain.SetActive(false);
 	}
-
-
 }

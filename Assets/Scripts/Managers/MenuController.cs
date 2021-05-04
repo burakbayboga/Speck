@@ -116,16 +116,16 @@ public class MenuController : MonoBehaviour
 	{
 		if (isSelected)
 		{
-			SelectDoubleButton.SelectMode();
+			SelectDoubleButton.ForceSelectMode();
 			SelectDoubleButton.SetActivity(false);
-			SelectFastButton.SelectMode();
+			SelectFastButton.ForceSelectMode();
 			SelectFastButton.SetActivity(false);
 		}
 		else
 		{
-			SelectDoubleButton.UnselectMode();
+			SelectDoubleButton.ForceUnselectMode();
 			SelectDoubleButton.SetActivity(true);
-			SelectFastButton.UnselectMode();
+			SelectFastButton.ForceUnselectMode();
 			SelectFastButton.SetActivity(true);
 		}
 	}
@@ -240,11 +240,11 @@ public class MenuController : MonoBehaviour
 
 	private void ResetModeSelectPopup()
 	{
-		SelectDoubleButton.UnselectMode();
+		SelectDoubleButton.ForceUnselectMode();
 		SelectDoubleButton.SetActivity(true);
-		SelectFastButton.UnselectMode();
+		SelectFastButton.ForceUnselectMode();
 		SelectFastButton.SetActivity(true);
-		SelectHardcoreButton.UnselectMode();
+		SelectHardcoreButton.ForceUnselectMode();
 	}
 
     public void OnTutorialButtonClicked()
