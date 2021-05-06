@@ -102,11 +102,12 @@
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                half4 textureColor = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);
+                fixed4 textureColor = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);
 				fixed4 color = textureColor;
-				color.rgb = _Color0.rgb;
-				color.rgb = textureColor.r > 0.5 ? _Color1.rgb : color.rgb;
-				color.rgb = textureColor.g > 0.5 ? _Color2.rgb : color.rgb;
+				fixed3 color0 = _Color0.rgb * (1 - textureColor.r) * (1 - textureColor.g);
+				fixed3 color1 = _Color1.rgb * textureColor.r;
+				fixed3 color2 = _Color2.rgb * textureColor.g;
+				color.rgb = color0 + color1 + color2;
 				color *= IN.color;
 
                 #ifdef UNITY_UI_CLIP_RECT

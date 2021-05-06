@@ -100,9 +100,14 @@
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);
-				color.rgb = color.r < 0.5 ? _Color0.rgb : _Color1.rgb;
+                fixed4 textureColor = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);
+				fixed4 color = textureColor;
+
+				fixed3 color0 = _Color0.rgb * (1 - textureColor.r);
+				fixed3 color1 = _Color1.rgb * textureColor.r;
+				color.rgb = color0 + color1;
 				color *= IN.color;
+
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif

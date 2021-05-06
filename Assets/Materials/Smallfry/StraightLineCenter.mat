@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SwissCheeseVisualCue
-  m_Shader: {fileID: 4800000, guid: 7331ba8c45f911b4aa6e9a62897ab127, type: 3}
+  m_Name: StraightLineCenter
+  m_Shader: {fileID: 4800000, guid: 90ba50693192eda44bcc90c3a06869fb, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -57,7 +57,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -71,17 +70,10 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
     - _UVSec: 0
-    - _UseUIAlphaClip: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1, g: 0.49670586, b: 0.28699994, a: 1}
-    - _Color1: {r: 0.5133999, g: 1, b: 0.18900001, a: 1}
-    - _Color2: {r: 0.3443396, g: 1, b: 0.9601425, a: 1}
+    - _Color0: {r: 0, g: 0.6897936, b: 0.9716981, a: 1}
+    - _Color1: {r: 0.039649326, g: 0.9339623, b: 0.10063091, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

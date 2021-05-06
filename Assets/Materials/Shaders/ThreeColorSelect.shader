@@ -46,14 +46,15 @@
                 return o;
             }
 
-            half4 FragmentFunction (v2f i) : SV_Target
+            fixed4 FragmentFunction (v2f i) : SV_Target
             {
-                half4 textureColor = tex2D(_MainTex, i.uv);
-				half4 pixelColor;
-				pixelColor.rgb = _Color0.rgb;
-				pixelColor.rgb = textureColor.r > 0.5 ? _Color1.rgb : pixelColor.rgb;
-				pixelColor.rgb = textureColor.g > 0.5 ? _Color2.rgb : pixelColor.rgb;
-				pixelColor.a = textureColor.a;
+                fixed4 textureColor = tex2D(_MainTex, i.uv);
+				fixed4 pixelColor = textureColor;
+				fixed3 color0 = _Color0.rgb * (1 - textureColor.r) * (1 - textureColor.g);
+				fixed3 color1 = _Color1.rgb * textureColor.r;
+				fixed3 color2 = _Color2.rgb * textureColor.g;
+				pixelColor.rgb = color0 + color1 + color2;
+				
 				pixelColor.rgb *= pixelColor.a;
 				return pixelColor;
             }
