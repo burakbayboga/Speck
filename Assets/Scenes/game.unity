@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bosses:
   - {fileID: 1513176438097528, guid: 78b5dec8ad1276844bb6c2e04802d25d, type: 3}
+  - {fileID: 1656578777306972, guid: 927ed7bd93b1353499dc39c6313a4fca, type: 3}
 --- !u!114 &1705094531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1294576064802501410, guid: 62c0f86eeaaeee1479aaf4b6a0563387,

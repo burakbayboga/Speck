@@ -8,14 +8,12 @@ public class SwissCheeseBoss : Boss
     private float Radius;
     private Vector3 ScreenMiddleScreenSpace;
     private List<Vector3> SpawnPositions;
-    private List<GameObject> VisualCues;
     private AudioSource AudioSource;
     
     public int MobCount;
     public float MobSpawnInterval;
 	public float MobSpawnDelay;
     public GameObject MobPrefab;
-    public GameObject VisualCuePrefab;
 
     public override void Initiate()
     {
@@ -25,7 +23,6 @@ public class SwissCheeseBoss : Boss
         Radius = (minScreenSize / 2.0f) * 3.0f / 4.0f;
         ScreenMiddleScreenSpace = new Vector3(Screen.width / 2, Screen.height / 2, 0.0f);
         InitSpawnPositions();
-        StartCoroutine(SpawnVisualCues());
         StartCoroutine(SpawnMobCoroutine());
     }
 
@@ -42,25 +39,12 @@ public class SwissCheeseBoss : Boss
         }
     }
 
-    private IEnumerator SpawnVisualCues()
-    {
-        VisualCues = new List<GameObject>();
-        for (int i=0; i < MobCount; i++)
-        {
-            VisualCues.Add(Instantiate(VisualCuePrefab, SpawnPositions[i], Quaternion.identity));
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
     private IEnumerator SpawnMobCoroutine()
     {
         yield return new WaitForSeconds(MobSpawnDelay);
         AudioSource.Play();
         for (int i=0; i < MobCount; i++)
         {
-            GameObject tempVisualCue = VisualCues[0];
-            VisualCues.RemoveAt(0);
-            Destroy(tempVisualCue);
             SmallFry newMob = Instantiate(MobPrefab, SpawnPositions[i], Quaternion.identity).GetComponent<SmallFry>();
             newMob.Init();
             yield return new WaitForSeconds(MobSpawnInterval);
