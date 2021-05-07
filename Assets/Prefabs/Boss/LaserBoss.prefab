@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9317750ab6a1f4eb6566c4a63be788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EncounterTime: 8.8
+  EncounterTime: 21
   LaserGunPrefab: {fileID: 1929232951393370, guid: e2b2a400f157af4429b9fad3126f8838,
     type: 3}
   DelayBetweenLasers: 0.2
   WindUpAudioSource: {fileID: 4344203267104207941}
   FireAudioSource: {fileID: 353996597760873627}
-  LaserCount: 4
+  LaserCount: 3
 --- !u!1 &1066188558280524340
 GameObject:
   m_ObjectHideFlags: 0

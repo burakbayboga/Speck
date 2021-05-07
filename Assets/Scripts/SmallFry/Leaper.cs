@@ -12,11 +12,14 @@ public class Leaper : SmallFry
 	public float TraceDrawDelay;
 
 	public float TraceInterval;
+	public Sprite TraceSprite;
+	public Material TraceMaterial;
 
     private Collider2D Collider;
 
 	private int[] TracePoolIndexes;
 	private GameObject[] TraceObjects;
+	private SpriteRenderer[] Renderers;
 
 
     public override void Init()
@@ -143,7 +146,7 @@ public class Leaper : SmallFry
 		}
 
 		int traceCount = (int)(totalDistance / TraceInterval);
-		TraceObjects = TracePool.instance.GetTrace(traceCount, out TracePoolIndexes);
+		TraceObjects = TracePool.instance.GetTrace(traceCount, out TracePoolIndexes, out Renderers);
 		if (TraceObjects == null)
 		{
 			// TODO: not enough trace pooled
@@ -158,8 +161,6 @@ public class Leaper : SmallFry
 
 		for (int i = 0; i < TraceObjects.Length; i++)
 		{
-			GameObject trace = TraceObjects[i];
-			
 			if (currentLeapTargetIndex == 0)
 			{
 				traceVector = (leapSequence[0] - transform.position).normalized;
@@ -184,8 +185,10 @@ public class Leaper : SmallFry
 			
 			previousTracePosition = tracePosition;
 
-			trace.SetActive(true);
-			trace.transform.position = tracePosition;
+			Renderers[i].material = TraceMaterial;
+			Renderers[i].sprite = TraceSprite;
+			TraceObjects[i].SetActive(true);
+			TraceObjects[i].transform.position = tracePosition;
 
 			yield return delay;
 		}

@@ -963,7 +963,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   BossEncounterIntroParent: {fileID: 1095457739}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 10
+  BossInterval: 5
   BossSmallFryCountdownActive: 0
   AllSButtons:
   - {fileID: 1705094531}

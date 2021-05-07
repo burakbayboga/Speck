@@ -3,6 +3,7 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		_Color ("Color", Color) = (1, 1, 1, 1)
 		[Toggle(IGNORE_TEXTURE_COLOR)] _IgnoreTextureColor ("Ignore Texture Color?", Float) = 0
     }
     SubShader
@@ -35,6 +36,7 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+			fixed4 _Color;
 
             v2f VertexFunction (appdata v)
             {
@@ -51,9 +53,9 @@
 				fixed4 pixelColor;
 				pixelColor.a = textureColor.a * i.spriteColor.a;
 #if defined(IGNORE_TEXTURE_COLOR)
-				pixelColor.rgb = i.spriteColor.rgb * pixelColor.a;
+				pixelColor.rgb = i.spriteColor.rgb * _Color.rgb * pixelColor.a;
 #else
-				pixelColor.rgb = i.spriteColor.rgb * textureColor.rgb * pixelColor.a;
+				pixelColor.rgb = i.spriteColor.rgb * _Color.rgb * textureColor.rgb * pixelColor.a;
 #endif
 				return pixelColor;
             }

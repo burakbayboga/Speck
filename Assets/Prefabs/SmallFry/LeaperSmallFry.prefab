@@ -59,6 +59,8 @@ MonoBehaviour:
   LeapSpeed: 1.1
   TraceDrawDelay: 0.01
   TraceInterval: 1.6
+  TraceSprite: {fileID: 21300006, guid: 442557f0b0ba9964981c65ca0e91dccf, type: 3}
+  TraceMaterial: {fileID: 2100000, guid: 1b4f7e94b8f264d448471bb3f965ab0a, type: 2}
 --- !u!58 &3013645259182778444
 CircleCollider2D:
   m_ObjectHideFlags: 0
