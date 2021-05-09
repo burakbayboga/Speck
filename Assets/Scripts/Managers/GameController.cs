@@ -9,8 +9,6 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     public Text ScoreText;
-    //public GameObject BackToMenuButton;
-    //public GameObject RestartButton;
     public GameObject PauseMenuParent;
     public GameObject DeathMenuParent;
     public SButton PauseGameButton;
@@ -19,8 +17,6 @@ public class GameController : MonoBehaviour
     public Text UnpauseCountdownText;
     public int BossInterval;
     public bool BossSmallFryCountdownActive;
-
-    public SButton[] AllSButtons;
 
     public float CanvasGroupFadeInTime;
     public float CanvasGroupFadeOutTime;
@@ -208,14 +204,4 @@ public class GameController : MonoBehaviour
 
         SceneManager.LoadScene("menu");
     }
-
-    public void DisableAllSButtons()
-    {
-        for (int i = 0; i < AllSButtons.Length; i++)
-        {
-            AllSButtons[i].IsButtonActive = false;
-        }
-    }
-
-
 }

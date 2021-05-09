@@ -39,8 +39,6 @@ public class ChallengeController : MonoBehaviour
     private Coroutine SpawnCoroutine;
     private bool IsSpawnCoroutineActive;
 
-    public SButton[] AllSButtons;
-
     public bool IsGamePaused;
     public bool IsGameOver;
 
@@ -319,14 +317,6 @@ public class ChallengeController : MonoBehaviour
     public void OnRetryClicked()
     {
         SceneManager.LoadScene("challenge");
-    }
-
-    public void DisableAllSButtons()
-    {
-        for (int i = 0; i < AllSButtons.Length; i++)
-        {
-            AllSButtons[i].IsButtonActive = false;
-        }
     }
 
     public void OnPauseGameClicked()

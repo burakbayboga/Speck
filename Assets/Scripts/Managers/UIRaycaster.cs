@@ -1,23 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class UIRaycaster : MonoBehaviour
 {
+	public static UIRaycaster instance;
     public GraphicRaycaster GraphicRaycaster;
 
     private List<RaycastResult> Hits;
     private SButton LastInteracted;
+	private bool SceneLoadPending;
     
-    private void Start()
+	private void Awake()
+	{
+		instance = this;
+	}
+
+	private void Start()
     {
         Hits = new List<RaycastResult>();
     }
 
     private void Update()
     {
+		if (SceneLoadPending)
+		{
+			return;
+		}
+
 #if UNITY_EDITOR
         ProcessMouseInput();
 #else
@@ -25,6 +36,11 @@ public class UIRaycaster : MonoBehaviour
 #endif
 
     }
+
+	public void SetSceneLoadPending()
+	{
+		SceneLoadPending = true;
+	}
 
     private void ProcessMouseInput()
     {

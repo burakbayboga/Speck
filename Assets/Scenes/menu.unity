@@ -3124,30 +3124,6 @@ MonoBehaviour:
   SelectDoubleButton: {fileID: 243719557}
   SelectFastButton: {fileID: 515152445}
   SelectHardcoreButton: {fileID: 1570933935}
-  AllSButtons:
-  - {fileID: 1463498083}
-  - {fileID: 954309763}
-  - {fileID: 813645254}
-  - {fileID: 6341234954850330311}
-  - {fileID: 1304343365}
-  - {fileID: 951653819}
-  - {fileID: 1905718690}
-  - {fileID: 1870091128}
-  - {fileID: 1752645691}
-  - {fileID: 2005479208}
-  - {fileID: 1532169588}
-  - {fileID: 1745212270}
-  - {fileID: 851211415}
-  - {fileID: 1563590884}
-  - {fileID: 1187011415}
-  - {fileID: 733962222}
-  - {fileID: 850025854}
-  - {fileID: 1961778044}
-  - {fileID: 192077847}
-  - {fileID: 1528535041}
-  - {fileID: 241263504}
-  - {fileID: 1773691152}
-  - {fileID: 703995591}
 --- !u!4 &807976873
 Transform:
   m_ObjectHideFlags: 0
@@ -6455,18 +6431,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba7e0ec626519084babd9b7c7c9feff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1463498083 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1630433995}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8f5b353d950e641b0c4204f24b0613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1528535039

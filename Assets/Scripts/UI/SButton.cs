@@ -99,7 +99,7 @@ public class SButton : MonoBehaviour
         while (lerpParameter < 1.0f)
         {
             lerpParameter = Mathf.Clamp((Time.unscaledTime - startTime) / TransitionTime, 0.0f, 1.0f);
-            for (int i=0; i < BaseColors.Length; i++)
+            for (int i = 0; i < BaseColors.Length; i++)
             {
 				SetColor(Color.Lerp(BaseColors[i], PressedColors[i], lerpParameter), i);
             }
@@ -112,24 +112,10 @@ public class SButton : MonoBehaviour
     {
         if (clicked)
         {
-            if (!OnClickEventLoadsScene)
+            OnClickEvent.Invoke();
+            if (OnClickEventLoadsScene)
             {
-                OnClickEvent.Invoke();
-            }
-            else
-            {
-                if (MenuController.instance != null)
-                {
-                    MenuController.instance.DisableAllSButtons();
-                }
-                else if (GameController.instance != null)
-                {
-                    GameController.instance.DisableAllSButtons();
-                }
-                else if (ChallengeController.instance != null)
-                {
-                    ChallengeController.instance.DisableAllSButtons();
-                }
+				UIRaycaster.instance.SetSceneLoadPending();
             }
         }
 
@@ -144,11 +130,6 @@ public class SButton : MonoBehaviour
             }
 
             yield return null;
-        }
-
-        if (clicked && OnClickEventLoadsScene)
-        {
-            OnClickEvent.Invoke();
         }
     }
 }

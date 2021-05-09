@@ -38,8 +38,6 @@ public class MenuController : MonoBehaviour
 	public ChallengeModeButton SelectFastButton;
 	public ChallengeModeButton SelectHardcoreButton;
 
-    public SButton[] AllSButtons;
-
     private bool WarningActive;
     private int PlayerChallengeLevel;
     private bool CanPlayEndless;
@@ -65,14 +63,6 @@ public class MenuController : MonoBehaviour
 		Utility.CurrentChallengeMode = ChallengeMode.None;
         InitializeChallengeMenu();
 	}
-
-    public void DisableAllSButtons()
-    {
-        for (int i = 0; i < AllSButtons.Length; i++)
-        {
-            AllSButtons[i].IsButtonActive = false;
-        }
-    }
 
     public void OnEndlessButtonClicked()
     {
