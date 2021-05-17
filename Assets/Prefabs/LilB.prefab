@@ -4884,6 +4884,7 @@ MonoBehaviour:
   IsTutorial: 0
   IsChallenge: 0
   IsEndless: 0
+  InputEnabled: 1
 --- !u!50 &4206788223954039447
 Rigidbody2D:
   serializedVersion: 4

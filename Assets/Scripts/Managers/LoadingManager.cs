@@ -40,7 +40,7 @@ public class LoadingManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("basic_tutorial");
+            SceneManager.LoadScene("tutorial");
         }
     }
 

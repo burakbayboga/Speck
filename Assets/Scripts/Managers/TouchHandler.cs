@@ -28,6 +28,7 @@ public class TouchHandler : MonoBehaviour
         if ((LilB.IsEndless && (GameController.instance.IsGameOver || GameController.instance.IsGamePaused))
             || LilB.IsChallenge && (ChallengeController.instance.IsGameOver || ChallengeController.instance.IsGamePaused))
         {
+			// TODO: srsly...
             SwipeLine.enabled = false;
             return;
         }

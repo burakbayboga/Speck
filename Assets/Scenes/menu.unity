@@ -8575,12 +8575,12 @@ PrefabInstance:
     - target: {fileID: 7623903042198150736, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 217.5
+      value: 165.1
       objectReference: {fileID: 0}
     - target: {fileID: 7623903042198150736, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 153.6
+      value: 112.04
       objectReference: {fileID: 0}
     - target: {fileID: 7623903042198150736, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
@@ -8646,10 +8646,10 @@ RectTransform:
   m_Father: {fileID: 701430003}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -102, y: -11.800003}
-  m_SizeDelta: {x: 703.3, y: 432.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1644287706
 MonoBehaviour:
@@ -8670,7 +8670,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 051672c6f202ee040b38763c2bb0459b, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

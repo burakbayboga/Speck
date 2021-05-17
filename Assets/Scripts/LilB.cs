@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 public class LilB : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class LilB : MonoBehaviour
     public bool IsChallenge;
     public bool IsEndless;
 
+	public bool InputEnabled;
+
     private float DefaultForce = 10000;
 
     void Awake()
@@ -27,7 +28,7 @@ public class LilB : MonoBehaviour
     {
         if (IsTutorial && fromPlayerInput)
         {
-            BasicTutorialController.instance.OnLilBApplyForce();
+            TutorialController.instance.OnSwipe();
         }
         
         Rigidbody.AddForce(direction * multiplier * Time.deltaTime);
@@ -48,13 +49,17 @@ public class LilB : MonoBehaviour
         //{
         //    return;
         //}
+		if (!InputEnabled)
+		{
+			return;
+		}
 
         if (Input.GetKeyDown(KeyCode.W))
         {
             Rigidbody.AddForce(Vector2.up * DefaultForce * Time.deltaTime);
             if (IsTutorial)
             {
-                BasicTutorialController.instance.OnLilBApplyForce();
+                TutorialController.instance.OnSwipe();
             }
         }
         else if (Input.GetKeyDown(KeyCode.A))
@@ -62,7 +67,7 @@ public class LilB : MonoBehaviour
             Rigidbody.AddForce(Vector2.left * DefaultForce * Time.deltaTime);
             if (IsTutorial)
             {
-                BasicTutorialController.instance.OnLilBApplyForce();
+                TutorialController.instance.OnSwipe();
             }
         }
         else if (Input.GetKeyDown(KeyCode.D))
@@ -70,7 +75,7 @@ public class LilB : MonoBehaviour
             Rigidbody.AddForce(Vector2.right * DefaultForce * Time.deltaTime);
             if (IsTutorial)
             {
-                BasicTutorialController.instance.OnLilBApplyForce();
+                TutorialController.instance.OnSwipe();
             }
         }
         else if (Input.GetKeyDown(KeyCode.S))
@@ -78,7 +83,7 @@ public class LilB : MonoBehaviour
             Rigidbody.AddForce(Vector2.down * DefaultForce * Time.deltaTime);
             if (IsTutorial)
             {
-                BasicTutorialController.instance.OnLilBApplyForce();
+                TutorialController.instance.OnSwipe();
             }
         }
     }

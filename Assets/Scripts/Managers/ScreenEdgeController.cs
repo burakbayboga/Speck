@@ -31,26 +31,35 @@ public class ScreenEdgeController : MonoBehaviour
         if (MainCamera.WorldToScreenPoint(LilBTransform.position).x < ScreenLimitOffset)
         {
             //hit left border
-            LilB.ApplyForce(Vector2.right, EdgeForce, false);
+			PushSpeckBack(Vector2.right);
         }
 
         else if (MainCamera.WorldToScreenPoint(LilBTransform.position).x > Screen.width - ScreenLimitOffset)
         {
             //hit right border
-            LilB.ApplyForce(Vector2.left, EdgeForce, false);
+			PushSpeckBack(Vector2.left);
         }
 
         if (MainCamera.WorldToScreenPoint(LilBTransform.position).y < ScreenLimitOffset)
         {
             //hit lower border
-            LilB.ApplyForce(Vector2.up, EdgeForce, false);
+			PushSpeckBack(Vector2.up);
         }
 
         else if (MainCamera.WorldToScreenPoint(LilBTransform.position).y > Screen.height - ScreenLimitOffset)
         {
             //hit upper border
-            LilB.ApplyForce(Vector2.down, EdgeForce, false);
+			PushSpeckBack(Vector2.down);
         }
     }
+
+	void PushSpeckBack(Vector2 dir)
+	{
+		LilB.ApplyForce(dir, EdgeForce, false);
+		if (LilB.IsTutorial)
+		{
+			TutorialController.instance.OnEdgePushBack();
+		}
+	}
 
 }
