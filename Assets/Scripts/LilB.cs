@@ -26,6 +26,11 @@ public class LilB : MonoBehaviour
 
     public void ApplyForce(Vector2 direction, float multiplier, bool fromPlayerInput)
     {
+		if (fromPlayerInput && !InputEnabled)
+		{
+			return;
+		}
+
         if (IsTutorial && fromPlayerInput)
         {
             TutorialController.instance.OnSwipe();
@@ -43,50 +48,32 @@ public class LilB : MonoBehaviour
         AudioSource.Play();
     }
 
+#if UNITY_EDITOR
     void Update()
     {
-        //if (GameController.instance.IsGameOver)
-        //{
-        //    return;
-        //}
-		if (!InputEnabled)
-		{
-			return;
-		}
+        HandleKeyboardInput();
+    }
+#endif
 
-        if (Input.GetKeyDown(KeyCode.W))
+	void HandleKeyboardInput()
+	{
+		if (Input.GetKeyDown(KeyCode.W))
         {
-            Rigidbody.AddForce(Vector2.up * DefaultForce * Time.deltaTime);
-            if (IsTutorial)
-            {
-                TutorialController.instance.OnSwipe();
-            }
+            ApplyForce(Vector2.up, DefaultForce, true);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            Rigidbody.AddForce(Vector2.left * DefaultForce * Time.deltaTime);
-            if (IsTutorial)
-            {
-                TutorialController.instance.OnSwipe();
-            }
+            ApplyForce(Vector2.left, DefaultForce, true);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            Rigidbody.AddForce(Vector2.right * DefaultForce * Time.deltaTime);
-            if (IsTutorial)
-            {
-                TutorialController.instance.OnSwipe();
-            }
+            ApplyForce(Vector2.right, DefaultForce, true);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            Rigidbody.AddForce(Vector2.down * DefaultForce * Time.deltaTime);
-            if (IsTutorial)
-            {
-                TutorialController.instance.OnSwipe();
-            }
+            ApplyForce(Vector2.down, DefaultForce, true);
         }
-    }
+	}
 
     void OnCollisionEnter2D(Collision2D collision)
     {
