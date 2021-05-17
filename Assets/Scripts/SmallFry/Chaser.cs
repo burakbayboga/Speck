@@ -16,6 +16,10 @@ public class Chaser : SmallFry
     private Collider2D Collider;
 	private float BoostMultiplier;
 
+	private bool DeadMovement;
+	private bool IsVelocityLocked;
+	private Vector3 LockedVelocity;
+
     public override void Init()
     {
         base.Init();
@@ -33,7 +37,22 @@ public class Chaser : SmallFry
             return;
         }
 
-        Rigidbody.velocity = (LilBTransform.position - transform.position).normalized * Speed * BoostMultiplier;
+		Vector2 velocity;
+		if (!DeadMovement)
+		{
+			velocity = (LilBTransform.position - transform.position).normalized * Speed * BoostMultiplier;
+		}
+		else
+		{
+			if (!IsVelocityLocked)
+			{
+				LockedVelocity = (LilBTransform.position - transform.position).normalized * Speed * BoostMultiplier / 1.5f;
+				IsVelocityLocked = true;
+			}
+			velocity = LockedVelocity;
+		}
+
+        Rigidbody.velocity = velocity;
     }
 
 	void RotateToSpeck()
@@ -72,6 +91,22 @@ public class Chaser : SmallFry
     IEnumerator DeathCountdown(float delay)
     {
         yield return new WaitForSeconds(delay);
-        HandleDeath();
+		Animator.Play("chaser_death");
+		Collider.enabled = false;
+		DeadMovement = true;
+		StartCoroutine(CheckDeathAnimation());
     }
+
+	IEnumerator CheckDeathAnimation()
+	{
+		while (true)
+		{
+			if (Animator.GetCurrentAnimatorStateInfo(0).IsName("death"))
+			{
+				HandleDeath();
+			}
+
+			yield return null;
+		}
+	}
 }

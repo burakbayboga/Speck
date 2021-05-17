@@ -24,12 +24,14 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+				fixed4 spriteColor : COLOR;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+				fixed4 spriteColor : COLOR;
             };
 
             sampler2D _MainTex;
@@ -43,6 +45,7 @@
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				o.spriteColor = v.spriteColor;
                 return o;
             }
 
@@ -54,6 +57,7 @@
 				fixed3 color1 = _Color1.rgb * textureColor.r;
 				fixed3 color2 = _Color2.rgb * textureColor.g;
 				pixelColor.rgb = color0 + color1 + color2;
+				pixelColor.a *= i.spriteColor.a;
 				
 				pixelColor.rgb *= pixelColor.a;
 				return pixelColor;
