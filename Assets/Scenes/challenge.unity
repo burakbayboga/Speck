@@ -309,17 +309,17 @@ PrefabInstance:
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: BaseColors.Array.data[0].r
-      value: 1
+      value: 0.5176471
       objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: BaseColors.Array.data[0].g
-      value: 1
+      value: 0.7529412
       objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: BaseColors.Array.data[0].b
-      value: 1
+      value: 0.36078432
       objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
@@ -2102,17 +2102,17 @@ PrefabInstance:
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: BaseColors.Array.data[0].r
-      value: 1
+      value: 0.5176471
       objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: BaseColors.Array.data[0].g
-      value: 1
+      value: 0.7529412
       objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: BaseColors.Array.data[0].b
-      value: 1
+      value: 0.36078432
       objectReference: {fileID: 0}
     - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
