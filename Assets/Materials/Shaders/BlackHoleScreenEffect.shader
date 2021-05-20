@@ -50,19 +50,19 @@
 				return o;
 			}
 
-			half4 FragmentFunction(v2f i) : SV_Target
+			fixed4 FragmentFunction(v2f i) : SV_Target
 			{
 				float2 totalDistortion = float2(0, 0);
 				float brightnessFactor = 0;
-				half4 effectColor = half4(0, 0, 0, 0);
+				fixed4 effectColor = fixed4(0, 0, 0, 0);	// white circular lines
 				[unroll]
-				for (half index = 0; index < 2; index += 1)
+				for (fixed index = 0; index < 2; index += 1)
 				{
 					float2 pixelToCenter = _BlackHoleData[index].xy - i.worldPos.xy;
 					float pixelRadius = length(pixelToCenter);
 					float2 pixelToCenterNormalized = pixelToCenter / pixelRadius;
-					half applyDistortion = pixelRadius > _BlackHoleData[index].z && pixelRadius < _BlackHoleData[index].w;
-					float2 distortionVector = applyDistortion ? pixelToCenterNormalized / 8 : half2(0, 0);
+					fixed applyDistortion = pixelRadius > _BlackHoleData[index].z && pixelRadius < _BlackHoleData[index].w;
+					float2 distortionVector = applyDistortion ? pixelToCenterNormalized / 8 : float2(0, 0);
 					float t = (pixelRadius - _BlackHoleData[index].z) / (_BlackHoleData[index].w - _BlackHoleData[index].z);
 					brightnessFactor += applyDistortion ? 1 - t : 0;
 					float scale = applyDistortion ? t - 0.5 : 1;
@@ -73,16 +73,16 @@
 				effectColor.rgb *= effectColor.a;
 
 				brightnessFactor = clamp(brightnessFactor, 0, 1);
-				half distortionExists = totalDistortion != float2(0, 0);
+				fixed distortionExists = totalDistortion != float2(0, 0);
 
 				float2 noise = tex2D(_NoiseTex, i.uv).rg;
 				totalDistortion = distortionExists ? totalDistortion + (noise * 2 - 1) / 8 : 0;
 				float2 finalUv = i.uv - totalDistortion;
 				
-				half4 color = tex2D(_MainTex, finalUv);
+				fixed4 color = tex2D(_MainTex, finalUv);
 				float brightnessCoefficient = lerp(1, 1.2, brightnessFactor);
 				brightnessCoefficient = 1;
-				half4 finalBlackHoleColor = color * brightnessCoefficient + effectColor;
+				fixed4 finalBlackHoleColor = color * brightnessCoefficient + effectColor;
 				color = distortionExists ? finalBlackHoleColor : color;
 				return color;
 			}
