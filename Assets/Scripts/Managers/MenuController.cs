@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
     public float CanvasGroupFadeOutTime;
 
     public Text HighScoreText;
-    public Animator EndlessWarningAnimator;
+	public GameObject EndlessWarning;
 	public GameObject EndlessChain;
 
     public GameObject MainMenuParent;
@@ -37,7 +37,6 @@ public class MenuController : MonoBehaviour
 	public ChallengeModeButton SelectHardcoreButton;
 
     private bool WarningActive;
-    private int PlayerChallengeLevel;
     private bool CanPlayEndless;
 
     void Awake()
@@ -50,8 +49,9 @@ public class MenuController : MonoBehaviour
 		int highScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
         HighScoreText.text = "HighScore: " + highScore.ToString();
 		
-        PlayerChallengeLevel = Utility.ChallengeInfo.ChallengeLevelInfoList.Count + 1;
-        CanPlayEndless = PlayerChallengeLevel >= 5;
+		SetTotalStarCount();
+
+        CanPlayEndless = TotalStarCount >= 8;
         if (!CanPlayEndless)
         {
 			EndlessChain.SetActive(true);
@@ -72,7 +72,7 @@ public class MenuController : MonoBehaviour
         if (!WarningActive)
         {
             WarningActive = true;
-            EndlessWarningAnimator.SetTrigger("show_warning");
+			EndlessWarning.SetActive(true);
             StartCoroutine(EndlessWarningTimer());
         }
     }
@@ -119,8 +119,7 @@ public class MenuController : MonoBehaviour
     private IEnumerator EndlessWarningTimer()
     {
         yield return new WaitForSeconds(10.0f);
-        EndlessWarningAnimator.SetTrigger("close_warning");
-        yield return new WaitForSeconds(1.0f);
+		EndlessWarning.SetActive(false);
         WarningActive = false;
     }
 
@@ -172,8 +171,6 @@ public class MenuController : MonoBehaviour
 
 			ChallengeLevelButtons[i].InitChallengeButton(modes, i, isActive, passed);
 		}
-
-		SetTotalStarCount();
     }
 
 	private void SetTotalStarCount()
