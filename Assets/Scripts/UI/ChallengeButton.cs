@@ -5,8 +5,6 @@ public class ChallengeButton : SButton
 {
 	public Image ButtonImage;
 	public GameObject UnmodifiedImg;
-	public GameObject DoubleImg;
-	public GameObject FastImg;
 	public GameObject HardcoreImg;
 	public Sprite[] ButtonSprites;
 	public Image[] LevelImages;
@@ -30,8 +28,6 @@ public class ChallengeButton : SButton
 		if (IsButtonActive)
 		{
 			UnmodifiedImg.SetActive(Passed);
-			DoubleImg.SetActive(Utility.IsDouble(Modes));
-			FastImg.SetActive(Utility.IsFast(Modes));
 			HardcoreImg.SetActive(Utility.IsHardcore(Modes));
 			
 			Chain.SetActive(false);

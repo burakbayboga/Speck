@@ -19,8 +19,7 @@ public class MenuController : MonoBehaviour
     public GameObject MainMenuParent;
     public GameObject ChallengeMenuParent;
 	public GameObject ChallengeModePopupParent;
-	public GameObject PassedDoubleImage;
-	public GameObject PassedFastImage;
+	public GameObject PassedNormalImage;
 	public GameObject PassedHardcoreImage;
 
 	public Text TotalStarCountText;
@@ -34,8 +33,7 @@ public class MenuController : MonoBehaviour
     public SButton EndlessButton;
 
     public ChallengeButton[] ChallengeLevelButtons;
-	public ChallengeModeButton SelectDoubleButton;
-	public ChallengeModeButton SelectFastButton;
+	public ChallengeModeButton SelectNormalButton;
 	public ChallengeModeButton SelectHardcoreButton;
 
     private bool WarningActive;
@@ -81,30 +79,30 @@ public class MenuController : MonoBehaviour
 
 	public void OnChallengeLevelClicked(ChallengeMode passedModes)
 	{
-		PassedDoubleImage.SetActive(Utility.IsDouble(passedModes));
-		PassedFastImage.SetActive(Utility.IsFast(passedModes));
+		PassedNormalImage.SetActive(Utility.IsNormal(passedModes));
 		PassedHardcoreImage.SetActive(Utility.IsHardcore(passedModes));
+
+		if (!Utility.IsNormal(passedModes))
+		{
+			SelectHardcoreButton.LockMode();
+		}
+
+		SelectNormalButton.Select();
 
 		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, true));
 		FullscreenBackButton.SetActive(true);
 	}
 
-	public void OnChallengeModeHardcoreClicked(bool isSelected)
+	public void OnNormalModeClicked()
 	{
-		if (isSelected)
-		{
-			SelectDoubleButton.ForceSelectMode();
-			SelectDoubleButton.SetActivity(false);
-			SelectFastButton.ForceSelectMode();
-			SelectFastButton.SetActivity(false);
-		}
-		else
-		{
-			SelectDoubleButton.ForceUnselectMode();
-			SelectDoubleButton.SetActivity(true);
-			SelectFastButton.ForceUnselectMode();
-			SelectFastButton.SetActivity(true);
-		}
+		SelectHardcoreButton.Unselect();
+		SelectNormalButton.Select();
+	}
+
+	public void OnHardcoreModeClicked()
+	{
+		SelectNormalButton.Unselect();
+		SelectHardcoreButton.Select();
 	}
 
 	public void OnPlayChallengeButtonClicked()
@@ -185,14 +183,7 @@ public class MenuController : MonoBehaviour
 		for (int i = 0; i < infoList.Count; i++)
 		{
 			TotalStarCount++;
-			if (Utility.IsDouble(infoList[i].Modes))
-			{
-				TotalStarCount++;
-			}
-			if (Utility.IsFast(infoList[i].Modes))
-			{
-				TotalStarCount++;
-			}
+			
 			if (Utility.IsHardcore(infoList[i].Modes))
 			{
 				TotalStarCount++;
@@ -217,16 +208,7 @@ public class MenuController : MonoBehaviour
 
 	private void ResetModeSelectPopup()
 	{
-		SelectDoubleButton.ForceUnselectMode();
-		SelectDoubleButton.SetActivity(true);
-		SelectFastButton.ForceUnselectMode();
-		SelectFastButton.SetActivity(true);
-		SelectHardcoreButton.ForceUnselectMode();
+		SelectNormalButton.Reset();
+		SelectHardcoreButton.Reset();
 	}
-
-    public void OnTutorialButtonClicked()
-    {
-        SceneManager.LoadScene("tutorial");
-    }
-
 }

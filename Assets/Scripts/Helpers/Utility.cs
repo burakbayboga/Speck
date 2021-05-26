@@ -20,21 +20,15 @@
         return destMax * mapNormalized + destMin * (1f - mapNormalized);
     }
 
-	public static bool IsDouble(ChallengeMode mode)
+	public static bool IsNormal(ChallengeMode mode)
 	{
-		return !((mode & ChallengeMode.Double) == 0);
-	}
-
-	public static bool IsFast(ChallengeMode mode)
-	{
-		return !((mode & ChallengeMode.Fast) == 0);
+		return !((mode & ChallengeMode.Normal) == 0);
 	}
 
 	public static bool IsHardcore(ChallengeMode mode)
 	{
 		return !((mode & ChallengeMode.Hardcore) == 0);
 	}
-
 }
 
 public enum EnemyType

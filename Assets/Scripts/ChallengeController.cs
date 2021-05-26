@@ -89,7 +89,7 @@ public class ChallengeController : MonoBehaviour
 
         CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
 
-		if (Utility.IsHardcore(CurrentChallengeMode))
+		if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
 		{
 			CreateHardcoreEdges();
 		}
@@ -147,7 +147,7 @@ public class ChallengeController : MonoBehaviour
             for (int j = 0; j < CurrentWave.Enemies.Count; j++)
             {
                 SpawnEnemy(CurrentWave.Enemies[j]);
-				if (Utility.IsDouble(CurrentChallengeMode))
+				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
 				{
 					SpawnEnemy(CurrentWave.Enemies[j]);
 				}
@@ -171,7 +171,7 @@ public class ChallengeController : MonoBehaviour
 			delay = CurrentWave.Time - CurrentLevel.Waves[waveIndex - 1].Time;
 		}
 
-		return Utility.IsFast(CurrentChallengeMode) ? (delay / 2f) : delay;
+		return Utility.CurrentChallengeMode == ChallengeMode.Hardcore ? (delay / 2f) : delay;
 	}
 
     private IEnumerator BossTimer(float bossTime)
@@ -204,7 +204,7 @@ public class ChallengeController : MonoBehaviour
                 CurrentLevelIndex++;
 				Utility.CurrentChallengeIndex = CurrentLevelIndex;
                 
-				if (Utility.IsHardcore(CurrentChallengeMode))
+				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
 				{
 					for(int i = 0; i < EdgeFences.Length; i++)
 					{
@@ -255,7 +255,7 @@ public class ChallengeController : MonoBehaviour
         CurrentLevel = ChallengeData.Levels[CurrentLevelIndex];
 		CurrentLevelText.text = "Level : " + (CurrentLevelIndex + 1);
 
-		if (Utility.IsHardcore(CurrentChallengeMode))
+		if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
 		{
 			CreateHardcoreEdges();
 		}
