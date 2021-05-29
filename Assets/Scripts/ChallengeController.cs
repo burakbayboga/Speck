@@ -33,8 +33,7 @@ public class ChallengeController : MonoBehaviour
     private Coroutine WatchForLevelEndCoroutine;
     private bool WatchForLevelEndActive;
 
-    private bool IsBossActive;
-    private Coroutine BossTimerCoroutine;
+    private int ActiveBossCount;
 
     private Coroutine SpawnCoroutine;
     private bool IsSpawnCoroutineActive;
@@ -188,7 +187,7 @@ public class ChallengeController : MonoBehaviour
     private IEnumerator BossTimer(float bossTime)
     {
         yield return new WaitForSeconds(bossTime);
-        IsBossActive = false;
+        ActiveBossCount--;
     }
 
     private IEnumerator WatchForLevelEnd()
@@ -197,7 +196,12 @@ public class ChallengeController : MonoBehaviour
 
         while (true)
         {
-            if (SmallFryManager.instance.SmallFryExists() || IsBossActive)
+			if (IsGameOver)
+			{
+				yield break;
+			}
+
+            if (SmallFryManager.instance.SmallFryExists() || ActiveBossCount > 0)
             {
                 yield return null;
             }
@@ -273,6 +277,8 @@ public class ChallengeController : MonoBehaviour
 
         SpawnCoroutine = StartCoroutine(SpawnLoop());
         PauseGameButton.IsButtonActive = true;
+		ActiveBossCount = 0;
+		WatchForLevelEndActive = false;
     }
 
     private void SpawnEnemy(ChallengeWaveEnemy enemy)
@@ -290,10 +296,9 @@ public class ChallengeController : MonoBehaviour
         {
             Boss spawnedBoss = spawned.GetComponent<Boss>();
             spawnedBoss.Initiate();
-            IsBossActive = true;
-            BossTimerCoroutine = StartCoroutine(BossTimer(spawnedBoss.EncounterTime));
+            ActiveBossCount++;
+            StartCoroutine(BossTimer(spawnedBoss.EncounterTime));
         }
-        
     }
 
     public void ChallengeDeath()
@@ -314,11 +319,6 @@ public class ChallengeController : MonoBehaviour
         if (WatchForLevelEndActive)
         {
             StopCoroutine(WatchForLevelEndCoroutine);
-        }
-
-        if (IsBossActive)
-        {
-            StopCoroutine(BossTimerCoroutine);
         }
 
         LilB.HandleDeath();
