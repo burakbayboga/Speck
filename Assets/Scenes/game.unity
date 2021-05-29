@@ -939,7 +939,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   BossEncounterIntroParent: {fileID: 1095457739}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 5
+  BossInterval: 8
   BossSmallFryCountdownActive: 0
   CanvasGroupFadeInTime: 0.2
   CanvasGroupFadeOutTime: 0.1

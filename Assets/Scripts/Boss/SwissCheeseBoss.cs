@@ -49,5 +49,7 @@ public class SwissCheeseBoss : Boss
             newMob.Init();
             yield return new WaitForSeconds(MobSpawnInterval);
         }
+
+		Destroy(gameObject);
     }
 }
