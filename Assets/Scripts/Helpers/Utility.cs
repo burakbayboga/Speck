@@ -39,7 +39,7 @@ public enum EnemyType
     BlackHole = 3,
     ElectricFence = 4,
     LazerBoss = 5,
-    BlackHoleBoss = 6,
+    BlackHoleBoss = 6, // obsolete
     SwissCheeseBoss = 7
 }
 
