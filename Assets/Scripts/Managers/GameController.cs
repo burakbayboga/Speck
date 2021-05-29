@@ -13,7 +13,6 @@ public class GameController : MonoBehaviour
     public GameObject DeathMenuParent;
     public SButton PauseGameButton;
     public GameObject NewHighScore;
-    public GameObject BossEncounterIntroParent;
     public Text UnpauseCountdownText;
     public int BossInterval;
     public bool BossSmallFryCountdownActive;
@@ -29,8 +28,6 @@ public class GameController : MonoBehaviour
     Coroutine TimerCoroutine;
     int CurrentSmallFryCount = 0;
 
-    Animator BossEncounterIntroParentAnimator;
-
     CameraBlur CameraBlur;
     
     void Awake()
@@ -42,7 +39,6 @@ public class GameController : MonoBehaviour
         UpdateScoreText();
         TimerCoroutine = StartCoroutine(Timer());
         BossSmallFryCountdownActive = true;
-        BossEncounterIntroParentAnimator = BossEncounterIntroParent.GetComponent<Animator>();
         Speck = FindObjectOfType<LilB>();
         CameraBlur = Camera.main.GetComponent<CameraBlur>();
     }
@@ -176,17 +172,6 @@ public class GameController : MonoBehaviour
             CurrentSmallFryCount = 0;
             BossSmallFryCountdownActive = false;
         }
-    }
-
-    public void TriggerBossEncounterIntro()
-    {
-        BossEncounterIntroParent.SetActive(true);
-        BossEncounterIntroParentAnimator.Play("boss_encounter_intro");
-    }
-
-    public void DeactivateBossEncounterIntro()
-    {
-        BossEncounterIntroParent.SetActive(false);
     }
 
     public void OnRestart()

@@ -8,7 +8,6 @@ public class EnemyManager : MonoBehaviour
 
     public float SmallFryMinDelay;
     public float SmallFryMaxDelay;
-    public float BossDelay;
 
     private void Awake()
     {
@@ -22,39 +21,13 @@ public class EnemyManager : MonoBehaviour
 
     public void TriggerBoss()
     {
-        //StopCoroutine(SpawnSmallFryCoroutine);
-        StartCoroutine(InitiateBossCoroutine());
+		BossGenerator.instance.InitiateBoss();
     }
 
     public void OnBossDefeated()
     {
         GameController.instance.CurrentScore += 20;
         GameController.instance.BossSmallFryCountdownActive = true;
-    }
-
-    IEnumerator InitiateBossCoroutine()
-    {
-        GameController.instance.TriggerBossEncounterIntro();
-        yield return new WaitForSeconds(BossDelay);
-        GameController.instance.DeactivateBossEncounterIntro();
-        BossGenerator.instance.InitiateBoss();
-        yield break;
-
-        //while (true)
-        //{
-        //    if (SmallFryManager.instance.SmallFryExists())
-        //    {
-        //        yield return null;
-        //    }
-        //    else
-        //    {
-        //        GameController.instance.TriggerBossEncounterIntro();
-        //        yield return new WaitForSeconds(BossDelay);
-        //        GameController.instance.DeactivateBossEncounterIntro();
-        //        BossGenerator.instance.InitiateBoss();
-        //        yield break;
-        //    }
-        //}
     }
 
     IEnumerator SpawnSmallFry()
