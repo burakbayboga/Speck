@@ -480,7 +480,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 205709383}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1803402695}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -1160,7 +1160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 37.3}
+  m_AnchoredPosition: {x: 0, y: 37.30005}
   m_SizeDelta: {x: 296.11, y: 92.79999}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &898180874
@@ -1462,7 +1462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.119873, y: -60.30005}
+  m_AnchoredPosition: {x: -12.120117, y: -60.300293}
   m_SizeDelta: {x: 420.7, y: 152.8}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1104133269
@@ -1889,7 +1889,7 @@ MonoBehaviour:
     m_MaxSize: 72
     m_Alignment: 4
     m_AlignByGeometry: 0
-    m_RichText: 0
+    m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
@@ -1932,7 +1932,7 @@ GameObject:
   - component: {fileID: 1473226472}
   - component: {fileID: 1473226473}
   m_Layer: 5
-  m_Name: LevelOverUIParent
+  m_Name: LevelPassedUIParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2449,6 +2449,7 @@ MonoBehaviour:
   - {fileID: 1684291983234668, guid: d4dfe1a2e81a1d043b3778757a421d0c, type: 3}
   - {fileID: 1656578777306972, guid: 927ed7bd93b1353499dc39c6313a4fca, type: 3}
   LevelOverUIParent: {fileID: 1473226471}
+  NextLevelButton: {fileID: 1803402695}
   RetryUIParent: {fileID: 461367073}
   PauseMenuParent: {fileID: 1039849493}
   PauseGameButton: {fileID: 485240616}
@@ -2458,6 +2459,12 @@ MonoBehaviour:
   ChallengeTextAsset: {fileID: 4900000, guid: ca3f61f2008c8564b9bb3cf57df4152e, type: 3}
   IsGamePaused: 0
   IsGameOver: 0
+--- !u!1 &1803402695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 151060895155292833, guid: 466ccc80e41cf724db8d2e96e8d965b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 205709383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1809077232
 PrefabInstance:
   m_ObjectHideFlags: 0

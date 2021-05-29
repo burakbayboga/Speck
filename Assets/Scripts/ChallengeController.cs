@@ -13,6 +13,7 @@ public class ChallengeController : MonoBehaviour
     public float CanvasGroupFadeOutTime;
     public GameObject[] SpawnableEnemies;
     public GameObject LevelOverUIParent;
+	public GameObject NextLevelButton;
     public GameObject RetryUIParent;
     public GameObject PauseMenuParent;
     public SButton PauseGameButton;
@@ -212,10 +213,26 @@ public class ChallengeController : MonoBehaviour
 					SceneManager.LoadScene("challenge_editor");
 					yield break;
 				}
+				SaveChallengeInfo();
+				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore && !IsNextLevelHardcoreAvailable())
+				{
+					NextLevelButton.SetActive(false);
+				}
+				else
+				{
+					NextLevelButton.SetActive(true);
+				}
+
                 StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, true));
                 PauseGameButton.IsButtonActive = false;
-                LevelOverText.text = "Level " + (CurrentLevelIndex + 1) + " Completed !!";
-				SaveChallengeInfo();
+				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
+				{
+					LevelOverText.text = "<color=#c05E5c>Hardcore</color> Level " + (CurrentLevelIndex + 1) + " Completed !!";
+				}
+				else
+				{
+					LevelOverText.text = "Level " + (CurrentLevelIndex + 1) + " Completed !!";
+				}
                 CurrentLevelIndex++;
 				Utility.CurrentChallengeIndex = CurrentLevelIndex;
                 
@@ -230,6 +247,21 @@ public class ChallengeController : MonoBehaviour
             }
         }
     }
+
+	private bool IsNextLevelHardcoreAvailable()
+	{
+		List<PlayerChallengeLevelInfo> infoList = Utility.ChallengeInfo.ChallengeLevelInfoList;
+		int levelToCheck = CurrentLevelIndex + 1;
+		for (int i = 0; i < infoList.Count; i++)
+		{
+			if (infoList[i].Level == levelToCheck)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	private void SaveChallengeInfo()
 	{
@@ -259,8 +291,6 @@ public class ChallengeController : MonoBehaviour
 		Utility.ChallengeInfo.ChallengeLevelInfoList = infoList;
 		string infoJson = JsonConvert.SerializeObject(Utility.ChallengeInfo);
 		PlayerPrefs.SetString(Utility.PrefsChallengeInfoKey, infoJson);
-
-
 	}
 
     public void OnNextLevelClicked()
