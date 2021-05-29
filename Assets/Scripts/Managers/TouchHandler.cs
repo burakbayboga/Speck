@@ -25,7 +25,8 @@ public class TouchHandler : MonoBehaviour
 
     void Update()
     {
-        if ((LilB.IsEndless && (GameController.instance.IsGameOver || GameController.instance.IsGamePaused))
+        if (!LilB.InputEnabled ||
+			(LilB.IsEndless && (GameController.instance.IsGameOver || GameController.instance.IsGamePaused))
             || LilB.IsChallenge && (ChallengeController.instance.IsGameOver || ChallengeController.instance.IsGamePaused))
         {
 			// TODO: srsly...
