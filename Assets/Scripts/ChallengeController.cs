@@ -154,9 +154,13 @@ public class ChallengeController : MonoBehaviour
             for (int j = 0; j < CurrentWave.Enemies.Count; j++)
             {
                 SpawnEnemy(CurrentWave.Enemies[j]);
-				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore && CurrentWave.Enemies[j].EnemyType != EnemyType.BlackHole)
+				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
 				{
-					SpawnEnemy(CurrentWave.Enemies[j]);
+					if (CurrentWave.Enemies[j].EnemyType != EnemyType.BlackHole
+						&& CurrentWave.Enemies[j].EnemyType != EnemyType.SwissCheeseBoss)
+					{
+						SpawnEnemy(CurrentWave.Enemies[j]);
+					}
 				}
             }
         }
