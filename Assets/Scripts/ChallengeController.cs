@@ -45,6 +45,8 @@ public class ChallengeController : MonoBehaviour
 	private ChallengeMode CurrentChallengeMode;
 	private ElectricFence[] EdgeFences;
 
+	private Camera MainCamera;
+
     public void OnBackToMenuButtonCLicked()
     {
         Time.timeScale = 1f;
@@ -60,7 +62,8 @@ public class ChallengeController : MonoBehaviour
         LilB = FindObjectOfType<LilB>();
         LilB.IsChallenge = true;
 
-        CameraBlur = Camera.main.GetComponent<CameraBlur>();
+		MainCamera = Camera.main;
+        CameraBlur = MainCamera.GetComponent<CameraBlur>();
 
         InitChallenge();
     }
@@ -101,24 +104,28 @@ public class ChallengeController : MonoBehaviour
 	{
 		EdgeFences = new ElectricFence[4];
 
+		Vector3 topRight = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
+		float edgeX = topRight.x - 0.2f;
+		float edgeY = topRight.y - 0.2f;
+
 		// right
-		Vector3 masterPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
-		Vector3 helperPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
+		Vector3 masterPosition = new Vector3(edgeX, edgeY, 0f);
+		Vector3 helperPosition = new Vector3(edgeX, -edgeY, 0f);
 		EdgeFences[0] = CreateEdgeElectric(masterPosition, helperPosition);
 
 		// down
-		masterPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
-		helperPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
+		masterPosition = new Vector3(edgeX, -edgeY, 0f);
+		helperPosition = new Vector3(-edgeX, -edgeY, 0f);
 		EdgeFences[1] = CreateEdgeElectric(masterPosition, helperPosition);
 
 		// left
-		masterPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, -SpawnPositionHelper.ScreenLimitY, 0f);
-		helperPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
+		masterPosition = new Vector3(-edgeX, -edgeY, 0f);
+		helperPosition = new Vector3(-edgeX, edgeY, 0f);
 		EdgeFences[2] = CreateEdgeElectric(masterPosition, helperPosition);
 
 		// up
-		masterPosition = new Vector3(-SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
-		helperPosition = new Vector3(SpawnPositionHelper.ScreenLimitX, SpawnPositionHelper.ScreenLimitY, 0f);
+		masterPosition = new Vector3(-edgeX, edgeY, 0f);
+		helperPosition = new Vector3(edgeX, edgeY, 0f);
 		EdgeFences[3] = CreateEdgeElectric(masterPosition, helperPosition);
 	}
 
