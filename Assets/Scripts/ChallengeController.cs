@@ -182,7 +182,7 @@ public class ChallengeController : MonoBehaviour
 			delay = CurrentWave.Time - CurrentLevel.Waves[waveIndex - 1].Time;
 		}
 
-		return Utility.CurrentChallengeMode == ChallengeMode.Hardcore ? (delay / 2f) : delay;
+		return Utility.CurrentChallengeMode == ChallengeMode.Hardcore ? (delay / 1.7f) : delay;
 	}
 
     private IEnumerator BossTimer(float bossTime)
