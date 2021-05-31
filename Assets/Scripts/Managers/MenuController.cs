@@ -60,6 +60,10 @@ public class MenuController : MonoBehaviour
 
 		Utility.CurrentChallengeMode = ChallengeMode.None;
         InitializeChallengeMenu();
+
+		LilB.instance.IsEndless = false;
+		LilB.instance.IsChallenge = false;
+		LilB.instance.IsTutorial = false;
 	}
 
     public void OnEndlessButtonClicked()
