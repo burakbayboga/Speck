@@ -2,13 +2,12 @@
 
 public class TouchHandler : MonoBehaviour
 {
-    public LilB LilB;
-    public LineRenderer SwipeLine;
 
     public float MaxSwipeDistanceScreenHeightRatio;
     public float MaxSwipeForce;
     public float MinSwipeForce;
 
+    LineRenderer SwipeLine;
     Camera MainCamera;
     float MaxSwipeDistance;
 
@@ -23,11 +22,16 @@ public class TouchHandler : MonoBehaviour
         MaxSwipeDistance = Screen.height * MaxSwipeDistanceScreenHeightRatio;
     }
 
+	void Start()
+	{
+		SwipeLine = LilB.instance.GetComponentInChildren<LineRenderer>();
+	}
+
     void Update()
     {
-        if (!LilB.InputEnabled ||
-			(LilB.IsEndless && (GameController.instance.IsGameOver || GameController.instance.IsGamePaused))
-            || LilB.IsChallenge && (ChallengeController.instance.IsGameOver || ChallengeController.instance.IsGamePaused))
+        if (!LilB.instance.InputEnabled ||
+			(LilB.instance.IsEndless && (GameController.instance.IsGameOver || GameController.instance.IsGamePaused))
+            || LilB.instance.IsChallenge && (ChallengeController.instance.IsGameOver || ChallengeController.instance.IsGamePaused))
         {
 			// TODO: srsly...
             SwipeLine.enabled = false;
@@ -44,22 +48,16 @@ public class TouchHandler : MonoBehaviour
             else if (touch.phase == TouchPhase.Ended)
             {
                 SwipeEndPos = touch.position;
-                LilB.ApplyForce((SwipeStartPos - SwipeEndPos).normalized, GetForce(), true);
+                LilB.instance.ApplyForce((SwipeStartPos - SwipeEndPos).normalized, GetForce(), true);
             }
             SwipeLine.enabled = true;
-            SwipeLine.SetPosition(0, LilB.transform.position);
-            SwipeLine.SetPosition(1, LilB.transform.position + GetSwipeLinePosition(touch.position));
+            SwipeLine.SetPosition(0, LilB.instance.transform.position);
+            SwipeLine.SetPosition(1, LilB.instance.transform.position + GetSwipeLinePosition(touch.position));
         }
         else
         {
             SwipeLine.enabled = false;
         }
-    }
-
-    public void UpdateLilB(LilB lilB)
-    {
-        LilB = lilB;
-        SwipeLine = LilB.transform.GetChild(1).GetComponent<LineRenderer>();
     }
 
     private float GetForce()

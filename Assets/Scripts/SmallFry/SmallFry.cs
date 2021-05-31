@@ -28,7 +28,7 @@ public class SmallFry : MonoBehaviour
         AudioSource = GetComponent<AudioSource>();
         Rigidbody = GetComponent<Rigidbody2D>();
 		Animator = GetComponent<Animator>();
-        LilBTransform = GameObject.FindWithTag("LilB").transform;
+        LilBTransform = LilB.instance.transform;
 
         MainCamera = Camera.main;
     }

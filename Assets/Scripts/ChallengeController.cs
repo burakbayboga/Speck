@@ -27,8 +27,6 @@ public class ChallengeController : MonoBehaviour
     private ChallengeWave CurrentWave;
     private int CurrentLevelIndex;
 
-    private LilB LilB;
-
     private CameraBlur CameraBlur;
 
     private Coroutine WatchForLevelEndCoroutine;
@@ -59,8 +57,9 @@ public class ChallengeController : MonoBehaviour
     {
         instance = this;
 
-        LilB = FindObjectOfType<LilB>();
-        LilB.IsChallenge = true;
+        LilB.instance.IsChallenge = true;
+        LilB.instance.IsTutorial = false;
+        LilB.instance.IsEndless = false;
 
 		MainCamera = Camera.main;
         CameraBlur = MainCamera.GetComponent<CameraBlur>();
@@ -351,7 +350,7 @@ public class ChallengeController : MonoBehaviour
             StopCoroutine(WatchForLevelEndCoroutine);
         }
 
-        LilB.HandleDeath();
+        LilB.instance.HandleDeath();
         StartCoroutine(LerpCanvasGroupAlpha(RetryUIParent, true));
     }
 

@@ -20,8 +20,6 @@ public class GameController : MonoBehaviour
     public float CanvasGroupFadeInTime;
     public float CanvasGroupFadeOutTime;
 
-    private LilB Speck;
-
     public int CurrentScore;
     public bool IsGameOver;
     public bool IsGamePaused;
@@ -39,14 +37,15 @@ public class GameController : MonoBehaviour
         UpdateScoreText();
         TimerCoroutine = StartCoroutine(Timer());
         BossSmallFryCountdownActive = true;
-        Speck = FindObjectOfType<LilB>();
         CameraBlur = Camera.main.GetComponent<CameraBlur>();
     }
 
     void Start()
     {
         PauseGameButton.OnClickEvent.AddListener(OnPauseGameClicked);
-        Speck.IsEndless = true;
+        LilB.instance.IsEndless = true;
+		LilB.instance.IsChallenge = false;
+		LilB.instance.IsTutorial = false;
     }
 
     public void OnPauseGameClicked()
@@ -115,7 +114,7 @@ public class GameController : MonoBehaviour
 
         IsGameOver = true;
 
-        Speck.HandleDeath();
+        LilB.instance.HandleDeath();
 
         StopCoroutine(TimerCoroutine);
         bool newHighScore = false;

@@ -2,29 +2,22 @@
 
 public class ScreenEdgeController : MonoBehaviour
 {
-
-    public GameObject LilBGO;
     public float EdgeForce;
 
     Camera MainCamera;
 
-    Transform LilBTransform;
-    LilB LilB;
-
     float ScreenLimitOffset = 2.0f;
+	Transform LilBTransform;
 
     void Awake()
     {
         MainCamera = Camera.main;
-        LilBTransform = LilBGO.GetComponent<Transform>();
-        LilB = LilBGO.GetComponent<LilB>();
     }
 
-    public void UpdateLilB(LilB lilB)
-    {
-        LilB = lilB;
-        LilBTransform = LilB.transform;
-    }
+	void Start()
+	{
+		LilBTransform = LilB.instance.transform;
+	}
 
     void FixedUpdate()
     {
@@ -55,8 +48,8 @@ public class ScreenEdgeController : MonoBehaviour
 
 	void PushSpeckBack(Vector2 dir)
 	{
-		LilB.ApplyForce(dir, EdgeForce, false);
-		if (LilB.IsTutorial)
+		LilB.instance.ApplyForce(dir, EdgeForce, false);
+		if (LilB.instance.IsTutorial)
 		{
 			TutorialController.instance.OnEdgePushBack();
 		}

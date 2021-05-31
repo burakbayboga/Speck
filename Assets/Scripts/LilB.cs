@@ -2,6 +2,7 @@
 
 public class LilB : MonoBehaviour
 {
+	public static LilB instance;
 
     public GameObject DeathEffect;
 
@@ -17,8 +18,26 @@ public class LilB : MonoBehaviour
 
     private float DefaultForce = 10000;
 
+	public bool IsDead;
+
     void Awake()
     {
+		if (instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else if (instance.IsDead)
+		{
+			Destroy(instance.gameObject);
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<Collider2D>();
         AudioSource = GetComponent<AudioSource>();
@@ -46,6 +65,7 @@ public class LilB : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         Collider.enabled = false;
         AudioSource.Play();
+		IsDead = true;
     }
 
 #if UNITY_EDITOR

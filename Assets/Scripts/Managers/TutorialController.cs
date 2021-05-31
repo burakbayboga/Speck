@@ -7,7 +7,6 @@ public class TutorialController : MonoBehaviour
 {
     public static TutorialController instance;
 
-	public LilB Speck;
 	public GameObject EdgeWarningsParent;
 	public GameObject SwipeText;
 	public GameObject SwipeDistanceParent;
@@ -28,7 +27,9 @@ public class TutorialController : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		Speck.IsTutorial = true;
+		LilB.instance.IsTutorial = true;
+		LilB.instance.IsChallenge = false;
+		LilB.instance.IsEndless = false;
 	}
 
 	void Start()
@@ -52,7 +53,7 @@ public class TutorialController : MonoBehaviour
 		EdgeWarningsParent.SetActive(false);
 		SwipeText.SetActive(true);
 		CurrentState = State.Swipe;
-		Speck.InputEnabled = true;
+		LilB.instance.InputEnabled = true;
 	}
 
 	public void OnSwipe()

@@ -43,8 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c39c367250771048b497a0845998ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LilB: {fileID: 0}
-  SwipeLine: {fileID: 0}
   MaxSwipeDistanceScreenHeightRatio: 0.6
   MaxSwipeForce: 25000
   MinSwipeForce: 3000
