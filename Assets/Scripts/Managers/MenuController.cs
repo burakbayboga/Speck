@@ -56,6 +56,7 @@ public class MenuController : MonoBehaviour
         {
 			EndlessChain.SetActive(true);
 			EndlessButton.SetActivity(false);
+			HighScoreText.gameObject.SetActive(false);
         }
 
 		Utility.CurrentChallengeMode = ChallengeMode.None;
