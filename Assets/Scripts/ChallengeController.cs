@@ -57,19 +57,17 @@ public class ChallengeController : MonoBehaviour
     {
         instance = this;
 
-        LilB.instance.IsChallenge = true;
-        LilB.instance.IsTutorial = false;
-        LilB.instance.IsEndless = false;
-
 		MainCamera = Camera.main;
         CameraBlur = MainCamera.GetComponent<CameraBlur>();
-
-        InitChallenge();
     }
 
     private void Start()
     {
+		LilB.instance.IsChallenge = true;
+        LilB.instance.IsTutorial = false;
+        LilB.instance.IsEndless = false;
         PauseGameButton.OnClickEvent.AddListener(OnPauseGameClicked);
+        InitChallenge();
     }
 
     private void InitChallenge()
