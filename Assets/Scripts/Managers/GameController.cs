@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject DeathMenuParent;
     public SButton PauseGameButton;
     public GameObject NewHighScore;
+	public GameObject HighScoreFire;
     public Text UnpauseCountdownText;
     public int BossInterval;
     public bool BossSmallFryCountdownActive;
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
     public bool IsGamePaused;
     Coroutine TimerCoroutine;
     int CurrentSmallFryCount = 0;
+	int HighScore;
 
     CameraBlur CameraBlur;
     
@@ -46,6 +48,8 @@ public class GameController : MonoBehaviour
         LilB.instance.IsEndless = true;
 		LilB.instance.IsChallenge = false;
 		LilB.instance.IsTutorial = false;
+		
+        HighScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
     }
 
     public void OnPauseGameClicked()
@@ -118,8 +122,7 @@ public class GameController : MonoBehaviour
 
         StopCoroutine(TimerCoroutine);
         bool newHighScore = false;
-        int previousHighScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
-        if (CurrentScore > previousHighScore)
+        if (CurrentScore > HighScore)
         {
             PlayerPrefs.SetInt(Utility.PrefsHighScoreKey, CurrentScore);
             newHighScore = true;
@@ -153,6 +156,10 @@ public class GameController : MonoBehaviour
         {
             yield return secondsToWait;
             CurrentScore += 1;
+			if (CurrentScore >= HighScore)
+			{
+				HighScoreFire.SetActive(true);
+			}
             UpdateScoreText();
         }
     }

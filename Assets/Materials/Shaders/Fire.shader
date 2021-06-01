@@ -1,9 +1,10 @@
-﻿Shader "Custom/FireTest"
+﻿Shader "Custom/Fire"
 {
     Properties
     {
 		_NoiseTex ("Noise Texture", 2D) = "white" { }
 		_GradientTex ("Gradient Texture", 2D) = "white" { }
+		_CutoffTex ("Cutoff Texture", 2D) = "white" { }
 		_Color0 ("Color 0", Color) = (1, 1, 1, 1)
 		_Color1 ("Color 1", Color) = (0.7, 0.7, 0.7, 1)
 		_Color2 ("Color 2", Color) = (0.4, 0.4, 0.4, 1)
@@ -22,6 +23,7 @@
 			#include "UnityCg.cginc"
 
 			sampler2D _NoiseTex;
+			sampler2D _CutoffTex;
 			sampler2D _GradientTex;
 
 			fixed4 _Color0;
@@ -50,7 +52,7 @@
 
 			fixed4 FragmentFunction(v2f i) : SV_TARGET
 			{
-				float noise = tex2D(_NoiseTex, i.uv - float2(0, _Time.x * 2)).r;
+				float noise = tex2D(_NoiseTex, i.uv - float2(0, _Time.y / 2)).r;
 				float gradient = tex2D(_GradientTex, i.uv).r;
 
 				fixed step0 = step(noise, gradient);
@@ -59,6 +61,11 @@
 
 				fixed4 color = fixed4(lerp(_Color0.rgb, _Color2.rgb, step0 - step1), step0);
 				color.rgb = lerp(color.rgb, _Color1, step1 - step2);
+				float2 uvCutoff = i.uv;
+				float xOffset = uvCutoff.y * uvCutoff.y * sin(uvCutoff.y * 4.5 + _Time.y * 3) * 0.15;
+				uvCutoff.x += xOffset;
+				fixed cutoffValue = tex2D(_CutoffTex, uvCutoff).r;
+				color.a *= cutoffValue;
 				return color;
 			}
 
