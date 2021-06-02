@@ -371,7 +371,6 @@ public class ChallengeController : MonoBehaviour
     public void OnResumeGameClicked()
     {
         StartCoroutine(ResumeAfterCountdown());
-        CameraBlur.enabled = false;
     }
 
     IEnumerator ResumeAfterCountdown()
@@ -389,6 +388,8 @@ public class ChallengeController : MonoBehaviour
 
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
+
+		CameraBlur.enabled = false;
 
         PauseGameButton.IsButtonActive = true;
         IsGamePaused = false;
