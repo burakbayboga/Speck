@@ -1166,6 +1166,11 @@ PrefabInstance:
       propertyPath: InputEnabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4206788223954039445, guid: 16a13b39b55fecb45a7d6ee5778384d6,
+        type: 3}
+      propertyPath: IsProp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4206788223954039447, guid: 16a13b39b55fecb45a7d6ee5778384d6,
         type: 3}
       propertyPath: m_BodyType
@@ -1456,6 +1461,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InputEnabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206788223954039445, guid: 16a13b39b55fecb45a7d6ee5778384d6,
+        type: 3}
+      propertyPath: IsProp
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4206788223954039447, guid: 16a13b39b55fecb45a7d6ee5778384d6,
         type: 3}

@@ -19,9 +19,23 @@ public class LilB : MonoBehaviour
     private float DefaultForce = 10000;
 
 	public bool IsDead;
+	public bool IsProp;
 
     void Awake()
     {
+		MakeSingleton();
+        Rigidbody = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
+        AudioSource = GetComponent<AudioSource>();
+    }
+
+	void MakeSingleton()
+	{
+		if (IsProp)
+		{
+			return;
+		}
+
 		if (instance == null)
 		{
 			instance = this;
@@ -33,15 +47,12 @@ public class LilB : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		else if (!instance.IsTutorial)
+		else
 		{
 			Destroy(gameObject);
 		}
 
-        Rigidbody = GetComponent<Rigidbody2D>();
-        Collider = GetComponent<Collider2D>();
-        AudioSource = GetComponent<AudioSource>();
-    }
+	}
 
     public void ApplyForce(Vector2 direction, float multiplier, bool fromPlayerInput)
     {
