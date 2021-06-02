@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using UnityEditor;
-#endif
-
-
-#if UNITY_EDITOR
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class MenuItems
 {
@@ -39,6 +38,27 @@ public class MenuItems
 	public static void ClearChallengePrefs()
 	{
 		PlayerPrefs.DeleteKey(Utility.PrefsChallengeInfoKey);
+	}
+
+	[MenuItem("Speck Menu/SetChallengeLevelsPassed")]
+	public static void SetChallengeLevelsPassed()
+	{
+		PlayerPrefs.DeleteKey(Utility.PrefsChallengeInfoKey);
+		List<PlayerChallengeLevelInfo> infoList = new List<PlayerChallengeLevelInfo>();
+		ChallengeMode mode = ChallengeMode.Hardcore | ChallengeMode.Normal;
+		for (int i = 0; i < 10; i++)
+		{
+			PlayerChallengeLevelInfo info = new PlayerChallengeLevelInfo()
+			{
+				Level = i,
+				Modes = mode
+			};
+			infoList.Add(info);
+		}
+		PlayerChallengeInfo playerInfo = new PlayerChallengeInfo();
+		playerInfo.ChallengeLevelInfoList = infoList;
+		string infoJson = JsonConvert.SerializeObject(playerInfo);
+		PlayerPrefs.SetString(Utility.PrefsChallengeInfoKey, infoJson);
 	}
 
     #endregion
