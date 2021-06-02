@@ -40,7 +40,7 @@ public class MenuItems
 		PlayerPrefs.DeleteKey(Utility.PrefsChallengeInfoKey);
 	}
 
-	[MenuItem("Speck Menu/SetChallengeLevelsPassed")]
+	[MenuItem("Speck Menu/Set Challenge Levels Passed")]
 	public static void SetChallengeLevelsPassed()
 	{
 		PlayerPrefs.DeleteKey(Utility.PrefsChallengeInfoKey);
