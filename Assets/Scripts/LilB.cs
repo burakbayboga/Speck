@@ -33,7 +33,7 @@ public class LilB : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		else
+		else if (!instance.IsTutorial)
 		{
 			Destroy(gameObject);
 		}
