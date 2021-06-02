@@ -82,7 +82,6 @@ public class Chaser : SmallFry
             IsSpawnOver = spawnOver;
             StartCoroutine(DeathCountdown(LifeTime));
             Collider.enabled = true;
-            AudioSource.Play();
 			StartCoroutine(EaseInitialSpeedBoost());
         }
         return spawnOver;

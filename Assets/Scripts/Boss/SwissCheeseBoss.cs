@@ -8,7 +8,6 @@ public class SwissCheeseBoss : Boss
     private float Radius;
     private Vector3 ScreenMiddleScreenSpace;
     private List<Vector3> SpawnPositions;
-    private AudioSource AudioSource;
     
     public int MobCount;
     public float MobSpawnInterval;
@@ -18,7 +17,6 @@ public class SwissCheeseBoss : Boss
     public override void Initiate()
     {
         base.Initiate();
-        AudioSource = GetComponent<AudioSource>();
         int minScreenSize = Mathf.Min(Screen.height, Screen.width);
         Radius = (minScreenSize / 2.0f) * 3.0f / 4.0f;
         ScreenMiddleScreenSpace = new Vector3(Screen.width / 2, Screen.height / 2, 0.0f);
@@ -42,7 +40,6 @@ public class SwissCheeseBoss : Boss
     private IEnumerator SpawnMobCoroutine()
     {
         yield return new WaitForSeconds(MobSpawnDelay);
-        AudioSource.Play();
         for (int i=0; i < MobCount; i++)
         {
             SmallFry newMob = Instantiate(MobPrefab, SpawnPositions[i], Quaternion.identity).GetComponent<SmallFry>();

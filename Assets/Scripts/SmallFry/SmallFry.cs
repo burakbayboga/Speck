@@ -1,31 +1,16 @@
 ﻿using UnityEngine;
 
-
-
 public class SmallFry : MonoBehaviour
 {
-
     [HideInInspector] public Rigidbody2D Rigidbody;
-    [HideInInspector] public Vector2 OriginalVelocity;
-    [HideInInspector] public float OriginalAngularVelocity;
-
-    protected float CurrentTheta;
-
-    public EnemyType EnemyType;
-
-    public Transform LilBTransform;
 
     protected Camera MainCamera;
-
-    protected Vector2 ScreenPos;
-
-    protected AudioSource AudioSource;
-
 	protected Animator Animator;
+    protected float CurrentTheta;
+    protected Transform LilBTransform;
 
     public virtual void Init()
     {
-        AudioSource = GetComponent<AudioSource>();
         Rigidbody = GetComponent<Rigidbody2D>();
 		Animator = GetComponent<Animator>();
         LilBTransform = LilB.instance.transform;

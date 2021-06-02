@@ -50,7 +50,6 @@ public class BlackHole : SmallFry
         renderer.enabled = true;
         Collider.enabled = true;
 		Animator.enabled = true;
-        AudioSource.Play();
         StartCoroutine(DeathCountdown(LifeTime));
 
 		//Background.instance.StartBlackHoleWave(transform.position, LifeTime, this);

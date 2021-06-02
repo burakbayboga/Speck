@@ -8,9 +8,6 @@ public class LaserBoss : Boss
     public GameObject LaserGunPrefab;
     public float DelayBetweenLasers;
 
-    public AudioSource WindUpAudioSource;
-    public AudioSource FireAudioSource;
-
     public int LaserCount;
 
     private List<ScreenSection> OccupiedSections;
@@ -24,7 +21,6 @@ public class LaserBoss : Boss
         MainCamera = Camera.main;
         OccupiedSections = new List<ScreenSection>();
         StartCoroutine(SpawnLasers());
-        WindUpAudioSource.Play();
         StartCoroutine(DeathCountdown());
     }
 
@@ -36,14 +32,11 @@ public class LaserBoss : Boss
         }
 
         TriggeredFireSound = true;
-        WindUpAudioSource.Stop();
-        FireAudioSource.Play();
     }
 
     private IEnumerator DeathCountdown()
     {
         yield return new WaitForSeconds(EncounterTime);
-        FireAudioSource.Stop();
         Destroy(gameObject);
     }
 

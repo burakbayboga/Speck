@@ -63,8 +63,6 @@ public class ElectricFence : SmallFry
 
         yield return new WaitForSeconds(1.5f);
 
-        AudioSource.Play();
-
         DeathCollider.GetComponent<Collider2D>().enabled = true;
         DeathCollider.transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<Collider2D>().enabled = true;

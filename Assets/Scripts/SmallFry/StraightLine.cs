@@ -32,8 +32,8 @@ public class StraightLine : SmallFry
 
     void Update()
     {
-        ScreenPos = MainCamera.WorldToScreenPoint(transform.position);
-        if (ScreenPos.x < 0 || ScreenPos.x > Screen.width || ScreenPos.y < 0 || ScreenPos.y > Screen.height)
+        Vector2 screenPos = MainCamera.WorldToScreenPoint(transform.position);
+        if (screenPos.x < 0 || screenPos.x > Screen.width || screenPos.y < 0 || screenPos.y > Screen.height)
         {
             HandleDeath();
         }
@@ -46,7 +46,6 @@ public class StraightLine : SmallFry
     void StartSpin()
     {
 		Animator.Play("Straightline_spin");
-        AudioSource.Play();
         Velocity = GetVelocity();
 		Animator.speed = Mathf.Clamp(Velocity.magnitude / 10f, 1f, 1.9f);
         ShouldMove = true;
