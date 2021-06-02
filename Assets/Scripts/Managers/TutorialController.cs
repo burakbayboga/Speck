@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour
@@ -10,7 +9,6 @@ public class TutorialController : MonoBehaviour
 	public GameObject EdgeWarningsParent;
 	public GameObject SwipeText;
 	public GameObject SwipeDistanceParent;
-	public Image SwipeDistanceBg;
 
 	public LineRenderer[] SpeckTails;
 	public Transform[] SpeckTailTargets;
@@ -27,13 +25,13 @@ public class TutorialController : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		LilB.instance.IsTutorial = true;
-		LilB.instance.IsChallenge = false;
-		LilB.instance.IsEndless = false;
 	}
 
 	void Start()
 	{
+		LilB.instance.IsTutorial = true;
+		LilB.instance.IsChallenge = false;
+		LilB.instance.IsEndless = false;
 		CurrentState = State.Start;
 	}
 

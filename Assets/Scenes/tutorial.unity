@@ -1729,11 +1729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c217c9d059adbe44b9eeb5ccb57754c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speck: {fileID: 1199428815}
   EdgeWarningsParent: {fileID: 1977488856}
   SwipeText: {fileID: 1872907996}
   SwipeDistanceParent: {fileID: 1603193127}
-  SwipeDistanceBg: {fileID: 0}
   SpeckTails:
   - {fileID: 434500759}
   - {fileID: 1270625288}
