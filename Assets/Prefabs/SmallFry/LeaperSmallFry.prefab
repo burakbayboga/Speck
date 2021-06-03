@@ -51,7 +51,7 @@ MonoBehaviour:
   ActiveParticle: {fileID: 1195951602391648907}
   LeapDelay: 3
   LeapCount: 3
-  LeapSpeed: 1.1
+  LeapSpeed: 0.7
   TraceDrawDelay: 0.01
   TraceInterval: 1.6
   TraceSprite: {fileID: 21300006, guid: 442557f0b0ba9964981c65ca0e91dccf, type: 3}
