@@ -954,7 +954,7 @@ MonoBehaviour:
   NewHighScore: {fileID: 368334042}
   HighScoreFire: {fileID: 9731860}
   UnpauseCountdownText: {fileID: 64550073}
-  BossInterval: 3
+  BossInterval: 8
   BossSmallFryCountdownActive: 0
   CanvasGroupFadeInTime: 0.2
   CanvasGroupFadeOutTime: 0.1
