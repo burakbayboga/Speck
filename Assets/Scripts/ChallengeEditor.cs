@@ -165,9 +165,16 @@ public class ChallengeEditor : MonoBehaviour
         int level = int.Parse(LevelContentInputField.text);
         int wave = int.Parse(EditWaveInputField.text);
         CurrentWave = ChallengeData.Levels[level].Waves[wave];
+    }
+
+	public void OnDeleteWaveEnemiesClicked()
+	{
+		int level = int.Parse(LevelContentInputField.text);
+        int wave = int.Parse(EditWaveInputField.text);
+        CurrentWave = ChallengeData.Levels[level].Waves[wave];
         CurrentWave.Enemies.Clear();
         OnLevelContentInputEdited();
-    }
+	}
 
     public void OnDeleteWaveClicked()
     {
