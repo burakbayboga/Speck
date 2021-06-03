@@ -39,6 +39,10 @@ public class ElectricFence : SmallFry
         ParticleSystem deathColliderParticle = DeathCollider.transform.GetChild(0).GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule particleShape = deathColliderParticle.shape;
         particleShape.radius = deathColliderOffsetMagnitude;
+		deathColliderRotationEuler.z += 80f;
+		transform.eulerAngles = deathColliderRotationEuler;
+		deathColliderRotationEuler.z += 180f;
+		Helper.transform.eulerAngles = deathColliderRotationEuler;
     }
 
     private IEnumerator DeathCountdown(float delay)
@@ -65,8 +69,8 @@ public class ElectricFence : SmallFry
 
         DeathCollider.GetComponent<Collider2D>().enabled = true;
         DeathCollider.transform.GetChild(0).gameObject.SetActive(false);
-        GetComponent<Collider2D>().enabled = true;
-        Helper.GetComponent<Collider2D>().enabled = true;
+		Animator.Play("electric_active");
+		Helper.GetComponent<ElectricFence>().GetComponent<Animator>().Play("electric_active");
         
         StartCoroutine(ElectricParticle());
         StartCoroutine(DeathCountdown(LifeTime));
