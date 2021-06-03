@@ -74,8 +74,6 @@ public class GameController : MonoBehaviour
         StartCoroutine(LerpCanvasGroupAlpha(PauseMenuParent, false));
 
         WaitForSecondsRealtime secondsToWait = new WaitForSecondsRealtime(0.5f);
-        UnpauseCountdownText.text = "3";
-        yield return secondsToWait;
         UnpauseCountdownText.text = "2";
         yield return secondsToWait;
         UnpauseCountdownText.text = "1";
