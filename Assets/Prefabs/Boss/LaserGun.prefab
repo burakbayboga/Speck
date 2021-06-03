@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Laser: {fileID: 9175641671366584905}
   LaserBase: {fileID: 6695853351938959077}
-  Boss: {fileID: 0}
+  Animator: {fileID: 2934657120340406554}
   FireTime: 5.5
   FireCount: 3
   TraceInterval: 2
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8cffa98c3fa92d74e8d96ecbefa3b9c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0eb109a7963b34040806109ae391fa44, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 06f0a6f87cecbd04ab0d0f1450a1d8df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -211,6 +211,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606615510097674507, guid: 3a398126422b4c04f8f6d9907fa3a8c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a398126422b4c04f8f6d9907fa3a8c2, type: 3}

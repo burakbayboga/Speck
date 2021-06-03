@@ -6,7 +6,7 @@ public class LaserGun : MonoBehaviour
 
     public GameObject Laser;
     public GameObject LaserBase;
-    public LaserBoss Boss;
+	public Animator Animator;
 
     public float FireTime;
 	public int FireCount;
@@ -26,11 +26,6 @@ public class LaserGun : MonoBehaviour
 	private float TraceLength = 19f;
 	private int TraceCount;
 
-    public void Init(LaserBoss _boss)
-    {
-        Boss = _boss;
-    }
-
     private void Start()
     {
         Rotation = new Vector3(0.0f, 0.0f, Random.Range(0, 2) == 0 ? -30.0f : 30.0f);
@@ -47,7 +42,7 @@ public class LaserGun : MonoBehaviour
 		if (TraceObjects == null)
 		{
 			// TODO: not enough trace pooled
-			Debug.LogError("NOR ENOUGH TRACE");
+			Debug.LogError("NOT ENOUGH TRACE");
 		}
 	}
 
@@ -84,10 +79,8 @@ public class LaserGun : MonoBehaviour
 		}
 
         LaserBaseCollider.enabled = true;
-
         Laser.SetActive(true);
-
-        Boss.TriggerFireSound();
+		Animator.Play("lazerGun");
     }
 
 	private IEnumerator DrawTrace()
@@ -128,6 +121,7 @@ public class LaserGun : MonoBehaviour
 		ShotsFired++;
 		if (ShotsFired < FireCount)
 		{
+			Animator.Play("lazerGunIdle");
 			Laser.SetActive(false);
 			StartCoroutine(Rotate());
 		}

@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 0eb109a7963b34040806109ae391fa44
+guid: 06f0a6f87cecbd04ab0d0f1450a1d8df
 TextureImporter:
   fileIDToRecycleName:
-    21300000: LazerGun_0
-    21300002: LazerGun_1
-    21300004: LazerGun_2
-    21300006: LazerGun_3
+    21300000: LazerGunDownscaledColored_0
+    21300002: LazerGunDownscaledColored_1
+    21300004: LazerGunDownscaledColored_2
+    21300006: LazerGunDownscaledColored_3
+    21300008: base
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -49,7 +50,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -95,85 +96,116 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LazerGun_0
+      name: LazerGunDownscaledColored_0
       rect:
         serializedVersion: 2
-        x: 188
-        y: 578
-        width: 617
-        height: 460
+        x: 106
+        y: 272
+        width: 319
+        height: 218
       alignment: 9
-      pivot: {x: 0.47060594, y: 0.84169257}
+      pivot: {x: 0.4625348, y: 0.84264505}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baaeb5026bed23c4e9886d0cc39b70da
+      spriteID: 6af4703405d927544a6c2d8e3f1b176a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LazerGun_1
+      name: LazerGunDownscaledColored_1
       rect:
         serializedVersion: 2
-        x: 1041
-        y: 597
-        width: 754
-        height: 464
+        x: 564
+        y: 290
+        width: 388
+        height: 212
       alignment: 9
-      pivot: {x: 0.4759465, y: 0.8517756}
+      pivot: {x: 0.46611732, y: 0.846705}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65a6090d16bf27747b4dab2bf2fe017f
+      spriteID: bf242fe08d1d2484897e6987653a67cf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LazerGun_2
+      name: LazerGunDownscaledColored_2
       rect:
         serializedVersion: 2
-        x: 86
-        y: 60
-        width: 847
-        height: 468
+        x: 49
+        y: 30
+        width: 443
+        height: 214
       alignment: 9
-      pivot: {x: 0.47501922, y: 0.82939345}
+      pivot: {x: 0.46627715, y: 0.90768987}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd016a5784df0d54097f99a42387280f
+      spriteID: de26bba901c05fc4ebe1cfee73fe91f4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LazerGun_3
+      name: LazerGunDownscaledColored_3
       rect:
         serializedVersion: 2
-        x: 992
-        y: 80
-        width: 799
-        height: 454
+        x: 527
+        y: 40
+        width: 426
+        height: 218
       alignment: 9
-      pivot: {x: 0.49054208, y: 0.85952437}
+      pivot: {x: 0.49298698, y: 0.95503265}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62163c7896d3ab841ae3119579f37d40
+      spriteID: 5a64a9edc4c43d545bcd28c4334e7a16
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 278
+        width: 255
+        height: 208
+      alignment: 9
+      pivot: {x: 0.45547503, y: 0.8504995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f7719396a4e3e4090cc9857b752ed7
       vertices: []
       indices: 
       edges: []
@@ -181,7 +213,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 729821bcf33d55c4e8c338a97dcfe389
+    spriteID: 8f9946f18b0f4ac4ba64e66ebce1389f
     vertices: []
     indices: 
     edges: []

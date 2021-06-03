@@ -13,8 +13,6 @@ public class LaserBoss : Boss
     private List<ScreenSection> OccupiedSections;
     private Camera MainCamera;
 
-    private bool TriggeredFireSound = false;
-
     public override void Initiate()
     {
         base.Initiate();
@@ -22,16 +20,6 @@ public class LaserBoss : Boss
         OccupiedSections = new List<ScreenSection>();
         StartCoroutine(SpawnLasers());
         StartCoroutine(DeathCountdown());
-    }
-
-    public void TriggerFireSound()
-    {
-        if (TriggeredFireSound)
-        {
-            return;        
-        }
-
-        TriggeredFireSound = true;
     }
 
     private IEnumerator DeathCountdown()
@@ -50,7 +38,6 @@ public class LaserBoss : Boss
             Quaternion spawnRotation = GetSpawnRotation(spawnPosition);
 
             LaserGun gun = Instantiate(LaserGunPrefab, spawnPosition, spawnRotation).GetComponent<LaserGun>();
-            gun.Init(this);
             yield return secondsToWait;
         }
     }
