@@ -23,12 +23,21 @@ public class StraightLine : SmallFry
 
 	Coroutine[] SpinSpawnParticleCoroutines = new Coroutine[2];
 
+	bool BelongsToBoss;
+	SwissCheeseBoss Boss;
+
     public override void Init()
     {
         base.Init();
         StartCoroutine(Action());
         GetComponent<Collider2D>().enabled = false;
     }
+
+	public void AssignBoss(SwissCheeseBoss _boss)
+	{
+		BelongsToBoss = true;
+		Boss = _boss;
+	}
 
     void Update()
     {
@@ -42,6 +51,15 @@ public class StraightLine : SmallFry
             transform.Translate(Velocity * Time.deltaTime, Space.World);
         }
     }
+
+	public override void HandleDeath()
+	{
+		if (BelongsToBoss)
+		{
+			Boss.OnMobDestroyed();
+		}
+		base.HandleDeath();
+	}
 
     void StartSpin()
     {

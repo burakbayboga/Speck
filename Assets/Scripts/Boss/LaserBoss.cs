@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LaserBoss : Boss
 {
-
     public GameObject LaserGunPrefab;
     public float DelayBetweenLasers;
 
@@ -13,19 +12,14 @@ public class LaserBoss : Boss
     private List<ScreenSection> OccupiedSections;
     private Camera MainCamera;
 
+	private int ActiveLaserCount = 0;
+
     public override void Initiate()
     {
         base.Initiate();
         MainCamera = Camera.main;
         OccupiedSections = new List<ScreenSection>();
         StartCoroutine(SpawnLasers());
-        StartCoroutine(DeathCountdown());
-    }
-
-    private IEnumerator DeathCountdown()
-    {
-        yield return new WaitForSeconds(EncounterTime);
-        Destroy(gameObject);
     }
 
     private IEnumerator SpawnLasers()
@@ -38,9 +32,28 @@ public class LaserBoss : Boss
             Quaternion spawnRotation = GetSpawnRotation(spawnPosition);
 
             LaserGun gun = Instantiate(LaserGunPrefab, spawnPosition, spawnRotation).GetComponent<LaserGun>();
+			gun.AssignBoss(this);
+			ActiveLaserCount++;
             yield return secondsToWait;
         }
     }
+
+	public void OnLaserDestroyed()
+	{
+		ActiveLaserCount--;
+		if (ActiveLaserCount == 0)
+		{
+			if (LilB.instance.IsChallenge)
+			{
+				ChallengeController.instance.OnBossDefeated();
+			}
+			else
+			{
+				EnemyManager.instance.OnBossDefeated();
+			}
+			Destroy(gameObject);
+		}
+	}
 
     private Vector3 GetSpawnPosition()
     {

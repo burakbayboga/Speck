@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossGenerator : MonoBehaviour
 {
@@ -20,13 +19,5 @@ public class BossGenerator : MonoBehaviour
         CurrentBossIndex = Random.Range(0, Bosses.Length);
         CurrentBoss = Instantiate(Bosses[CurrentBossIndex]).GetComponent<Boss>();
         CurrentBoss.Initiate();
-        StartCoroutine(BossEncounter());
     }
-
-    IEnumerator BossEncounter()
-    {
-        yield return new WaitForSeconds(CurrentBoss.EncounterTime);
-        EnemyManager.instance.OnBossDefeated();
-    }
-
 }

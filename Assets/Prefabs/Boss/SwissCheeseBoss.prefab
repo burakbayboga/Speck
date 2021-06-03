@@ -43,9 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae56ea02cb3f2934b8b6d0aa7bb4f37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EncounterTime: 13
   MobCount: 5
   MobSpawnInterval: 0.4
-  MobSpawnDelay: 3
   MobPrefab: {fileID: 3610554941731974871, guid: 86182ced1c2d60347894c5983db2ef53,
     type: 3}

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class LaserGun : MonoBehaviour
 {
-
     public GameObject Laser;
     public GameObject LaserBase;
 	public Animator Animator;
@@ -26,6 +25,8 @@ public class LaserGun : MonoBehaviour
 	private float TraceLength = 19f;
 	private int TraceCount;
 
+	private LaserBoss Boss;
+
     private void Start()
     {
         Rotation = new Vector3(0.0f, 0.0f, Random.Range(0, 2) == 0 ? -30.0f : 30.0f);
@@ -34,6 +35,11 @@ public class LaserGun : MonoBehaviour
 
 		LaserFireSequence();
     }
+
+	public void AssignBoss(LaserBoss _boss)
+	{
+		Boss = _boss;
+	}
 
 	private void GetTrace()
 	{
@@ -127,6 +133,7 @@ public class LaserGun : MonoBehaviour
 		}
 		else
 		{
+			Boss.OnLaserDestroyed();
 			Destroy(gameObject);
 		}
     }

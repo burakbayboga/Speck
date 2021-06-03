@@ -183,11 +183,10 @@ public class ChallengeController : MonoBehaviour
 		return Utility.CurrentChallengeMode == ChallengeMode.Hardcore ? (delay / 1.5f) : delay;
 	}
 
-    private IEnumerator BossTimer(float bossTime)
-    {
-        yield return new WaitForSeconds(bossTime);
-        ActiveBossCount--;
-    }
+	public void OnBossDefeated()
+	{
+		ActiveBossCount--;
+	}
 
     private IEnumerator WatchForLevelEnd()
     {
@@ -325,7 +324,6 @@ public class ChallengeController : MonoBehaviour
             Boss spawnedBoss = spawned.GetComponent<Boss>();
             spawnedBoss.Initiate();
             ActiveBossCount++;
-            StartCoroutine(BossTimer(spawnedBoss.EncounterTime));
         }
     }
 

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SwissCheeseBoss : Boss
 {
-
     private float Radius;
     private Vector3 ScreenMiddleScreenSpace;
     private List<Vector3> SpawnPositions;
     
     public int MobCount;
     public float MobSpawnInterval;
-	public float MobSpawnDelay;
     public GameObject MobPrefab;
+
+	private int ActiveMobCount = 0;
 
     public override void Initiate()
     {
@@ -27,10 +27,11 @@ public class SwissCheeseBoss : Boss
     private void InitSpawnPositions()
     {
         SpawnPositions = new List<Vector3>();
+		float angleInterval = 360f / MobCount;
         for (int i=0; i < MobCount; i++)
         {
-            float screenX = ScreenMiddleScreenSpace.x + Mathf.Cos(i * (360.0f / MobCount) * Mathf.Deg2Rad) * Radius;
-            float screenY = ScreenMiddleScreenSpace.y + Mathf.Sin(i * (360.0f / MobCount) * Mathf.Deg2Rad) * Radius;
+            float screenX = ScreenMiddleScreenSpace.x + Mathf.Cos(i * angleInterval * Mathf.Deg2Rad) * Radius;
+            float screenY = ScreenMiddleScreenSpace.y + Mathf.Sin(i * angleInterval * Mathf.Deg2Rad) * Radius;
             Vector3 screenPos = new Vector3(screenX, screenY, 25.0f);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
             SpawnPositions.Add(worldPos);
@@ -39,14 +40,30 @@ public class SwissCheeseBoss : Boss
 
     private IEnumerator SpawnMobCoroutine()
     {
-        yield return new WaitForSeconds(MobSpawnDelay);
         for (int i=0; i < MobCount; i++)
         {
-            SmallFry newMob = Instantiate(MobPrefab, SpawnPositions[i], Quaternion.identity).GetComponent<SmallFry>();
+            StraightLine newMob = Instantiate(MobPrefab, SpawnPositions[i], Quaternion.identity).GetComponent<StraightLine>();
             newMob.Init();
+			newMob.AssignBoss(this);
+			ActiveMobCount++;
             yield return new WaitForSeconds(MobSpawnInterval);
         }
-
-		Destroy(gameObject);
     }
+
+	public void OnMobDestroyed()
+	{
+		ActiveMobCount--;
+		if (ActiveMobCount == 0)
+		{
+			if (LilB.instance.IsChallenge)
+			{
+				ChallengeController.instance.OnBossDefeated();
+			}
+			else
+			{
+				EnemyManager.instance.OnBossDefeated();
+			}
+			Destroy(gameObject);
+		}
+	}
 }
