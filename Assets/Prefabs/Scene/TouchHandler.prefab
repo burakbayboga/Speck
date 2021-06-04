@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSwipeDistanceScreenHeightRatio: 0.6
-  MaxSwipeForce: 25000
-  MinSwipeForce: 3000
+  MaxSwipeForce: 400
+  MinSwipeForce: 48

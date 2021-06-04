@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683b17f6c3e2bae418044b5f67889c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EdgeForce: 18000
+  EdgeForce: 288

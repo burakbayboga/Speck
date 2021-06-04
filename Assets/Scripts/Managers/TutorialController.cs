@@ -114,8 +114,8 @@ public class TutorialController : MonoBehaviour
 			SpeckTails[1].enabled = false;
 			SpeckRbs[0].gravityScale = 1f;
 			SpeckRbs[1].gravityScale = 1f;
-			Specks[0].ApplyForce(Vector3.right, 8000f, false);
-			Specks[1].ApplyForce(Vector3.right, 15000f, false);
+			Specks[0].ApplyForce(Vector3.right, 128f, false);
+			Specks[1].ApplyForce(Vector3.right, 240f, false);
 
 			yield return new WaitForSeconds(2.5f);
 		}

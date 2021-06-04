@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BlackHole : SmallFry
 {
-
     public float SingularityForceMultiplier;
     public float LifeTime;
 
@@ -21,6 +20,8 @@ public class BlackHole : SmallFry
     private CircleCollider2D Collider;
 
     bool Active;
+	bool CanPull = true;
+	WaitForSeconds cooldown = new WaitForSeconds(0.1f);
 
 	BlackHoleScreenEffect ScreenEffect;
 
@@ -74,17 +75,25 @@ public class BlackHole : SmallFry
 
     private void Update()
     {
-        if (Active)
+        if (Active && CanPull)
         {
             //ApplySingularity();
             ApplyWaveSingularity();
         }
     }
 
+	IEnumerator Cooldown()
+	{
+		yield return cooldown;
+		CanPull = true;
+	}
+
     void ApplySingularity()
     {
 		Vector2 forceBase = transform.position - LilBTransform.position;
-        Vector2 force = (forceBase.normalized * SingularityForceMultiplier) / (forceBase.magnitude) * Time.deltaTime;
+		float forceBaseMagnitude = forceBase.magnitude;
+		Vector3 forceDir = forceBase / forceBaseMagnitude;
+        Vector2 force = forceDir * SingularityForceMultiplier / forceBaseMagnitude * Time.deltaTime;
 
         LilBRigidBody.AddForce(force);
     }
@@ -95,8 +104,11 @@ public class BlackHole : SmallFry
 		float speckRadius = forceBase.magnitude;
 		if (speckRadius > WaveRadiusData.x && speckRadius < WaveRadiusData.y)
 		{
-			Vector2 force = (forceBase.normalized * SingularityForceMultiplier) * Time.deltaTime;
+			Vector2 force = forceBase / speckRadius * SingularityForceMultiplier;
 			LilBRigidBody.AddForce(force);
+
+			CanPull = false;
+			StartCoroutine(Cooldown());
 		}
 	}
 

@@ -6,7 +6,7 @@ public class LilB : MonoBehaviour
 
     public GameObject DeathEffect;
 
-    private Rigidbody2D Rigidbody;
+    public Rigidbody2D Rigidbody;
     private Collider2D Collider;
     private AudioSource AudioSource;
 
@@ -16,7 +16,7 @@ public class LilB : MonoBehaviour
 
 	public bool InputEnabled;
 
-    private float DefaultForce = 10000;
+    private float DefaultForce = 160f;
 
 	public bool IsDead;
 	public bool IsProp;
@@ -24,7 +24,6 @@ public class LilB : MonoBehaviour
     void Awake()
     {
 		MakeSingleton();
-        Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<Collider2D>();
         AudioSource = GetComponent<AudioSource>();
     }
@@ -66,7 +65,7 @@ public class LilB : MonoBehaviour
             TutorialController.instance.OnSwipe();
         }
         
-        Rigidbody.AddForce(direction * multiplier * Time.deltaTime);
+        Rigidbody.AddForce(direction * multiplier);
     }
 
     public void HandleDeath()
@@ -83,6 +82,7 @@ public class LilB : MonoBehaviour
     void Update()
     {
         HandleKeyboardInput();
+		print(Time.deltaTime);
     }
 #endif
 
