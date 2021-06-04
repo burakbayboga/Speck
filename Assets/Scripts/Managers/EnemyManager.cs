@@ -14,20 +14,14 @@ public class EnemyManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        StartCoroutine(SpawnSmallFry());
-    }
+	public void TriggerSmallFryLoop()
+	{
+		StartCoroutine(SpawnSmallFry());
+	}
 
     public void TriggerBoss()
     {
 		BossGenerator.instance.InitiateBoss();
-    }
-
-    public void OnBossDefeated()
-    {
-        GameController.instance.CurrentScore += 20;
-        GameController.instance.BossSmallFryCountdownActive = true;
     }
 
     IEnumerator SpawnSmallFry()
@@ -38,5 +32,4 @@ public class EnemyManager : MonoBehaviour
             SmallFryGenerator.instance.SpawnSmallFry();
         }
     }
-
 }

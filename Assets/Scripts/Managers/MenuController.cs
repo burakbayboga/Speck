@@ -46,8 +46,8 @@ public class MenuController : MonoBehaviour
 
 	void Start()
 	{
-		int highScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
-        HighScoreText.text = "HighScore: " + highScore.ToString();
+		float highScore = PlayerPrefs.GetFloat(Utility.PrefsHighScoreKey, 0f);
+        HighScoreText.text = "HighScore: " + highScore.ToString("0.0");
 		
 		SetTotalStarCount();
 

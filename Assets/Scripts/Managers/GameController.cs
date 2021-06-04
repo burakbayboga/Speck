@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     public Text ScoreText;
+	public Text ScoreMultiplierText;
     public GameObject PauseMenuParent;
     public GameObject DeathMenuParent;
     public SButton PauseGameButton;
@@ -16,19 +17,31 @@ public class GameController : MonoBehaviour
 	public GameObject HighScoreFire;
     public Text UnpauseCountdownText;
     public int BossInterval;
-    public bool BossSmallFryCountdownActive;
+	public float ScreenMultiplierRadiusFactor0;
+	public float ScreenMultiplierRadiusFactor1;
+	public Color ScoreMultiplierTextCenterColor;
+	public Color ScoreMultiplierTextMiddleColor;
+	public Color ScoreMultiplierTextOuterColor;
+	float ScreenMultiplierRadiusSqr0;
+	float ScreenMultiplierRadiusSqr1;
+
+	public ScoreTutorial ScoreTutorial;
 
     public float CanvasGroupFadeInTime;
     public float CanvasGroupFadeOutTime;
 
-    public int CurrentScore;
+    bool BossSmallFryCountdownActive;
     public bool IsGameOver;
     public bool IsGamePaused;
-    Coroutine TimerCoroutine;
     int CurrentSmallFryCount = 0;
-	int HighScore;
+    float CurrentScore;
+	float HighScore;
 
     CameraBlur CameraBlur;
+	Camera Camera;
+	Vector2 ScreenCenterPoint;
+	float ScreenScoreMultiplier = 1f;
+	bool ScoreTutorialActive;
     
     void Awake()
     {
@@ -36,11 +49,20 @@ public class GameController : MonoBehaviour
 
         CurrentScore = 0;
         IsGameOver = false;
-        UpdateScoreText();
-        TimerCoroutine = StartCoroutine(Timer());
         BossSmallFryCountdownActive = true;
-        CameraBlur = Camera.main.GetComponent<CameraBlur>();
+		Camera = Camera.main;
+        CameraBlur = Camera.GetComponent<CameraBlur>();
+		ScreenCenterPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+		SetScreenScoreMultipliers();
     }
+
+	void SetScreenScoreMultipliers()
+	{
+		float radius = Screen.height * ScreenMultiplierRadiusFactor0;
+		ScreenMultiplierRadiusSqr0 = radius * radius;
+		radius = Screen.height * ScreenMultiplierRadiusFactor1;
+		ScreenMultiplierRadiusSqr1 = radius * radius;
+	}
 
     void Start()
     {
@@ -49,8 +71,68 @@ public class GameController : MonoBehaviour
 		LilB.instance.IsChallenge = false;
 		LilB.instance.IsTutorial = false;
 		
-        HighScore = PlayerPrefs.GetInt(Utility.PrefsHighScoreKey, 0);
+        HighScore = PlayerPrefs.GetFloat(Utility.PrefsHighScoreKey, 0f);
+		bool seenScoreTutorial = PlayerPrefs.GetInt(Utility.PrefsSeenScoreTutorialKey, 0) == 1;
+		if (seenScoreTutorial)
+		{
+			EnemyManager.instance.TriggerSmallFryLoop();
+		}
+		else
+		{
+			ScoreTutorialActive = true;
+			ScoreTutorial.Initiate(ScreenCenterPoint, ScreenMultiplierRadiusSqr0, ScreenMultiplierRadiusSqr1, Camera);
+		}
     }
+
+	void Update()
+	{
+		if (!IsGameOver)
+		{
+			SetScoreMultiplier();
+			UpdateScore();
+		}
+	}
+
+	void UpdateScore()
+	{
+		CurrentScore += Time.deltaTime * ScreenScoreMultiplier;
+		ScoreText.text = "Score: " + CurrentScore.ToString("0.0");
+
+		if (CurrentScore >= HighScore && !ScoreTutorialActive)
+		{
+			HighScoreFire.SetActive(true);
+		}
+	}
+
+	void SetScoreMultiplier()
+	{
+		Vector3 speckWorldPos = LilB.instance.transform.position;
+		Vector2 speckScreenPos = Camera.WorldToScreenPoint(speckWorldPos);
+		Vector2 speckVector = speckScreenPos - ScreenCenterPoint;
+		float distanceSqr = speckVector.x * speckVector.x + speckVector.y * speckVector.y;
+		if (distanceSqr < ScreenMultiplierRadiusSqr0)
+		{
+			ScreenScoreMultiplier = 2.5f;
+			ScoreMultiplierText.color = ScoreMultiplierTextCenterColor;
+		}
+		else if (distanceSqr < ScreenMultiplierRadiusSqr1)
+		{
+			ScreenScoreMultiplier = 1.5f;
+			ScoreMultiplierText.color = ScoreMultiplierTextMiddleColor;
+		}
+		else
+		{
+			ScreenScoreMultiplier = 1f;
+			ScoreMultiplierText.color = ScoreMultiplierTextOuterColor;
+		}
+		ScoreMultiplierText.text = "x" + ScreenScoreMultiplier.ToString();
+	}
+
+	public void OnBossDefeated()
+	{
+		CurrentScore += 40f;
+		BossSmallFryCountdownActive = true;
+	}
 
     public void OnPauseGameClicked()
     {
@@ -116,14 +198,14 @@ public class GameController : MonoBehaviour
         }
 
         IsGameOver = true;
+		ScoreMultiplierText.gameObject.SetActive(false);
 
         LilB.instance.HandleDeath();
 
-        StopCoroutine(TimerCoroutine);
         bool newHighScore = false;
         if (CurrentScore > HighScore)
         {
-            PlayerPrefs.SetInt(Utility.PrefsHighScoreKey, CurrentScore);
+            PlayerPrefs.SetFloat(Utility.PrefsHighScoreKey, CurrentScore);
             newHighScore = true;
         }
 
@@ -138,28 +220,7 @@ public class GameController : MonoBehaviour
         if (newHighScore)
         {
             NewHighScore.SetActive(true);
-            NewHighScore.GetComponent<Text>().text = "New High Score: " + CurrentScore.ToString();
-        }
-    }
-
-    void UpdateScoreText()
-    {
-        ScoreText.text = "Score: " + CurrentScore.ToString();
-    }
-
-    IEnumerator Timer()
-    {
-        WaitForSeconds secondsToWait = new WaitForSeconds(1f);
-        
-        while (true)
-        {
-            yield return secondsToWait;
-            CurrentScore += 1;
-			if (CurrentScore >= HighScore)
-			{
-				HighScoreFire.SetActive(true);
-			}
-            UpdateScoreText();
+            NewHighScore.GetComponent<Text>().text = "New High Score: " + CurrentScore.ToString("0.0");
         }
     }
 

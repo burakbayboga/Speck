@@ -34,6 +34,12 @@ public class MenuItems
         PlayerPrefs.DeleteKey(Utility.PrefsPlayedTutorialKey);
     }
 
+	[MenuItem("Speck Menu/Clear Score Tutorial Prefs")]
+	public static void ClearScoreTutorialPrefs()
+	{
+		PlayerPrefs.DeleteKey(Utility.PrefsSeenScoreTutorialKey);
+	}
+
 	[MenuItem("Speck Menu/Clear Challenge Prefs")]
 	public static void ClearChallengePrefs()
 	{

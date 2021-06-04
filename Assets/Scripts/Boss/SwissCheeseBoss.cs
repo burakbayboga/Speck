@@ -61,7 +61,7 @@ public class SwissCheeseBoss : Boss
 			}
 			else
 			{
-				EnemyManager.instance.OnBossDefeated();
+				GameController.instance.OnBossDefeated();
 			}
 			Destroy(gameObject);
 		}

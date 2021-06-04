@@ -49,7 +49,7 @@ public class LaserBoss : Boss
 			}
 			else
 			{
-				EnemyManager.instance.OnBossDefeated();
+				GameController.instance.OnBossDefeated();
 			}
 			Destroy(gameObject);
 		}

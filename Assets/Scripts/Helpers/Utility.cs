@@ -5,6 +5,7 @@
     public static string PrefsPlayedTutorialKey = "PlayedTutorial";
     public static string PrefsColorDataKey = "ColorData";
 	public static string PrefsChallengeInfoKey = "ChallengeInfo";
+	public static string PrefsSeenScoreTutorialKey = "SeenScoreTutorial";
 
 	public static ChallengeMode CurrentChallengeMode;
 	public static int CurrentChallengeIndex;
