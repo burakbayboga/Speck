@@ -53,7 +53,7 @@ public class ChallengeController : MonoBehaviour
         SceneManager.LoadScene("menu");
     }
 
-    public void Awake()
+    void Awake()
     {
         instance = this;
 
@@ -61,7 +61,7 @@ public class ChallengeController : MonoBehaviour
         CameraBlur = MainCamera.GetComponent<CameraBlur>();
     }
 
-    private void Start()
+    void Start()
     {
 		LilB.instance.IsChallenge = true;
         LilB.instance.IsTutorial = false;
@@ -69,6 +69,14 @@ public class ChallengeController : MonoBehaviour
         PauseGameButton.OnClickEvent.AddListener(OnPauseGameClicked);
         InitChallenge();
     }
+
+	void OnApplicationPause(bool pause)
+	{
+		if (pause && !IsGameOver && !IsGamePaused)
+		{
+			OnPauseGameClicked();
+		}
+	}
 
     private void InitChallenge()
     {

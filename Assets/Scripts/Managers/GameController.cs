@@ -93,6 +93,14 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	void OnApplicationPause(bool pause)
+	{
+		if (pause && !IsGameOver && !IsGamePaused)
+		{
+			OnPauseGameClicked();
+		}
+	}
+
 	void UpdateScore()
 	{
 		CurrentScore += Time.deltaTime * ScreenScoreMultiplier;
