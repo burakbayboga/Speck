@@ -1560,13 +1560,13 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6ab508c9890b06243979cbcc9075fcfd, type: 2}
   m_Color: {r: 0.58450514, g: 0.6698113, b: 0.65444094, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 026deb7c093022244ac49b2de0d37a78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6e16601793e22748a079577f442cbca, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3062,6 +3062,7 @@ MonoBehaviour:
   ActiveModeColor: {r: 1, g: 1, b: 1, a: 1}
   InactiveModeColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   EndlessButton: {fileID: 954309763}
+  EndlessChainRenderer: {fileID: 408939231}
   ChallengeLevelButtons:
   - {fileID: 6341234954850330311}
   - {fileID: 1304343365}

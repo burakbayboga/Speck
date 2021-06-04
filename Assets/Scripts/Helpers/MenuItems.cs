@@ -40,6 +40,12 @@ public class MenuItems
 		PlayerPrefs.DeleteKey(Utility.PrefsSeenScoreTutorialKey);
 	}
 
+	[MenuItem("Speck Menu/Clear EndlessUnlocked Prefs")]
+	public static void ClearEndlessUnlockedPrefs()
+	{
+		PlayerPrefs.DeleteKey(Utility.PrefsEndlessUnlocked);
+	}
+
 	[MenuItem("Speck Menu/Clear Challenge Prefs")]
 	public static void ClearChallengePrefs()
 	{

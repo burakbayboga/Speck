@@ -31,6 +31,7 @@ public class MenuController : MonoBehaviour
 	public Color InactiveModeColor;
 
     public SButton EndlessButton;
+	public Image EndlessChainRenderer;
 
     public ChallengeButton[] ChallengeLevelButtons;
 	public ChallengeModeButton SelectNormalButton;
@@ -51,6 +52,7 @@ public class MenuController : MonoBehaviour
 		
 		SetTotalStarCount();
 
+		bool endlessUnlocked = PlayerPrefs.GetInt(Utility.PrefsEndlessUnlocked, 0) == 1;
         CanPlayEndless = TotalStarCount >= 8;
         if (!CanPlayEndless)
         {
@@ -58,6 +60,12 @@ public class MenuController : MonoBehaviour
 			EndlessButton.SetActivity(false);
 			HighScoreText.gameObject.SetActive(false);
         }
+		else if (!endlessUnlocked)
+		{
+			EndlessChain.SetActive(true);
+			StartCoroutine(UnlockEndless());
+			PlayerPrefs.SetInt(Utility.PrefsEndlessUnlocked, 1);
+		}
 
 		Utility.CurrentChallengeMode = ChallengeMode.None;
         InitializeChallengeMenu();
@@ -65,6 +73,23 @@ public class MenuController : MonoBehaviour
 		LilB.instance.IsEndless = false;
 		LilB.instance.IsChallenge = false;
 		LilB.instance.IsTutorial = false;
+	}
+
+	IEnumerator UnlockEndless()
+	{
+		float startTime = Time.time;
+		float t = 0f;
+		Vector4 st = Vector4.one;
+		while (t < 1f)
+		{
+			t = (Time.time - startTime) / 2f;
+			st.z = -Mathf.Lerp(0f, 1f, t);
+			st.w = st.z / 2f;
+			EndlessChainRenderer.material.SetVector("_TextureTiling", st);
+
+			yield return null;
+		}
+		EndlessChain.SetActive(false);
 	}
 
     public void OnEndlessButtonClicked()

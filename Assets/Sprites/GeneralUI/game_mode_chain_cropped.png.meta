@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 026deb7c093022244ac49b2de0d37a78
+guid: d6e16601793e22748a079577f442cbca
 TextureImporter:
   fileIDToRecycleName:
-    21300000: game_mode_chain_0
+    21300000: game_mode_chain_cropped_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -107,21 +107,21 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: game_mode_chain_0
+      name: game_mode_chain_cropped_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 15
         y: 126
-        width: 1024
-        height: 269
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47583643}
+        width: 999
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7d165349fa43ac44864d21d3adaf098
+      spriteID: 5a34af9b98b71a7489c04fc741b86846
       vertices: []
       indices: 
       edges: []
@@ -129,7 +129,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f659fc018f611a54c868c58bd9af7186
+    spriteID: 81b52150201a09e42a2a65a919773e3f
     vertices: []
     indices: 
     edges: []

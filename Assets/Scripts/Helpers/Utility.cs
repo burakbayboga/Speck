@@ -6,6 +6,7 @@
     public static string PrefsColorDataKey = "ColorData";
 	public static string PrefsChallengeInfoKey = "ChallengeInfo";
 	public static string PrefsSeenScoreTutorialKey = "SeenScoreTutorial";
+	public static string PrefsEndlessUnlocked = "EndlessUnlocked";
 
 	public static ChallengeMode CurrentChallengeMode;
 	public static int CurrentChallengeIndex;
