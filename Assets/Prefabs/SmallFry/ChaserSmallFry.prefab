@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
   Speed: 5
-  LifeTime: 10
+  LifeTime: 8
   InitialSpeedBoost: 2
   InitialSpeedBoostEaseTime: 1.5
 --- !u!212 &212828501779399256
