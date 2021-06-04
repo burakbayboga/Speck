@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
-  SingularityForceMultiplier: 80
+  SingularityForceMultiplier: 110
   LifeTime: 8
   PreSpawnParticle: {fileID: 5317538033332336917, guid: e0c99654239feba4a9c7c8dfe363b407,
     type: 3}
