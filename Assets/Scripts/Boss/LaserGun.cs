@@ -15,7 +15,7 @@ public class LaserGun : MonoBehaviour
 	public Material TraceMaterial;
 
     private Vector3 Rotation;
-    private Vector3 TargetScale = new Vector3(1.0f, 1.0f, 1.0f);
+    private Vector3 TargetScale = Vector3.one;
     private Collider2D LaserBaseCollider;
 
 	private int[] TracePoolIndexes;
@@ -129,6 +129,8 @@ public class LaserGun : MonoBehaviour
 		{
 			Animator.Play("lazerGunIdle");
 			Laser.SetActive(false);
+            LaserBase.transform.localScale = Vector3.zero;
+			LaserBaseCollider.enabled = false;
 			StartCoroutine(Rotate());
 		}
 		else
