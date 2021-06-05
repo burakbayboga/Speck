@@ -38,7 +38,9 @@ public class ChallengeController : MonoBehaviour
     private bool IsSpawnCoroutineActive;
 
     public bool IsGamePaused;
-    public bool IsGameOver;	// set on death OR level passed
+    public bool IsGameOver;
+	bool IsLevelPassed;
+	
 
 	private ChallengeMode CurrentChallengeMode;
 	private ElectricFence[] EdgeFences;
@@ -75,7 +77,7 @@ public class ChallengeController : MonoBehaviour
 #if UNITY_ANDROID
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if (IsGameOver)
+			if (IsGameOver || IsLevelPassed)
 			{
 				OnBackToMenuButtonCLicked();
 			}
@@ -93,7 +95,7 @@ public class ChallengeController : MonoBehaviour
 
 	void OnApplicationPause(bool pause)
 	{
-		if (pause && !IsGameOver && !IsGamePaused)
+		if (pause && !IsGameOver && !IsGamePaused && IsLevelPassed)
 		{
 			OnPauseGameClicked();
 		}
@@ -240,7 +242,7 @@ public class ChallengeController : MonoBehaviour
 					yield break;
 				}
 
-				IsGameOver = true;
+				IsLevelPassed = true;
 				SaveChallengeInfo();
 				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore && !IsNextLevelHardcoreAvailable())
 				{
@@ -339,7 +341,7 @@ public class ChallengeController : MonoBehaviour
         PauseGameButton.IsButtonActive = true;
 		ActiveBossCount = 0;
 		WatchForLevelEndActive = false;
-		IsGameOver = false;
+		IsLevelPassed = false;
     }
 
     private void SpawnEnemy(ChallengeWaveEnemy enemy)
