@@ -8,9 +8,8 @@ public class BlackHoleScreenEffect : MonoBehaviour
 	public float WaveFrequency;
 	public float WaveSpeed;
 	public float WaveThickness;
+	public Camera Camera;
 
-	int Height;
-	int Width;
 	Material ScreenEffect;
 
 	// x,y = world position    z = waveRadiusStart   w = waveRadiusEnd
@@ -22,9 +21,13 @@ public class BlackHoleScreenEffect : MonoBehaviour
 
 	void Awake()
 	{
-		Height = Screen.height;
-		Width = Screen.width;
+		float height = Screen.height;
+		float width = Screen.width;
 		ScreenEffect = Instantiate(BlackHoleScreenEffectMat);
+		Vector2 worldTopRight = Camera.ScreenToWorldPoint(new Vector2(width, height));
+		Vector4 worldEdgeData = new Vector4(worldTopRight.x * 2f, worldTopRight.y * 2f,
+											worldTopRight.x, worldTopRight.y);
+		ScreenEffect.SetVector("_WorldEdgeData", worldEdgeData);
 	}
 
 	void OnRenderImage(RenderTexture source, RenderTexture destination)

@@ -39,6 +39,7 @@
 			sampler2D _NoiseTex;
 			sampler2D _EffectTex;
 			float4 _BlackHoleData[2];	//x,y = world pos   z = waveRadiusStart   w = waveRadiusEnd
+			float4 _WorldEdgeData;		// x = xLimit * 2,  y = yLimit * 2,  z = xLimit  w = yLimit
 
 			v2f VertexFunction(appdata v)
 			{
@@ -46,7 +47,8 @@
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = v.uv;
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex);
-				o.worldPos = float2(o.worldPos.x * 50 - 25, o.worldPos.y * 28 - 14);	// classy
+				o.worldPos = float2(o.worldPos.x * _WorldEdgeData.x - _WorldEdgeData.z,
+									o.worldPos.y * _WorldEdgeData.y - _WorldEdgeData.w);	// classy
 				return o;
 			}
 

@@ -116,3 +116,4 @@ MonoBehaviour:
   WaveFrequency: 3
   WaveSpeed: 15
   WaveThickness: 5
+  Camera: {fileID: 20549864244588550}
