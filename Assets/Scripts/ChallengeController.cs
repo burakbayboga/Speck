@@ -93,14 +93,6 @@ public class ChallengeController : MonoBehaviour
 #endif
 	}
 
-	void OnApplicationPause(bool pause)
-	{
-		if (pause && !IsGameOver && !IsGamePaused && IsLevelPassed)
-		{
-			OnPauseGameClicked();
-		}
-	}
-
     private void InitChallenge()
     {
 
