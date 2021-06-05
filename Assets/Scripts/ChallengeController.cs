@@ -72,7 +72,7 @@ public class ChallengeController : MonoBehaviour
 
 	void Update()
 	{
-#if UNITY_EDITOR
+#if UNITY_ANDROID
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if (IsGameOver)
