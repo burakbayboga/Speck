@@ -82,7 +82,6 @@ public class LilB : MonoBehaviour
     void Update()
     {
         HandleKeyboardInput();
-		print(Time.deltaTime);
     }
 #endif
 
