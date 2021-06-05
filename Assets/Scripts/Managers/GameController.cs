@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour
 		{
 			ScoreTutorialActive = true;
 			ScoreTutorial.Initiate(ScreenCenterPoint, ScreenMultiplierRadiusSqr0, ScreenMultiplierRadiusSqr1, Camera);
+			PauseGameButton.gameObject.SetActive(false);
 		}
     }
 
