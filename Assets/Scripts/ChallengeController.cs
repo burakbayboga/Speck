@@ -228,6 +228,8 @@ public class ChallengeController : MonoBehaviour
 					NextLevelButton.SetActive(true);
 				}
 
+				AnalyticsManager.SendChallengeStat(CurrentLevelIndex, Utility.CurrentChallengeMode, true);
+
                 StartCoroutine(LerpCanvasGroupAlpha(LevelOverUIParent, true));
                 PauseGameButton.IsButtonActive = false;
 				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore)
@@ -356,6 +358,7 @@ public class ChallengeController : MonoBehaviour
         }
 
         LilB.instance.HandleDeath();
+		AnalyticsManager.SendChallengeStat(CurrentLevelIndex, Utility.CurrentChallengeMode, false);
         StartCoroutine(LerpCanvasGroupAlpha(RetryUIParent, true));
     }
 

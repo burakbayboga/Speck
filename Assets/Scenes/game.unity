@@ -2085,6 +2085,11 @@ PrefabInstance:
       propertyPath: InactiveColors.Array.data[0].a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5004385566726161058, guid: 466ccc80e41cf724db8d2e96e8d965b3,
+        type: 3}
+      propertyPath: OnClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7623903042198150736, guid: 466ccc80e41cf724db8d2e96e8d965b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2415,6 +2420,16 @@ PrefabInstance:
       propertyPath: OnClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1405998365}
+    - target: {fileID: 1294576064802501410, guid: 62c0f86eeaaeee1479aaf4b6a0563387,
+        type: 3}
+      propertyPath: OnClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294576064802501410, guid: 62c0f86eeaaeee1479aaf4b6a0563387,
+        type: 3}
+      propertyPath: OnClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6090102800671921734, guid: 62c0f86eeaaeee1479aaf4b6a0563387,
         type: 3}
       propertyPath: m_LocalPosition.x

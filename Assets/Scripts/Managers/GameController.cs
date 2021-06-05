@@ -42,6 +42,8 @@ public class GameController : MonoBehaviour
 	Vector2 ScreenCenterPoint;
 	float ScreenScoreMultiplier = 1f;
 	bool ScoreTutorialActive;
+
+	float GameStartTime;
     
     void Awake()
     {
@@ -75,6 +77,7 @@ public class GameController : MonoBehaviour
 		bool seenScoreTutorial = PlayerPrefs.GetInt(Utility.PrefsSeenScoreTutorialKey, 0) == 1;
 		if (seenScoreTutorial)
 		{
+			GameStartTime = Time.time;
 			EnemyManager.instance.TriggerSmallFryLoop();
 		}
 		else
@@ -217,6 +220,8 @@ public class GameController : MonoBehaviour
             newHighScore = true;
         }
 
+		AnalyticsManager.SendEndlessStat(Time.time - GameStartTime, CurrentScore);
+
         GameOverUI(newHighScore);
     }
 
@@ -256,11 +261,15 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("game");
     }
 
-    public void OnBackToMenu()
+    public void OnBackToMenu(bool fromPause)
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
 
+		if (fromPause)
+		{
+			AnalyticsManager.SendEndlessBackToMenuStat(Time.time - GameStartTime, CurrentScore);
+		}
         SceneManager.LoadScene("menu");
     }
 }
