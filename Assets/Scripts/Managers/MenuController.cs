@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviour
 
     public GameObject MainMenuParent;
     public GameObject ChallengeMenuParent;
+	public GameObject QuitMenuParent;
 	public GameObject ChallengeModePopupParent;
 	public GameObject PassedNormalImage;
 	public GameObject PassedHardcoreImage;
@@ -39,6 +40,8 @@ public class MenuController : MonoBehaviour
 
     private bool WarningActive;
     private bool CanPlayEndless;
+
+	private MenuType CurrentMenuType;
 
     void Awake()
     {
@@ -73,6 +76,32 @@ public class MenuController : MonoBehaviour
 		LilB.instance.IsEndless = false;
 		LilB.instance.IsChallenge = false;
 		LilB.instance.IsTutorial = false;
+		CurrentMenuType = MenuType.Main;
+	}
+
+	void Update()
+	{
+#if UNITY_ANDROID
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (CurrentMenuType == MenuType.Main)
+			{
+				OnMainMenuBackButtonClicked();	
+			}
+			else if (CurrentMenuType == MenuType.Challenge)
+			{
+				OnChallengeMenuBackButtonClicked();
+			}
+			else if (CurrentMenuType == MenuType.ChallengePopup)
+			{
+				OnFullscreenBackButtonClicked();
+			}
+			else if (CurrentMenuType == MenuType.Quit)
+			{
+				OnQuitMenuBackButtonClicked();
+			}
+		}
+#endif
 	}
 
 	IEnumerator UnlockEndless()
@@ -121,6 +150,7 @@ public class MenuController : MonoBehaviour
 
 		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, true));
 		FullscreenBackButton.SetActive(true);
+		CurrentMenuType = MenuType.ChallengePopup;
 	}
 
 	public void OnNormalModeClicked()
@@ -140,11 +170,26 @@ public class MenuController : MonoBehaviour
 		SceneManager.LoadScene("challenge");
 	}
 
+	public void OnMainMenuBackButtonClicked()
+	{
+		StartCoroutine(LerpCanvasGroupAlpha(MainMenuParent, false));
+		StartCoroutine(LerpCanvasGroupAlpha(QuitMenuParent, true));
+		CurrentMenuType = MenuType.Quit;
+	}
+
     public void OnChallengeMenuBackButtonClicked()
     {
         StartCoroutine(LerpCanvasGroupAlpha(ChallengeMenuParent, false));
         StartCoroutine(LerpCanvasGroupAlpha(MainMenuParent, true));
+		CurrentMenuType = MenuType.Main;
     }
+
+	public void OnQuitMenuBackButtonClicked()
+	{
+        StartCoroutine(LerpCanvasGroupAlpha(QuitMenuParent, false));
+        StartCoroutine(LerpCanvasGroupAlpha(MainMenuParent, true));
+		CurrentMenuType = MenuType.Main;
+	}
 
     private IEnumerator EndlessWarningTimer()
     {
@@ -224,6 +269,7 @@ public class MenuController : MonoBehaviour
     {
         StartCoroutine(LerpCanvasGroupAlpha(MainMenuParent, false));
         StartCoroutine(LerpCanvasGroupAlpha(ChallengeMenuParent, true));
+		CurrentMenuType = MenuType.Challenge;
     }
 
 	public void OnFullscreenBackButtonClicked()
@@ -231,11 +277,31 @@ public class MenuController : MonoBehaviour
 		StartCoroutine(LerpCanvasGroupAlpha(ChallengeModePopupParent, false));
 		ResetModeSelectPopup();
 		FullscreenBackButton.SetActive(false);
+		CurrentMenuType = MenuType.Challenge;
 	}
 
 	private void ResetModeSelectPopup()
 	{
 		SelectNormalButton.Reset();
 		SelectHardcoreButton.Reset();
+	}
+
+	public void OnQuitYesClicked()
+	{
+		Application.Quit();
+	}
+
+	public void OnQuitNoClicked()
+	{
+		StartCoroutine(LerpCanvasGroupAlpha(QuitMenuParent, false));
+		StartCoroutine(LerpCanvasGroupAlpha(MainMenuParent, true));
+	}
+
+	enum MenuType
+	{
+		Main,
+		Challenge,
+		ChallengePopup,
+		Quit
 	}
 }
