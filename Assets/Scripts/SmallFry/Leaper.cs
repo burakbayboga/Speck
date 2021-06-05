@@ -67,12 +67,9 @@ public class Leaper : SmallFry
 		float movementSinceTrace = 0f;
         for (int i = 0; i < leapSequence.Length; i++) 
         { 
-            Vector3 originalPos = i == 0 ? transform.position : leapSequence[i - 1]; 
-
             while (Vector3.Distance(transform.position, leapSequence[i]) >= 0.5f) 
             { 
-                Vector3 movement = (leapSequence[i] - originalPos).normalized * LeapSpeed;
-				float movementMagCache = movement.magnitude;
+                Vector3 movement = (leapSequence[i] - transform.position).normalized * LeapSpeed;
                 movement = Vector3.ClampMagnitude(movement, (leapSequence[i] - transform.position).magnitude); 
                 transform.position += movement; 
 				movementSinceTrace += movement.magnitude;
