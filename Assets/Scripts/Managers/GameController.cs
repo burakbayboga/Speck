@@ -90,6 +90,24 @@ public class GameController : MonoBehaviour
 
 	void Update()
 	{
+#if UNITY_ANDROID
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (IsGameOver)
+			{
+				OnBackToMenu(false);
+			}
+			else if (IsGamePaused)
+			{
+				OnResumeGameClicked();
+			}
+			else
+			{
+				OnPauseGameClicked();
+			}
+		}
+#endif
+
 		if (!IsGameOver)
 		{
 			SetScoreMultiplier();
@@ -99,7 +117,7 @@ public class GameController : MonoBehaviour
 
 	void OnApplicationPause(bool pause)
 	{
-		if (pause && !IsGameOver && !IsGamePaused)
+		if (pause && !IsGameOver && !IsGamePaused && !ScoreTutorialActive)
 		{
 			OnPauseGameClicked();
 		}
