@@ -236,7 +236,8 @@ public class ChallengeController : MonoBehaviour
 
 				IsLevelPassed = true;
 				SaveChallengeInfo();
-				if (Utility.CurrentChallengeMode == ChallengeMode.Hardcore && !IsNextLevelHardcoreAvailable())
+				if ((Utility.CurrentChallengeMode == ChallengeMode.Hardcore && !IsNextLevelHardcoreAvailable())
+						|| CurrentLevelIndex == 19)
 				{
 					NextLevelButton.SetActive(false);
 				}
